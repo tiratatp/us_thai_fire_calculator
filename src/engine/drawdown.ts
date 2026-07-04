@@ -27,7 +27,6 @@ import {
   cloneAccounts,
   drawFromUsd,
   fundThb,
-  payThaiTax,
   payUsTax,
   toReadonly,
   type MutAcct,
@@ -102,7 +101,42 @@ export function yearStep(inputs: YearStepInputs): { state: YearState; outcome: Y
   let usOrdinaryIncome = s1.ordinary;
   let usdCashPool = s1.rmdTotal;
 
-  const s2 = fundThb(accts, thbNeed, usdCashPool, state.fxRateUsdThb, state.age, isThaiResident);
+  // Fund THB need + Thai tax as a fixed point (algorithm v2 Step 8
+  // "recurse or clamp"). Tax-funding remittance is itself assessable
+  // (Cash post-2024 / gain / retirement), so tax-on-tax. Contraction
+  // modulus ≤ 0.35; 20 iters at 1-THB tolerance is a wide safety margin.
+  let taxEst = 0;
+  if (isThaiResident) {
+    for (let i = 0; i < 20; i++) {
+      const trial = cloneAccounts(accts);
+      const probe = fundThb(
+        trial,
+        thbNeed + taxEst,
+        usdCashPool,
+        state.fxRateUsdThb,
+        state.age,
+        isThaiResident,
+      );
+      const nextTax = computeThaiTax({
+        items: probe.items,
+        regScenario,
+        isThaiResident,
+      });
+      if (Math.abs(nextTax - taxEst) <= 1) {
+        taxEst = nextTax;
+        break;
+      }
+      taxEst = nextTax;
+    }
+  }
+  const s2 = fundThb(
+    accts,
+    thbNeed + taxEst,
+    usdCashPool,
+    state.fxRateUsdThb,
+    state.age,
+    isThaiResident,
+  );
   usdCashPool -= s2.poolUsedUsd;
   usOrdinaryIncome += s2.ordinaryIncome;
   let ltcgIncome = s2.ltcgIncome;
@@ -152,10 +186,9 @@ export function yearStep(inputs: YearStepInputs): { state: YearState; outcome: Y
   });
 
   let spendingUnmet = s2.remainingThb > 1e-6 || usdTravelRemaining > 1e-6;
-  const usResult = payUsTax(accts, ftc.usTaxAfterFtc, usdCashPool);
+  const usResult = payUsTax(accts, ftc.usTaxAfterFtc, usdCashPool, state.age);
   usdCashPool = usResult.pool;
   if (usResult.unmet) spendingUnmet = true;
-  if (payThaiTax(accts, thaiTaxThb)) spendingUnmet = true;
 
   if (usdCashPool > 1e-6) {
     const existing = accts.find((a) => a.id === 'usd-cash-pool');

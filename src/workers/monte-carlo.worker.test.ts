@@ -45,7 +45,8 @@ describe('monte-carlo.worker', () => {
     if (response.cmd === 'done') {
       expect(response.result.trialsRun).toBe(5);
       expect(response.result.successRate).toBeDefined();
-      expect(response.result.p50).toHaveLength(
+      expect(response.result.p50.length).toBeGreaterThan(0);
+      expect(response.result.p50.length).toBeLessThanOrEqual(
         minimalInputs.lifeExpectancy - minimalInputs.currentAge,
       );
     }

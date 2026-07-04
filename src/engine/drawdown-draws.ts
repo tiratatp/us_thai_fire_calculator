@@ -176,34 +176,34 @@ export function applyConversion(accts: MutAcct[], amount: number): void {
   else accts.push({ id: 'roth-conv', type: 'RothIRA', currency: 'USD', balance: amount });
 }
 
+export interface PayUsTaxResult {
+  readonly pool: number;
+  readonly unmet: boolean;
+  readonly extraLtcgIncome: number;
+  readonly extraOrdinaryIncome: number;
+  readonly extraPenalty: number;
+}
+
 export function payUsTax(
   accts: MutAcct[],
   owed: number,
   pool: number,
-): { pool: number; unmet: boolean } {
+  age: number,
+): PayUsTaxResult {
   let remaining = owed;
   const poolTake = Math.min(remaining, pool);
   const newPool = pool - poolTake;
   remaining -= poolTake;
-  if (remaining <= 1e-6) return { pool: newPool, unmet: false };
-  for (const a of accts) {
-    if (remaining <= 1e-6) break;
-    if (a.currency !== 'USD' || a.type !== 'Cash') continue;
-    const take = Math.min(remaining, a.balance);
-    a.balance -= take;
-    remaining -= take;
+  if (remaining <= 1e-6) {
+    return { pool: newPool, unmet: false, extraLtcgIncome: 0, extraOrdinaryIncome: 0, extraPenalty: 0 };
   }
-  return { pool: newPool, unmet: remaining > 1e-6 };
-}
-
-export function payThaiTax(accts: MutAcct[], owedThb: number): boolean {
-  let remaining = owedThb;
-  for (const a of accts) {
-    if (remaining <= 1e-6) break;
-    if (a.currency !== 'THB' || a.type !== 'Cash') continue;
-    const take = Math.min(remaining, a.balance);
-    a.balance -= take;
-    remaining -= take;
-  }
-  return remaining > 1e-6;
+  const draw = drawFromUsd(accts, remaining, age);
+  remaining -= draw.drawn;
+  return {
+    pool: newPool,
+    unmet: remaining > 1e-6,
+    extraLtcgIncome: draw.ltcgIncome,
+    extraOrdinaryIncome: draw.ordinaryIncome,
+    extraPenalty: draw.penalty,
+  };
 }

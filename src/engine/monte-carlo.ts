@@ -52,8 +52,11 @@ function sumExpensesThbYr(u: UserInputs): number {
   return u.expenses.healthcareThbYr + u.expenses.legalTaxThbYr;
 }
 
-function totalBalance(accts: readonly Account[]): number {
-  return accts.reduce((s, a) => s + a.balance, 0);
+function totalBalance(accts: readonly Account[], fxRateUsdThb: number): number {
+  return accts.reduce(
+    (s, a) => s + (a.currency === 'THB' ? a.balance / fxRateUsdThb : a.balance),
+    0,
+  );
 }
 
 function initialState(u: UserInputs, assumption: Assumption): YearState {
@@ -127,7 +130,7 @@ function runSingleTrial(
 
   return {
     trace,
-    finalPortfolio: totalBalance(state.accounts),
+    finalPortfolio: totalBalance(state.accounts, state.fxRateUsdThb),
     failed: state.failed,
     totalTaxUsd,
   };
