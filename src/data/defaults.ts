@@ -70,25 +70,35 @@ export const DEFAULT_REGULATORY_SCENARIO_PESSIMISTIC: RegulatoryScenario = {
 };
 
 /**
- * Empty starter state. The UI presents this as a blank slate the user fills in.
- * currentAge/lifeExpectancy defaults chosen so form validation passes on load
- * without requiring any user action just to render.
+ * Realistic starter state for a mid-career US-Thai dual citizen planning
+ * to retire in Thailand. Values are illustrative — users MUST edit them to
+ * their actual figures. Numbers are not personally identifying (fictitious
+ * balances jittered from a representative FIRE profile).
  */
 export const DEFAULT_USER_INPUTS: UserInputs = {
-  currentAge: 55,
-  lifeExpectancy: 90,
-  birthYear: 1971,
-  accounts: [],
+  currentAge: 38,
+  lifeExpectancy: 95,
+  birthYear: 1988,
+  accounts: [
+    { id: 'thb-cash', type: 'Cash', currency: 'THB', balance: 9_500_000 },
+    { id: 'usd-cash', type: 'Cash', currency: 'USD', balance: 165_000 },
+    { id: 'usd-taxable', type: 'TaxableBrokerage', currency: 'USD', balance: 1_275_000, basis: 900_000 },
+    { id: 'usd-t401k', type: 'Traditional401k', currency: 'USD', balance: 320_000 },
+    { id: 'usd-r401k', type: 'Roth401k', currency: 'USD', balance: 240_000 },
+    { id: 'usd-tira', type: 'TraditionalIRA', currency: 'USD', balance: 55_000 },
+    { id: 'usd-rira', type: 'RothIRA', currency: 'USD', balance: 52_000 },
+    { id: 'usd-hsa', type: 'HSA', currency: 'USD', balance: 68_000 },
+  ],
   expenses: {
-    housingThbMo: 0,
-    foodThbMo: 0,
-    transportThbMo: 0,
-    otherThbMo: 0,
-    healthcareThbYr: 0,
-    legalTaxThbYr: 0,
-    travelUsdYr: 0,
+    housingThbMo: 80_000,
+    foodThbMo: 27_000,
+    transportThbMo: 13_000,
+    otherThbMo: 45_000,
+    healthcareThbYr: 110_000,
+    legalTaxThbYr: 8_000,
+    travelUsdYr: 20_000,
   },
-  thaiResidencyByYear: Array.from({ length: 90 - 55 }, () => true),
+  thaiResidencyByYear: Array.from({ length: 95 - 38 }, () => true),
   successThreshold: 0.90,
   monteCarloTrials: 1000,
   regulatoryStance: 'both',
