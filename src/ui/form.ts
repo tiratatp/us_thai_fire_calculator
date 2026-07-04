@@ -1,0 +1,240 @@
+import type { UserInputs, Account } from '../types.js';
+import { DEFAULT_USER_INPUTS } from '../data/defaults.js';
+import { save, restore } from '../storage.js';
+import { ACCOUNT_TYPES, CURRENCIES, REGULATORY_STANCES, parseFormData, validateField } from './form-schema.js';
+
+const STORAGE_KEY = 'v1_inputs';
+
+export function loadInitialInputs(): UserInputs {
+  return restore(STORAGE_KEY, DEFAULT_USER_INPUTS);
+}
+
+export function saveInputs(inputs: UserInputs): void {
+  save(STORAGE_KEY, inputs);
+}
+
+export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs) => void): void {
+  let inputs = loadInitialInputs();
+  
+  const render = () => {
+    container.innerHTML = `
+      <form id="fire-form" class="space-y-6">
+        <section>
+          <h2 class="text-xl font-bold">Basics</h2>
+          <div class="grid grid-cols-3 gap-4">
+            ${renderNumber('currentAge', 'Current Age', inputs.currentAge, 0)}
+            ${renderNumber('lifeExpectancy', 'Life Expectancy', inputs.lifeExpectancy, inputs.currentAge + 1)}
+            ${renderNumber('birthYear', 'Birth Year', inputs.birthYear, 1900, new Date().getFullYear())}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold">Accounts</h2>
+          <div id="accounts-container" class="space-y-2">
+            ${inputs.accounts.map(renderAccount).join('')}
+          </div>
+          <button type="button" id="add-account" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Add Account</button>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold">Expenses</h2>
+          <div class="grid grid-cols-2 gap-4">
+            ${renderNumber('housingThbMo', 'Housing (THB/mo)', inputs.expenses.housingThbMo, 0)}
+            ${renderNumber('foodThbMo', 'Food (THB/mo)', inputs.expenses.foodThbMo, 0)}
+            ${renderNumber('transportThbMo', 'Transport (THB/mo)', inputs.expenses.transportThbMo, 0)}
+            ${renderNumber('otherThbMo', 'Other (THB/mo)', inputs.expenses.otherThbMo, 0)}
+            ${renderNumber('healthcareThbYr', 'Healthcare (THB/yr)', inputs.expenses.healthcareThbYr, 0)}
+            ${renderNumber('legalTaxThbYr', 'Legal/Tax (THB/yr)', inputs.expenses.legalTaxThbYr, 0)}
+            ${renderNumber('travelUsdYr', 'Travel (USD/yr)', inputs.expenses.travelUsdYr, 0)}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold">Residency</h2>
+          <div class="flex flex-wrap gap-2">
+            ${Array.from({ length: Math.max(0, inputs.lifeExpectancy - inputs.currentAge) }, (_, i) => `
+              <label class="flex items-center space-x-1">
+                <input type="checkbox" name="residency_${i}" ${inputs.thaiResidencyByYear[i] !== false ? 'checked' : ''}>
+                <span>Age ${inputs.currentAge + i}</span>
+              </label>
+            `).join('')}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-bold">Assumptions</h2>
+          <div class="grid grid-cols-3 gap-4">
+            ${renderNumber('monteCarloTrials', 'MC Trials', inputs.monteCarloTrials, 100, 10000)}
+            ${renderNumber('successThreshold', 'Success Threshold', inputs.successThreshold, 0, 1, 0.01)}
+            <label class="block">
+              <span class="text-sm font-medium">Regulatory Stance</span>
+              <select name="regulatoryStance" class="mt-1 block w-full rounded border-gray-300">
+                ${REGULATORY_STANCES.map(s => `<option value="${s.value}" ${inputs.regulatoryStance === s.value ? 'selected' : ''}>${s.label}</option>`).join('')}
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <button type="submit" id="submit-btn" class="px-4 py-2 bg-green-500 text-white rounded disabled:opacity-50">Run Simulation</button>
+      </form>
+    `;
+
+    attachListeners();
+  };
+
+  const renderNumber = (name: string, label: string, value: number, min?: number, max?: number, step?: number) => `
+    <label class="block">
+      <span class="text-sm font-medium">${label}</span>
+      <input type="number" name="${name}" value="${value}" 
+        ${min !== undefined ? `min="${min}"` : ''} 
+        ${max !== undefined ? `max="${max}"` : ''} 
+        ${step !== undefined ? `step="${step}"` : ''}
+        class="mt-1 block w-full rounded border-gray-300">
+      <span class="error-msg text-red-500 text-xs hidden"></span>
+    </label>
+  `;
+
+  const renderAccount = (acc: Account) => `
+    <div class="account-row flex gap-2 items-end border p-2 rounded" data-id="${acc.id}">
+      <input type="hidden" name="account_id" value="${acc.id}">
+      <label class="block flex-1">
+        <span class="text-xs">Type</span>
+        <select name="account_type_${acc.id}" class="account-type-select block w-full text-sm">
+          ${ACCOUNT_TYPES.map(t => `<option value="${t.value}" ${acc.type === t.value ? 'selected' : ''}>${t.label}</option>`).join('')}
+        </select>
+      </label>
+      <label class="block w-24">
+        <span class="text-xs">Currency</span>
+        <select name="account_currency_${acc.id}" class="block w-full text-sm">
+          ${CURRENCIES.map(c => `<option value="${c.value}" ${acc.currency === c.value ? 'selected' : ''}>${c.label}</option>`).join('')}
+        </select>
+      </label>
+      <label class="block flex-1">
+        <span class="text-xs">Balance</span>
+        <input type="number" name="account_balance_${acc.id}" value="${acc.balance}" min="0" class="block w-full text-sm">
+      </label>
+      <label class="block flex-1">
+        <span class="text-xs">Basis</span>
+        <input type="number" name="account_basis_${acc.id}" value="${acc.basis ?? ''}" min="0" class="basis-input block w-full text-sm" ${acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
+      </label>
+      <label class="block flex-1" title="Grandfathering (Paw 162/2566) does not apply to retirement accounts.">
+        <span class="text-xs">Pre-2024 Snapshot ℹ️</span>
+        <input type="number" name="account_pre2024_${acc.id}" value="${acc.pre2024Snapshot ?? ''}" min="0" class="pre2024-input block w-full text-sm" ${acc.type !== 'Cash' && acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
+      </label>
+      <button type="button" class="remove-account px-2 py-1 bg-red-500 text-white rounded text-sm">X</button>
+    </div>
+  `;
+
+  const attachListeners = () => {
+    const form = container.querySelector('#fire-form') as HTMLFormElement;
+    const submitBtn = container.querySelector('#submit-btn') as HTMLButtonElement;
+
+    const validateForm = () => {
+      let isValid = true;
+      form.querySelectorAll('input[type="number"]').forEach(input => {
+        const el = input as HTMLInputElement;
+        const errorSpan = el.nextElementSibling as HTMLElement;
+        const spec = { id: el.name, type: 'number' as const, min: el.min ? Number(el.min) : undefined, max: el.max ? Number(el.max) : undefined, label: '', section: 'basics' as const };
+        const error = validateField(spec, el.value);
+        
+        if (error && !el.disabled) {
+          isValid = false;
+          el.classList.add('invalid', 'border-red-500');
+          if (errorSpan && errorSpan.classList.contains('error-msg')) {
+            errorSpan.textContent = error;
+            errorSpan.classList.remove('hidden');
+          }
+        } else {
+          el.classList.remove('invalid', 'border-red-500');
+          if (errorSpan && errorSpan.classList.contains('error-msg')) {
+            errorSpan.classList.add('hidden');
+          }
+        }
+      });
+
+      // Cross-field validation
+      const currentAge = Number((form.elements.namedItem('currentAge') as HTMLInputElement).value);
+      const lifeExpectancy = Number((form.elements.namedItem('lifeExpectancy') as HTMLInputElement).value);
+      if (lifeExpectancy <= currentAge) {
+        isValid = false;
+        const leInput = form.elements.namedItem('lifeExpectancy') as HTMLInputElement;
+        leInput.classList.add('invalid', 'border-red-500');
+        const errorSpan = leInput.nextElementSibling as HTMLElement;
+        if (errorSpan) {
+          errorSpan.textContent = 'Must be > Current Age';
+          errorSpan.classList.remove('hidden');
+        }
+      }
+
+      submitBtn.disabled = !isValid;
+      return isValid;
+    };
+
+    form.addEventListener('input', (e) => {
+      const target = e.target as HTMLElement;
+      
+      if (target.classList.contains('account-type-select')) {
+        const row = target.closest('.account-row') as HTMLElement;
+        const type = (target as HTMLSelectElement).value;
+        const basisInput = row.querySelector('.basis-input') as HTMLInputElement;
+        const pre2024Input = row.querySelector('.pre2024-input') as HTMLInputElement;
+        
+        basisInput.disabled = type !== 'TaxableBrokerage';
+        if (basisInput.disabled) basisInput.value = '';
+        
+        pre2024Input.disabled = type !== 'Cash' && type !== 'TaxableBrokerage';
+        if (pre2024Input.disabled) pre2024Input.value = '';
+      }
+
+      if ((target as HTMLInputElement).name === 'currentAge' || (target as HTMLInputElement).name === 'lifeExpectancy') {
+        if (validateForm()) {
+          const fd = new FormData(form);
+          inputs = parseFormData(fd);
+          render();
+        }
+        return;
+      }
+
+      if (validateForm()) {
+        const fd = new FormData(form);
+        inputs = parseFormData(fd);
+        saveInputs(inputs);
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (validateForm()) {
+        const fd = new FormData(form);
+        inputs = parseFormData(fd);
+        saveInputs(inputs);
+        onSubmit(inputs);
+      }
+    });
+
+    container.querySelector('#add-account')?.addEventListener('click', () => {
+      const newId = Math.random().toString(36).substring(2, 9);
+      inputs = {
+        ...inputs,
+        accounts: [...inputs.accounts, { id: newId, type: 'TaxableBrokerage', currency: 'USD', balance: 0 }]
+      };
+      render();
+    });
+
+    container.querySelectorAll('.remove-account').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const row = (e.target as HTMLElement).closest('.account-row') as HTMLElement;
+        const id = row.dataset.id;
+        inputs = {
+          ...inputs,
+          accounts: inputs.accounts.filter(a => a.id !== id)
+        };
+        render();
+      });
+    });
+
+    validateForm();
+  };
+
+  render();
+}
