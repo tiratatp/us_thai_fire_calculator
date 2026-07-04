@@ -3,22 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/us_thai_fire_calculator/favicon.svg" />
   <title>US-Thai FIRE Calculator</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-  <div id="app">
-    <nav>
-      <button data-tab="inputs">Inputs</button>
-      <button data-tab="results">Results</button>
-      <button data-tab="methodology">Methodology</button>
-    </nav>
-    <main>
-      <section id="inputs-tab" class="tab-panel"></section>
-      <section id="results-tab" class="tab-panel"></section>
-      <section id="methodology-tab" class="tab-panel"></section>
-    </main>
-  </div>
+  <header>
+    <h1>US-Thai FIRE Calculator</h1>
+    <p class="disclaimer"><strong>Not tax advice.</strong> Consult a cross-border tax professional. Roth treatment in Thailand is unsettled.</p>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button class="tab" data-tab="inputs" role="tab" aria-selected="true">Inputs</button>
+    <button class="tab" data-tab="results" role="tab" aria-selected="false">Results</button>
+    <button class="tab" data-tab="methodology" role="tab" aria-selected="false">Methodology</button>
+  </nav>
+  <main>
+    <section id="inputs-tab" class="tab-panel" role="tabpanel" aria-labelledby="inputs"></section>
+    <section id="results-tab" class="tab-panel hidden" role="tabpanel" aria-labelledby="results">
+      <div id="results-summary"></div>
+      <div id="progress-bar" class="hidden"><progress max="100" value="0"></progress><span id="progress-text">Running...</span></div>
+      <div id="results-error" class="hidden"></div>
+      <div id="portfolio-chart-container">
+        <canvas id="portfolio-chart"></canvas>
+      </div>
+      <div id="withdrawal-chart-container">
+        <canvas id="withdrawal-chart"></canvas>
+      </div>
+      <div id="year-table-container"></div>
+    </section>
+    <section id="methodology-tab" class="tab-panel hidden" role="tabpanel" aria-labelledby="methodology"></section>
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

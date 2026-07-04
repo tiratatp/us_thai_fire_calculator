@@ -1,0 +1,13 @@
+/* Placeholder styles — full mobile-first design lives in T17 (Wave 11). */
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; margin: 0; padding: 1rem; }
+header h1 { margin: 0 0 0.5rem 0; }
+.disclaimer { color: #b91c1c; margin: 0 0 1rem 0; font-size: 0.9rem; }
+.tabs { display: flex; gap: 0.5rem; border-bottom: 1px solid #ccc; margin-bottom: 1rem; }
+.tab { padding: 0.5rem 1rem; background: transparent; border: none; cursor: pointer; }
+.tab.active { border-bottom: 2px solid #2563eb; font-weight: bold; }
+.tab-panel { padding-top: 1rem; }
+.hidden { display: none; }
+#results-error { color: #b91c1c; padding: 1rem; background: #fee2e2; border-radius: 4px; margin: 1rem 0; }
+#progress-bar { display: flex; align-items: center; gap: 1rem; padding: 1rem; }
+canvas { max-width: 100%; height: auto; }
