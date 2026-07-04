@@ -21,17 +21,9 @@
  * @see .research/08-algorithm-v2.md Step 2/3
  */
 
-import type {
-  Account,
-  RegulatoryScenario,
-  RemittanceItem,
-  RemittanceSourceType,
-} from '../types.js';
+import type { Account, RemittanceItem, RemittanceSourceType } from '../types.js';
 
-// Referenced only for the type-level cross-check inside thai-tax.ts;
-// keeping the import stops the linter from complaining and documents
-// the contract this solver has with the tax module.
-export type { RegulatoryScenario };
+export { buildFundingSources } from './funding-sources.js';
 
 /** Working state describing an available funding source. */
 export interface FundingSource {
@@ -76,45 +68,26 @@ export function sourceOrder(): readonly RemittanceSourceType[] {
 
 export function sourceOrderIndex(t: RemittanceSourceType): number {
   const idx = SOURCE_ORDER.indexOf(t);
-  if (idx < 0) {
-    throw new Error(`Unhandled RemittanceSourceType: ${String(t)}`);
-  }
+  if (idx < 0) throw new Error(`Unhandled RemittanceSourceType: ${String(t)}`);
   return idx;
 }
 
 /**
  * Split a TaxableBrokerage withdrawal into basis vs gain proportionally.
- *
- * `basisFraction = min(1, basis / balance)` if `balance > 0`.
- * Handles missing `basis` (treated as 0 → all gain) and a zero balance
- * (returns all-gain to avoid division by zero — the caller should not
- * be drawing from an empty account, but we keep the return total honest).
+ * Handles missing basis (all-gain) and zero balance (all-gain, honest total).
  */
 export function splitTaxableLot(
   account: Account,
   drawUsd: number,
 ): { readonly basisUsd: number; readonly gainUsd: number } {
   const basis = account.basis ?? 0;
-  if (account.balance <= 0) {
-    return { basisUsd: 0, gainUsd: drawUsd };
-  }
+  if (account.balance <= 0) return { basisUsd: 0, gainUsd: drawUsd };
   const basisFraction = Math.min(1, basis / account.balance);
   const basisUsd = drawUsd * basisFraction;
-  const gainUsd = drawUsd - basisUsd;
-  return { basisUsd, gainUsd };
+  return { basisUsd, gainUsd: drawUsd - basisUsd };
 }
 
-/**
- * Determine the Thai-side assessable portion of a would-be remittance.
- *
- *   - Cash + isPre2024      → 0
- *   - Cash + !isPre2024     → full
- *   - TaxableBasis          → 0 (always)
- *   - TaxableGain           → full
- *   - TraditionalIRA        → full (Systemic #4: no grandfather)
- *   - Roth                  → full (regulatory zeroing lives in thai-tax.ts)
- *   - HSA                   → full
- */
+/** Assessable Thai portion of a remittance by source type + origin. */
 function assessableThb(
   sourceType: RemittanceSourceType,
   isPre2024: boolean,
@@ -142,34 +115,26 @@ function assessableThb(
 /**
  * Greedy fill of a THB need from a pool of USD funding sources.
  *
- * The caller has already drained Thai-currency accounts. Sources are
- * consumed cheapest-first (see `SOURCE_ORDER`); a stable secondary sort
- * places pre-2024 Cash before post-2024 Cash so grandfather is used up
- * before assessable balance is touched.
+ * Sources consumed cheapest-first (see `SOURCE_ORDER`); stable secondary
+ * sort places pre-2024 Cash before post-2024 Cash so grandfather is used
+ * up before assessable balance is touched.
  *
- * This function does not compute taxes. It only emits `RemittanceItem`s
- * with the correct `assessablePortionThb` so `thai-tax.ts` can chain
- * from the result.
+ * Emits `RemittanceItem`s with the correct `assessablePortionThb` so
+ * `thai-tax.ts` can chain from the result.
  */
 export function solveRemittance(
   thbNeed: number,
   sources: readonly FundingSource[],
   fxRate: number,
-  // isThaiResident is accepted for API symmetry with the caller in
-  // drawdown.ts, but the residency short-circuit is applied inside
-  // thai-tax.ts — the solver always emits items so the audit trail
-  // (year-by-year table) reflects real cash movement.
+  // Accepted for API symmetry with drawdown.ts; residency short-circuit
+  // lives in thai-tax.ts so the audit trail reflects real cash movement.
   _isThaiResident: boolean,
 ): RemittanceResult {
-  if (fxRate <= 0) {
-    throw new Error(`fxRate must be positive; got ${fxRate}`);
-  }
+  if (fxRate <= 0) throw new Error(`fxRate must be positive; got ${fxRate}`);
 
   const sorted = [...sources].sort((a, b) => {
     const primary = sourceOrderIndex(a.sourceType) - sourceOrderIndex(b.sourceType);
     if (primary !== 0) return primary;
-    // Same source type: prefer pre-2024 first so grandfather is exhausted
-    // before assessable balance (only material for Cash).
     if (a.isPre2024 === b.isPre2024) return 0;
     return a.isPre2024 ? -1 : 1;
   });
@@ -214,94 +179,4 @@ export function solveRemittance(
     spendingUnmet,
     shortfallThb: spendingUnmet ? remainingThb : 0,
   };
-}
-
-/**
- * Flatten USD accounts into a list of `FundingSource` records.
- *
- * - `TaxableBrokerage` → 2 sources (`TaxableBasis` + `TaxableGain`).
- * - `Cash` with `pre2024Snapshot` → 2 sources (pre + post 2024).
- * - `Cash` without snapshot → 1 source (post-2024).
- * - Retirement accounts + HSA → 1 source, `isPre2024=false` always
- *   (retirement is never grandfathered — Systemic #4).
- * - THB-currency accounts are excluded (consumed Thai-side by the caller).
- */
-export function buildFundingSources(accounts: readonly Account[]): FundingSource[] {
-  const out: FundingSource[] = [];
-  for (const acc of accounts) {
-    if (acc.currency !== 'USD') continue;
-    if (acc.balance <= 0) continue;
-    switch (acc.type) {
-      case 'Cash': {
-        const snap = acc.pre2024Snapshot ?? 0;
-        const preAmt = Math.min(Math.max(0, snap), acc.balance);
-        const postAmt = acc.balance - preAmt;
-        if (preAmt > 0) {
-          out.push({
-            accountId: acc.id,
-            sourceType: 'Cash',
-            availableUsd: preAmt,
-            isPre2024: true,
-          });
-        }
-        if (postAmt > 0 || preAmt === 0) {
-          out.push({
-            accountId: acc.id,
-            sourceType: 'Cash',
-            availableUsd: postAmt,
-            isPre2024: false,
-          });
-        }
-        break;
-      }
-      case 'TaxableBrokerage': {
-        const basis = Math.min(Math.max(0, acc.basis ?? 0), acc.balance);
-        const gain = Math.max(0, acc.balance - basis);
-        out.push({
-          accountId: acc.id,
-          sourceType: 'TaxableBasis',
-          availableUsd: basis,
-          isPre2024: false,
-        });
-        out.push({
-          accountId: acc.id,
-          sourceType: 'TaxableGain',
-          availableUsd: gain,
-          isPre2024: false,
-        });
-        break;
-      }
-      case 'TraditionalIRA':
-      case 'Traditional401k':
-        out.push({
-          accountId: acc.id,
-          sourceType: 'TraditionalIRA',
-          availableUsd: acc.balance,
-          isPre2024: false,
-        });
-        break;
-      case 'RothIRA':
-      case 'Roth401k':
-        out.push({
-          accountId: acc.id,
-          sourceType: 'Roth',
-          availableUsd: acc.balance,
-          isPre2024: false,
-        });
-        break;
-      case 'HSA':
-        out.push({
-          accountId: acc.id,
-          sourceType: 'HSA',
-          availableUsd: acc.balance,
-          isPre2024: false,
-        });
-        break;
-      default: {
-        const unreachable: never = acc.type;
-        throw new Error(`Unhandled AccountType: ${String(unreachable)}`);
-      }
-    }
-  }
-  return out;
 }
