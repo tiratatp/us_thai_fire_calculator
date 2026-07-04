@@ -11,3 +11,6 @@ coverage/
 
 # macOS
 .DS_Store
+
+# Ephemeral opencode session state (keep .omo/plans/, ignore the rest)
+.omo/run-continuation/
