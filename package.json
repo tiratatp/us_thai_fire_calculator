@@ -1,0 +1,21 @@
+{
+  "name": "us_thai_fire_calculator",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.1.1"
+  }
+}
