@@ -52,7 +52,7 @@ describe('End-to-end user-facing QA', () => {
     const rows = pessimistic.p50.map(o => buildRow(o, userInputs.accounts));
     expect(rows.length).toBeGreaterThanOrEqual(20);
     for (const row of rows) {
-      expect(row.cells.length).toBe(11);
+      expect(row.cells.length).toBe(10);
       expect(row.cells[0]).toMatch(/Year \d+ \(Age \d+\)/);
     }
   });

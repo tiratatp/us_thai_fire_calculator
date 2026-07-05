@@ -95,7 +95,7 @@ describe('results methodology links', () => {
 
     const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
     // Add all anchors referenced by results.ts
-    ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty', 'roth-conversion-value-test'].forEach((id) => {
+    ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty'].forEach((id) => {
       const section = document.createElement('div');
       section.id = id;
       methPanel.appendChild(section);
@@ -111,7 +111,6 @@ describe('results methodology links', () => {
       'ftc-corrected',
       'roth-uncertainty',
       'ftc-corrected',
-      'roth-conversion-value-test',
     ];
 
     for (const anchor of expectedAnchors) {
@@ -125,7 +124,7 @@ describe('results methodology links', () => {
     document.body.appendChild(container);
 
     const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
-    ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty', 'roth-conversion-value-test'].forEach((id) => {
+    ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty'].forEach((id) => {
       const section = document.createElement('div');
       section.id = id;
       methPanel.appendChild(section);

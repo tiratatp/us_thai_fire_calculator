@@ -96,18 +96,17 @@ describe('year-table', () => {
     ];
 
     const row = buildRow(outcome, accounts);
-    expect(row.cells.length).toBe(11);
+    expect(row.cells.length).toBe(10);
     expect(row.cells[0]).toBe('Year 2026 (Age 40)');
     expect(row.cells[1]).toMatch(/100/); // THB 100
     expect(row.cells[2]).toBe('$200');
     expect(row.cells[3]).toBe('$10');
-    expect(row.cells[4]).toBe('$20');
-    expect(row.cells[5]).toBe('$30');
-    expect(row.cells[6]).toBe('$40');
-    expect(row.cells[7]).toBe('$50');
-    expect(row.cells[8]).toMatch(/60/); // THB 60
-    expect(row.cells[9]).toBe('$70');
-    expect(row.cells[10]).toBe('Yes');
+    expect(row.cells[4]).toBe('$30');
+    expect(row.cells[5]).toBe('$40');
+    expect(row.cells[6]).toBe('$50');
+    expect(row.cells[7]).toMatch(/60/); // THB 60
+    expect(row.cells[8]).toBe('$70');
+    expect(row.cells[9]).toBe('Yes');
   });
 
   it('renders table in DOM', () => {

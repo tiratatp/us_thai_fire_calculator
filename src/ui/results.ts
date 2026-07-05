@@ -47,7 +47,6 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
     { id: 'ftc-corrected', text: formatUsd(inputs.optimistic.medianTaxUsd) },
     { id: 'roth-uncertainty', text: formatPercent(delta) },
     { id: 'ftc-corrected', text: 'FTC' },
-    { id: 'roth-conversion-value-test', text: 'Roth' },
   ];
 
   container.innerHTML = `
@@ -74,7 +73,7 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
         <br>
         <small>
           <em>Disclaimer: Not tax advice; Roth Thai treatment unsettled.</em>
-          See <a href="#methodology/${esc(anchors[5]!.id)}" data-methodology-anchor="${esc(anchors[5]!.id)}">${esc(anchors[5]!.text)}</a> and <a href="#methodology/${esc(anchors[6]!.id)}" data-methodology-anchor="${esc(anchors[6]!.id)}">${esc(anchors[6]!.text)}</a> methodology.
+          See <a href="#methodology/${esc(anchors[5]!.id)}" data-methodology-anchor="${esc(anchors[5]!.id)}">${esc(anchors[5]!.text)}</a> methodology.
         </small>
       </p>
     </div>
