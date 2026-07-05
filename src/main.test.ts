@@ -18,11 +18,17 @@ function setupDOM(): void {
   resultsBtn.setAttribute('aria-selected', 'false');
   document.body.appendChild(resultsBtn);
 
-  const methBtn = document.createElement('button');
-  methBtn.className = 'tab';
-  methBtn.dataset.tab = 'methodology';
-  methBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(methBtn);
+  const refBtn = document.createElement('button');
+  refBtn.className = 'tab';
+  refBtn.dataset.tab = 'references';
+  refBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(refBtn);
+
+  const ddBtn = document.createElement('button');
+  ddBtn.className = 'tab';
+  ddBtn.dataset.tab = 'drawdown';
+  ddBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(ddBtn);
 
   // Tab panels
   const inputsPanel = document.createElement('section');
@@ -35,10 +41,15 @@ function setupDOM(): void {
   resultsPanel.className = 'tab-panel hidden';
   document.body.appendChild(resultsPanel);
 
-  const methPanel = document.createElement('section');
-  methPanel.id = 'methodology-tab';
-  methPanel.className = 'tab-panel hidden';
-  document.body.appendChild(methPanel);
+  const refPanel = document.createElement('section');
+  refPanel.id = 'references-tab';
+  refPanel.className = 'tab-panel hidden';
+  document.body.appendChild(refPanel);
+
+  const ddPanel = document.createElement('section');
+  ddPanel.id = 'drawdown-tab';
+  ddPanel.className = 'tab-panel hidden';
+  document.body.appendChild(ddPanel);
 
   // Containers needed by mountForm / mountMethodologyPage
   const formContainer = document.createElement('div');
@@ -49,28 +60,26 @@ function setupDOM(): void {
   methContainer.id = 'methodology-content';
   document.body.appendChild(methContainer);
 
-  // Scroll spy for methodology deep-link target
   const scrollSpy = document.createElement('div');
   scrollSpy.id = 'scroll-spy';
-  methPanel.appendChild(scrollSpy);
+  refPanel.appendChild(scrollSpy);
 
-  // Anchor that deepLinkToMethodology will scroll to
   const anchor = document.createElement('div');
   anchor.id = 'ftc-corrected';
-  methPanel.appendChild(anchor);
+  refPanel.appendChild(anchor);
 }
 
 describe('main bootstrap hash handling', () => {
   beforeEach(setupDOM);
 
-  it('switches to methodology tab and scrolls when location.hash is set before bootstrap', () => {
+  it('switches to references tab and scrolls when location.hash is set before bootstrap', () => {
     const scrollSpy = vi.spyOn(Element.prototype, 'scrollIntoView');
 
-    location.hash = '#methodology/ftc-corrected';
+    location.hash = '#references/ftc-corrected';
     bootstrap();
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
-    expect(methPanel.classList.contains('hidden')).toBe(false);
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
+    expect(refPanel.classList.contains('hidden')).toBe(false);
     expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
 
     scrollSpy.mockRestore();
@@ -81,10 +90,10 @@ describe('main bootstrap hash handling', () => {
 
     bootstrap();
 
-    location.hash = '#methodology/us-brackets-2026';
+    location.hash = '#references/us-brackets-2026';
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
-    expect(methPanel.classList.contains('hidden')).toBe(false);
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
+    expect(refPanel.classList.contains('hidden')).toBe(false);
     expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
 
     scrollSpy.mockRestore();
@@ -96,8 +105,8 @@ describe('main bootstrap hash handling', () => {
     location.hash = '#foo';
     bootstrap();
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
-    expect(methPanel.classList.contains('hidden')).toBe(true);
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
+    expect(refPanel.classList.contains('hidden')).toBe(true);
     expect(scrollSpy).not.toHaveBeenCalled();
 
     scrollSpy.mockRestore();
@@ -109,5 +118,13 @@ describe('main bootstrap hash handling', () => {
 
     const resultsPanel = document.querySelector('#results-tab') as HTMLElement;
     expect(resultsPanel.classList.contains('hidden')).toBe(false);
+  });
+
+  it('switches to drawdown tab on #drawdown hash', () => {
+    location.hash = '#drawdown';
+    bootstrap();
+
+    const drawdownPanel = document.querySelector('#drawdown-tab') as HTMLElement;
+    expect(drawdownPanel.classList.contains('hidden')).toBe(false);
   });
 });

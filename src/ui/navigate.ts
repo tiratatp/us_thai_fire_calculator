@@ -1,4 +1,4 @@
-export type TabId = 'inputs' | 'results' | 'methodology';
+export type TabId = 'inputs' | 'results' | 'drawdown' | 'references';
 
 export function switchTab(target: TabId): void {
   document.querySelectorAll<HTMLElement>('.tab').forEach((el) => {
@@ -13,8 +13,8 @@ export function switchTab(target: TabId): void {
 }
 
 export function deepLinkToMethodology(id: string): void {
-  switchTab('methodology');
-  const container = document.querySelector<HTMLElement>('#methodology-tab');
+  switchTab('references');
+  const container = document.querySelector<HTMLElement>('#references-tab');
   if (!container) return;
   // Attribute selector avoids CSS.escape incompatibility in jsdom.
   const el = container.querySelector<HTMLElement>(`[id="${id}"]`);

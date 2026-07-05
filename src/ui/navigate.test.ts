@@ -16,11 +16,11 @@ function setupDOM(): void {
   resultsBtn.setAttribute('aria-selected', 'false');
   document.body.appendChild(resultsBtn);
 
-  const methBtn = document.createElement('button');
-  methBtn.className = 'tab';
-  methBtn.dataset.tab = 'methodology';
-  methBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(methBtn);
+  const refBtn = document.createElement('button');
+  refBtn.className = 'tab';
+  refBtn.dataset.tab = 'references';
+  refBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(refBtn);
 
   const inputsPanel = document.createElement('section');
   inputsPanel.id = 'inputs-tab';
@@ -32,46 +32,45 @@ function setupDOM(): void {
   resultsPanel.className = 'tab-panel hidden';
   document.body.appendChild(resultsPanel);
 
-  const methPanel = document.createElement('section');
-  methPanel.id = 'methodology-tab';
-  methPanel.className = 'tab-panel hidden';
-  document.body.appendChild(methPanel);
+  const refPanel = document.createElement('section');
+  refPanel.id = 'references-tab';
+  refPanel.className = 'tab-panel hidden';
+  document.body.appendChild(refPanel);
 }
 
 describe('switchTab', () => {
   beforeEach(setupDOM);
 
-  it('switches to methodology: removes hidden from target, adds hidden to others, sets aria-selected', () => {
-    switchTab('methodology');
+  it('switches to references: removes hidden from target, adds hidden to others, sets aria-selected', () => {
+    switchTab('references');
 
     const inputsPanel = document.querySelector('#inputs-tab') as HTMLElement;
     const resultsPanel = document.querySelector('#results-tab') as HTMLElement;
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
-    const methBtn = document.querySelector('.tab[data-tab="methodology"]') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
+    const refBtn = document.querySelector('.tab[data-tab="references"]') as HTMLElement;
 
-    expect(methPanel.classList.contains('hidden')).toBe(false);
+    expect(refPanel.classList.contains('hidden')).toBe(false);
     expect(inputsPanel.classList.contains('hidden')).toBe(true);
     expect(resultsPanel.classList.contains('hidden')).toBe(true);
-    expect(methBtn.getAttribute('aria-selected')).toBe('true');
+    expect(refBtn.getAttribute('aria-selected')).toBe('true');
   });
 });
 
 describe('deepLinkToMethodology', () => {
   beforeEach(setupDOM);
 
-  it('switches to methodology and scrolls to the anchor element', () => {
+  it('switches to references and scrolls to the anchor element', () => {
     const scrollSpy = vi.spyOn(Element.prototype, 'scrollIntoView');
 
-    // Add an anchor inside the methodology panel
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
     const anchor = document.createElement('div');
     anchor.id = 'us-brackets-2026';
-    methPanel.appendChild(anchor);
+    refPanel.appendChild(anchor);
 
     deepLinkToMethodology('us-brackets-2026');
 
-    const methPanelAfter = document.querySelector('#methodology-tab') as HTMLElement;
-    expect(methPanelAfter.classList.contains('hidden')).toBe(false);
+    const refPanelAfter = document.querySelector('#references-tab') as HTMLElement;
+    expect(refPanelAfter.classList.contains('hidden')).toBe(false);
     expect(scrollSpy).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
 
     scrollSpy.mockRestore();
@@ -82,8 +81,8 @@ describe('deepLinkToMethodology', () => {
 
     expect(() => deepLinkToMethodology('nonexistent-anchor')).not.toThrow();
 
-    const methPanelAfter = document.querySelector('#methodology-tab') as HTMLElement;
-    expect(methPanelAfter.classList.contains('hidden')).toBe(false);
+    const refPanelAfter = document.querySelector('#references-tab') as HTMLElement;
+    expect(refPanelAfter.classList.contains('hidden')).toBe(false);
 
     scrollSpy.mockRestore();
   });

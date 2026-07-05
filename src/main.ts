@@ -5,6 +5,7 @@ import { renderResults } from './ui/results.js';
 import { renderYearTable } from './ui/year-table.js';
 import { portfolioBandChart, withdrawalSourceChart } from './ui/charts.js';
 import { mountMethodologyPage } from './ui/methodology-page.js';
+import { mountDrawdownPage } from './ui/drawdown-page.js';
 import { switchTab, deepLinkToMethodology, type TabId } from './ui/navigate.js';
 import { DEFAULT_ASSUMPTION, DEFAULT_USER_INPUTS } from './data/defaults.js';
 import { restore, save } from './storage.js';
@@ -129,23 +130,27 @@ function runSimulation(inputs: UserInputs): void {
 
 export function bootstrap(): void {
   const inputsTab = document.querySelector<HTMLElement>('#inputs-tab');
-  const methodologyTab = document.querySelector<HTMLElement>('#methodology-tab');
+  const drawdownTab = document.querySelector<HTMLElement>('#drawdown-tab');
+  const referencesTab = document.querySelector<HTMLElement>('#references-tab');
 
   if (inputsTab) {
     mountForm(inputsTab, runSimulation);
   }
-  if (methodologyTab) {
-    mountMethodologyPage(methodologyTab);
+  if (drawdownTab) {
+    mountDrawdownPage(drawdownTab);
+  }
+  if (referencesTab) {
+    mountMethodologyPage(referencesTab);
   }
 
   function handleHash(): void {
-    const methMatch = /^#methodology\/(.+)$/.exec(location.hash);
+    const methMatch = /^#references\/(.+)$/.exec(location.hash);
     if (methMatch && methMatch[1]) {
-      switchTab('methodology');
+      switchTab('references');
       deepLinkToMethodology(methMatch[1]);
       return;
     }
-    const tabMatch = /^#(inputs|results|methodology)$/.exec(location.hash);
+    const tabMatch = /^#(inputs|results|drawdown|references)$/.exec(location.hash);
     if (tabMatch) {
       switchTab(tabMatch[1] as TabId);
     }
@@ -155,7 +160,7 @@ export function bootstrap(): void {
 
   document.querySelectorAll<HTMLElement>('.tab').forEach((el) => {
     el.addEventListener('click', () => {
-      const target = el.dataset.tab as 'inputs' | 'results' | 'methodology';
+      const target = el.dataset.tab as TabId;
       if (target) {
         history.pushState(null, '', '#' + target);
         switchTab(target);
