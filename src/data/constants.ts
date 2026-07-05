@@ -226,8 +226,7 @@ export const PAW_162_CUTOFF_DATE: Cited<string> = {
 
 // ---------- FIRE multipliers ----------
 
-const TRINITY_STUDY_URL =
-  'https://www.portfoliovisualizer.com/triangle-of-safety';
+const TRINITY_STUDY_URL = 'https://en.wikipedia.org/wiki/Trinity_study';
 
 /** 25× = 4% safe withdrawal rate (1 / 0.04). Used when retirement horizon ≤ 30 years. */
 export const FIRE_MULTIPLIER_30_YR: Cited<number> = {

@@ -14,6 +14,7 @@ import { THAI_SECTIONS } from './content-thai.js';
 import { TREATY_SECTIONS } from './content-treaty.js';
 import { ALGO_SECTIONS } from './content-algo.js';
 import { FIRE_MULTIPLIERS } from './content-algo.js';
+import { UNCERTAINTIES_SECTIONS } from './content-uncertainties.js';
 
 // ---------- Shared types ----------
 
@@ -44,9 +45,9 @@ export const DISCLAIMER_SECTION: MethodologySection = {
   id: 'disclaimer',
   title: 'Disclaimer',
   paragraphs: [
-    'This is not tax advice. The information on this page is for educational purposes only and does not constitute legal, tax, or financial advice. Consult a cross-border tax professional before making any decisions.',
-    'Roth treatment in Thailand is UNSETTLED. Thailand does not have statutory recognition of Roth IRAs. The prevailing view among cross-border practitioners is that Thailand will tax remitted Roth withdrawals as pension income under Thai Revenue Code Section 40(1). This is an unsettled area with no binding authority.',
-    'Paw 162/2566 grandfathering does NOT extend to retirement accounts. Traditional IRA, Roth IRA, 401(k), and HSA distributions are considered "earned" at the time of distribution (post-2024), so no grandfathering applies. Only Cash and Taxable Brokerage balances can use the optional Jan-1-2024 snapshot for grandfathering.',
+    'This is not tax advice. The information on this page is for educational purposes only and does not constitute legal, tax, or financial advice. The rules described here interpret the 1996 US-Thailand tax treaty and post-2024 Thai remittance regime as they stand in mid-2026; several key questions remain unsettled. Consult a cross-border tax professional before making any decisions.',
+    'Four specific rules are UNSETTLED and reasonable practitioners disagree on their correct application: (i) whether Thailand taxes remitted qualified Roth IRA distributions; (ii) whether Article 25(3) of the treaty re-sources US-source pension distributions for US Foreign Tax Credit purposes; (iii) whether the Thai 50% pension deduction applies to foreign retirement account remittances; and (iv) whether the US Net Investment Income Tax is creditable against Thai tax under Article 25. Each is described in detail in the "Regulatory Uncertainties" section below. Results are reported for both the optimistic and pessimistic reading of the combined bundle so the range of plausible outcomes is visible.',
+    'This calculator also assumes — consistent with the prevailing practitioner view but not with any binding authority — that Paw 162/2566 pre-2024 grandfathering does NOT extend to Traditional IRA, Roth IRA, 401(k), or HSA distributions; only Cash and Taxable Brokerage balances held on January 1, 2024 can be grandfathered.',
   ],
 };
 
@@ -66,6 +67,7 @@ export const METHODOLOGY_SECTIONS: readonly MethodologySection[] = [
   ...US_SECTIONS,
   ...THAI_SECTIONS,
   ...TREATY_SECTIONS,
+  ...UNCERTAINTIES_SECTIONS,
   ...ALGO_SECTIONS,
   ...FIRE_MULTIPLIERS,
 ];
