@@ -42,28 +42,24 @@ describe('form', () => {
   it('retirement snapshot disabled', () => {
     const container = document.getElementById('container')!;
     mountForm(container, () => {});
-    
+
     const addBtn = container.querySelector('#add-account') as HTMLButtonElement;
     addBtn.click();
-    
+
     const row = container.querySelector('.account-row') as HTMLElement;
     const typeSelect = row.querySelector('.account-type-select') as HTMLSelectElement;
     const pre2024Input = row.querySelector('.pre2024-input') as HTMLInputElement;
-    
-    // Default is TaxableBrokerage, should be enabled
+
     expect(pre2024Input.disabled).toBe(false);
-    
-    // Change to TraditionalIRA
+
     typeSelect.value = 'TraditionalIRA';
     typeSelect.dispatchEvent(new Event('input', { bubbles: true }));
     expect(pre2024Input.disabled).toBe(true);
-    
-    // Change to Cash
+
     typeSelect.value = 'Cash';
     typeSelect.dispatchEvent(new Event('input', { bubbles: true }));
     expect(pre2024Input.disabled).toBe(false);
-    
-    // Change to Roth401k
+
     typeSelect.value = 'Roth401k';
     typeSelect.dispatchEvent(new Event('input', { bubbles: true }));
     expect(pre2024Input.disabled).toBe(true);
@@ -77,17 +73,17 @@ describe('form', () => {
   it('age validation', () => {
     const container = document.getElementById('container')!;
     mountForm(container, () => {});
-    
+
     const currentAgeInput = container.querySelector('input[name="currentAge"]') as HTMLInputElement;
     const lifeExpectancyInput = container.querySelector('input[name="lifeExpectancy"]') as HTMLInputElement;
     const submitBtn = container.querySelector('#submit-btn') as HTMLButtonElement;
-    
+
     currentAgeInput.value = '50';
     currentAgeInput.dispatchEvent(new Event('input', { bubbles: true }));
-    
+
     lifeExpectancyInput.value = '40';
     lifeExpectancyInput.dispatchEvent(new Event('input', { bubbles: true }));
-    
+
     expect(submitBtn.disabled).toBe(true);
     expect(lifeExpectancyInput.classList.contains('invalid')).toBe(true);
   });
@@ -113,7 +109,7 @@ describe('form', () => {
     fd.append('successThreshold', '0.95');
     fd.append('monteCarloTrials', '5000');
     fd.append('regulatoryStance', 'optimistic');
-    
+
     for (let i = 0; i < 50; i++) {
       fd.append(`residency_${i}`, 'on');
     }
@@ -132,5 +128,43 @@ describe('form', () => {
     expect(inputs.expenses.housingThbMo).toBe(10000);
     expect(inputs.thaiResidencyByYear).toHaveLength(50);
     expect(inputs.thaiResidencyByYear.every(r => r === true)).toBe(true);
+  });
+
+  it('renders FX input with correct defaults', () => {
+    const container = document.getElementById('container')!;
+    mountForm(container, () => {});
+
+    const fxInput = container.querySelector('input[name="currentFxUsdThb"]') as HTMLInputElement;
+    expect(fxInput).not.toBeNull();
+    expect(fxInput.min).toBe('20');
+    expect(fxInput.max).toBe('50');
+    expect(fxInput.step).toBe('0.1');
+    expect(Number(fxInput.value)).toBe(33);
+  });
+
+  it('shows live summary with correct values', () => {
+    const container = document.getElementById('container')!;
+    mountForm(container, () => {});
+
+    const summary = container.querySelector('#live-summary')!;
+    expect(summary.innerHTML).toContain('Total Assets:');
+    expect(summary.innerHTML).toContain('Total Expenses:');
+    expect(summary.innerHTML).toContain('FIRE Target:');
+    expect(summary.innerHTML).toContain('fire-multipliers');
+  });
+
+  it('summary updates on input change', () => {
+    const container = document.getElementById('container')!;
+    mountForm(container, () => {});
+
+    const summary = container.querySelector('#live-summary')!;
+    const initialHTML = summary.innerHTML;
+
+    const fxInput = container.querySelector('input[name="currentFxUsdThb"]') as HTMLInputElement;
+    fxInput.value = '30';
+    fxInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+    expect(summary.innerHTML).not.toBe(initialHTML);
+    expect(summary.innerHTML).toContain('FIRE Target:');
   });
 });
