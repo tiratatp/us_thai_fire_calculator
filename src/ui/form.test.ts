@@ -167,4 +167,37 @@ describe('form', () => {
     expect(summary.innerHTML).not.toBe(initialHTML);
     expect(summary.innerHTML).toContain('FIRE Target:');
   });
+
+  it('summary calculates correct values', () => {
+    const container = document.getElementById('container')!;
+    const inputs: UserInputs = {
+      ...DEFAULT_USER_INPUTS,
+      currentAge: 40,
+      lifeExpectancy: 70, // 30 year horizon -> 25x multiplier
+      currentFxUsdThb: 30,
+      accounts: [
+        { id: 'a1', type: 'Cash', currency: 'USD', balance: 100000 },
+        { id: 'a2', type: 'Cash', currency: 'THB', balance: 3000000 }, // 100k USD
+      ],
+      expenses: {
+        housingThbMo: 30000, // 1k USD/mo -> 12k USD/yr
+        foodThbMo: 0,
+        transportThbMo: 0,
+        otherThbMo: 0,
+        healthcareThbYr: 30000, // 1k USD/yr
+        legalTaxThbYr: 0,
+        travelUsdYr: 5000,
+      }
+    };
+    saveInputs(inputs);
+    mountForm(container, () => {});
+
+    const summary = container.querySelector('#live-summary')!;
+    // Total Assets: 100k + (3M / 30) = 200k
+    expect(summary.innerHTML).toContain('$200,000');
+    // Total Expenses: 5k + (30k * 12 / 30) + (30k / 30) = 5k + 12k + 1k = 18k
+    expect(summary.innerHTML).toContain('$18,000');
+    // FIRE Target: 18k * 25 = 450k
+    expect(summary.innerHTML).toContain('$450,000');
+  });
 });
