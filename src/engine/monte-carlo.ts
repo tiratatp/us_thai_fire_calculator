@@ -65,7 +65,7 @@ function initialState(u: UserInputs, assumption: Assumption): YearState {
     age: u.currentAge,
     birthYear: u.birthYear,
     accounts: u.accounts,
-    fxRateUsdThb: assumption.fxUsdThb.mean,
+    fxRateUsdThb: u.currentFxUsdThb ?? assumption.fxUsdThb.mean,
     cumulativeUsTaxPaid: 0,
     cumulativeThaiTaxPaid: 0,
     failed: false,

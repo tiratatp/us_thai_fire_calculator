@@ -94,5 +94,6 @@ export function parseFormData(fd: FormData): UserInputs {
     successThreshold: getNum('successThreshold'),
     monteCarloTrials: getNum('monteCarloTrials'),
     regulatoryStance: getStr('regulatoryStance') as RegulatoryStance,
+    currentFxUsdThb: getNum('currentFxUsdThb'),
   };
 }

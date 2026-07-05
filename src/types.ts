@@ -146,6 +146,7 @@ export interface UserInputs {
   readonly successThreshold: number;
   readonly monteCarloTrials: number;
   readonly regulatoryStance: RegulatoryStance;
+    readonly currentFxUsdThb?: number;
 }
 
 // ---------- Remittance & year outcome ----------

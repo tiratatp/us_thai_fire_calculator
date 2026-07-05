@@ -102,4 +102,5 @@ export const DEFAULT_USER_INPUTS: UserInputs = {
   successThreshold: 0.90,
   monteCarloTrials: 1000,
   regulatoryStance: 'both',
+  currentFxUsdThb: 33,
 };
