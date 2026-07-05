@@ -17,11 +17,11 @@ function setupDOM(): void {
   resultsBtn.setAttribute('aria-selected', 'false');
   document.body.appendChild(resultsBtn);
 
-  const methBtn = document.createElement('button');
-  methBtn.className = 'tab';
-  methBtn.dataset.tab = 'methodology';
-  methBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(methBtn);
+  const refBtn = document.createElement('button');
+  refBtn.className = 'tab';
+  refBtn.dataset.tab = 'references';
+  refBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(refBtn);
 
   const inputsPanel = document.createElement('section');
   inputsPanel.id = 'inputs-tab';
@@ -33,10 +33,10 @@ function setupDOM(): void {
   resultsPanel.className = 'tab-panel hidden';
   document.body.appendChild(resultsPanel);
 
-  const methPanel = document.createElement('section');
-  methPanel.id = 'methodology-tab';
-  methPanel.className = 'tab-panel hidden';
-  document.body.appendChild(methPanel);
+  const refPanel = document.createElement('section');
+  refPanel.id = 'references-tab';
+  refPanel.className = 'tab-panel hidden';
+  document.body.appendChild(refPanel);
 }
 
 function makeSimResult(successRate: number, medianTaxUsd: number): SimResult {
@@ -89,21 +89,20 @@ describe('results methodology links', () => {
     successThreshold: 0.90,
   };
 
-  it('every methodology link href matches #methodology/<id>', () => {
+  it('every methodology link href matches #references/<id>', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
     // Add all anchors referenced by results.ts
     ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty'].forEach((id) => {
       const section = document.createElement('div');
       section.id = id;
-      methPanel.appendChild(section);
+      refPanel.appendChild(section);
     });
 
     renderResults(container, mockInputs);
 
-    // All 6 links should use #methodology/<id> format
     const expectedAnchors = [
       'monte-carlo-defaults',
       'ftc-corrected',
@@ -114,7 +113,7 @@ describe('results methodology links', () => {
     ];
 
     for (const anchor of expectedAnchors) {
-      const link = container.querySelector(`a[href="#methodology/${anchor}"]`);
+      const link = container.querySelector(`a[href="#references/${anchor}"]`);
       expect(link).not.toBeNull();
     }
   });
@@ -123,11 +122,11 @@ describe('results methodology links', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
     ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty'].forEach((id) => {
       const section = document.createElement('div');
       section.id = id;
-      methPanel.appendChild(section);
+      refPanel.appendChild(section);
     });
 
     renderResults(container, mockInputs);
@@ -136,25 +135,25 @@ describe('results methodology links', () => {
     expect(links.length).toBe(0);
   });
 
-  it('clicking a methodology link sets location.hash and switches to methodology tab', () => {
+  it('clicking a methodology link sets location.hash and switches to references tab', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
     const ftcSection = document.createElement('div');
     ftcSection.id = 'ftc-corrected';
-    methPanel.appendChild(ftcSection);
+    refPanel.appendChild(ftcSection);
 
     renderResults(container, mockInputs);
 
     // Find a methodology link (FTC link in delta note)
-    const link = container.querySelector('a[href="#methodology/ftc-corrected"]');
+    const link = container.querySelector('a[href="#references/ftc-corrected"]');
     expect(link).not.toBeNull();
 
     const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
     link!.dispatchEvent(clickEvent);
 
-    expect(location.hash).toBe('#methodology/ftc-corrected');
-    expect(methPanel.classList.contains('hidden')).toBe(false);
+    expect(location.hash).toBe('#references/ftc-corrected');
+    expect(refPanel.classList.contains('hidden')).toBe(false);
   });
 });

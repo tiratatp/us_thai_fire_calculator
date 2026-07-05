@@ -85,7 +85,7 @@ export function renderYearTable(container: HTMLElement, inputs: YearTableInputs)
   const thead = headers.map(h => {
     const anchor = map.get(h);
     if (anchor) {
-      return `<th><a href="#methodology/${esc(anchor)}" data-methodology-anchor="${esc(anchor)}">${esc(h)}</a></th>`;
+      return `<th><a href="#references/${esc(anchor)}" data-methodology-anchor="${esc(anchor)}">${esc(h)}</a></th>`;
     }
     return `<th>${esc(h)}</th>`;
   }).join('');
@@ -114,7 +114,7 @@ export function renderYearTable(container: HTMLElement, inputs: YearTableInputs)
     e.preventDefault();
     const id = t.dataset.methodologyAnchor;
     if (!id) return;
-    history.pushState(null, '', `#methodology/${id}`);
+    history.pushState(null, '', `#references/${id}`);
     deepLinkToMethodology(id);
   });
 }

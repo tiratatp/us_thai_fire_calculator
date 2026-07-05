@@ -37,11 +37,17 @@ function setupDOM(): void {
   resultsBtn.setAttribute('aria-selected', 'false');
   document.body.appendChild(resultsBtn);
 
-  const methBtn = document.createElement('button');
-  methBtn.className = 'tab';
-  methBtn.dataset.tab = 'methodology';
-  methBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(methBtn);
+  const drawdownBtn = document.createElement('button');
+  drawdownBtn.className = 'tab';
+  drawdownBtn.dataset.tab = 'drawdown';
+  drawdownBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(drawdownBtn);
+
+  const refBtn = document.createElement('button');
+  refBtn.className = 'tab';
+  refBtn.dataset.tab = 'references';
+  refBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(refBtn);
 
   const inputsPanel = document.createElement('section');
   inputsPanel.id = 'inputs-tab';
@@ -53,10 +59,15 @@ function setupDOM(): void {
   resultsPanel.className = 'tab-panel hidden';
   document.body.appendChild(resultsPanel);
 
-  const methPanel = document.createElement('section');
-  methPanel.id = 'methodology-tab';
-  methPanel.className = 'tab-panel hidden';
-  document.body.appendChild(methPanel);
+  const drawdownPanel = document.createElement('section');
+  drawdownPanel.id = 'drawdown-tab';
+  drawdownPanel.className = 'tab-panel hidden';
+  document.body.appendChild(drawdownPanel);
+
+  const refPanel = document.createElement('section');
+  refPanel.id = 'references-tab';
+  refPanel.className = 'tab-panel hidden';
+  document.body.appendChild(refPanel);
 }
 
 describe('year-table', () => {
@@ -144,22 +155,22 @@ describe('year-table', () => {
 describe('year-table methodology links', () => {
   beforeEach(setupDOM);
 
-  it('every mapped column header href matches #methodology/<id>', () => {
+  it('every mapped column header href matches #references/<id>', () => {
     const container = document.createElement('div');
     container.id = 'year-table-container';
     document.body.appendChild(container);
 
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
     const section = document.createElement('div');
     section.id = 'us-brackets-2026';
-    methPanel.appendChild(section);
+    refPanel.appendChild(section);
 
     const accounts: Account[] = [{ id: 'a', type: 'Cash', currency: 'USD', balance: 1000 }];
     renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35, accounts });
 
     const map = columnAnchorMap();
     for (const [, anchor] of map.entries()) {
-      const link = container.querySelector(`a[href="#methodology/${anchor}"]`);
+      const link = container.querySelector(`a[href="#references/${anchor}"]`);
       expect(link).not.toBeNull();
     }
   });
@@ -177,10 +188,10 @@ describe('year-table methodology links', () => {
   });
 
   it('clicking a header switches tab and sets location.hash', () => {
-    const methPanel = document.querySelector('#methodology-tab') as HTMLElement;
+    const refPanel = document.querySelector('#references-tab') as HTMLElement;
     const section = document.createElement('div');
     section.id = 'us-brackets-2026';
-    methPanel.appendChild(section);
+    refPanel.appendChild(section);
 
     const container = document.createElement('div');
     container.id = 'year-table-container';
@@ -189,14 +200,14 @@ describe('year-table methodology links', () => {
     const accounts: Account[] = [{ id: 'a', type: 'Cash', currency: 'USD', balance: 1000 }];
     renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35, accounts });
 
-    const link = container.querySelector('a[href="#methodology/us-brackets-2026"]');
+    const link = container.querySelector('a[href="#references/us-brackets-2026"]');
     expect(link).not.toBeNull();
 
     const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
     link!.dispatchEvent(clickEvent);
 
-    expect(location.hash).toBe('#methodology/us-brackets-2026');
-    expect(methPanel.classList.contains('hidden')).toBe(false);
+    expect(location.hash).toBe('#references/us-brackets-2026');
+    expect(refPanel.classList.contains('hidden')).toBe(false);
   });
 });
 

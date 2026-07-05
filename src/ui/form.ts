@@ -114,7 +114,7 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
       <p><strong>Total Assets:</strong> ${formatUsd(totalAssetUsd)}</p>
       <p><strong>Total Expenses:</strong> ${formatUsd(totalExpenseUsd)}</p>
       <p><strong>FIRE Target:</strong> ${formatUsd(fireTargetUsd)}
-        (<a href="#methodology/fire-multipliers" data-methodology-anchor="fire-multipliers">multipliers</a>)</p>
+        (<a href="#references/fire-multipliers" data-methodology-anchor="fire-multipliers">multipliers</a>)</p>
     `;
   };
 

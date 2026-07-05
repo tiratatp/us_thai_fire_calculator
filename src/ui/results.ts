@@ -56,24 +56,24 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
         <div class="result-col">
           <h3>Pessimistic Scenario</h3>
           <p class="success-rate" style="font-size: 2rem; font-weight: bold;">
-            <a href="#methodology/${esc(anchors[0]!.id)}" data-methodology-anchor="${esc(anchors[0]!.id)}">${esc(anchors[0]!.text)}</a>
+            <a href="#references/${esc(anchors[0]!.id)}" data-methodology-anchor="${esc(anchors[0]!.id)}">${esc(anchors[0]!.text)}</a>
           </p>
-          <p>Median Lifetime Tax: <a href="#methodology/${esc(anchors[1]!.id)}" data-methodology-anchor="${esc(anchors[1]!.id)}">${esc(anchors[1]!.text)}</a></p>
+          <p>Median Lifetime Tax: <a href="#references/${esc(anchors[1]!.id)}" data-methodology-anchor="${esc(anchors[1]!.id)}">${esc(anchors[1]!.text)}</a></p>
         </div>
         <div class="result-col">
           <h3>Optimistic Scenario</h3>
           <p class="success-rate" style="font-size: 2rem; font-weight: bold;">
-            <a href="#methodology/${esc(anchors[2]!.id)}" data-methodology-anchor="${esc(anchors[2]!.id)}">${esc(anchors[2]!.text)}</a>
+            <a href="#references/${esc(anchors[2]!.id)}" data-methodology-anchor="${esc(anchors[2]!.id)}">${esc(anchors[2]!.text)}</a>
           </p>
-          <p>Median Lifetime Tax: <a href="#methodology/${esc(anchors[3]!.id)}" data-methodology-anchor="${esc(anchors[3]!.id)}">${esc(anchors[3]!.text)}</a></p>
+          <p>Median Lifetime Tax: <a href="#references/${esc(anchors[3]!.id)}" data-methodology-anchor="${esc(anchors[3]!.id)}">${esc(anchors[3]!.text)}</a></p>
         </div>
       </div>
       <p class="delta-note" style="margin-top: 1rem;">
-        Regulatory exposure delta: <strong><a href="#methodology/${esc(anchors[4]!.id)}" data-methodology-anchor="${esc(anchors[4]!.id)}">${esc(anchors[4]!.text)}</a></strong>.
+        Regulatory exposure delta: <strong><a href="#references/${esc(anchors[4]!.id)}" data-methodology-anchor="${esc(anchors[4]!.id)}">${esc(anchors[4]!.text)}</a></strong>.
         <br>
         <small>
           <em>Disclaimer: Not tax advice; Roth Thai treatment unsettled.</em>
-          See <a href="#methodology/${esc(anchors[5]!.id)}" data-methodology-anchor="${esc(anchors[5]!.id)}">${esc(anchors[5]!.text)}</a> methodology.
+          See <a href="#references/${esc(anchors[5]!.id)}" data-methodology-anchor="${esc(anchors[5]!.id)}">${esc(anchors[5]!.text)}</a> methodology.
         </small>
       </p>
     </div>
@@ -87,7 +87,7 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
     e.preventDefault();
     const id = t.dataset.methodologyAnchor;
     if (!id) return;
-    history.pushState(null, '', `#methodology/${id}`);
+    history.pushState(null, '', `#references/${id}`);
     deepLinkToMethodology(id);
   });
 }
