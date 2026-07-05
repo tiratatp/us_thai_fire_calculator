@@ -134,6 +134,16 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
       form.querySelectorAll('input[type="number"]').forEach(input => {
         const el = input as HTMLInputElement;
         const errorSpan = el.nextElementSibling as HTMLElement;
+        
+        // Skip validation for empty optional fields (no `required` attribute)
+        if (el.value.trim() === '' && !el.hasAttribute('required')) {
+          el.classList.remove('invalid', 'border-red-500');
+          if (errorSpan && errorSpan.classList.contains('error-msg')) {
+            errorSpan.classList.add('hidden');
+          }
+          return;
+        }
+        
         const spec = { id: el.name, type: 'number' as const, min: el.min ? Number(el.min) : undefined, max: el.max ? Number(el.max) : undefined, label: '', section: 'basics' as const };
         const error = validateField(spec, el.value);
         
