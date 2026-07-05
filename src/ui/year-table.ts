@@ -1,4 +1,4 @@
-import type { YearOutcome } from '../types.js';
+import type { Account, YearOutcome } from '../types.js';
 import { methodologyAnchorSet } from '../methodology/render.js';
 import { formatUsd, formatThb } from './format.js';
 import { deepLinkToMethodology } from './navigate.js';
@@ -6,6 +6,7 @@ import { deepLinkToMethodology } from './navigate.js';
 export interface YearTableInputs {
   readonly p50: readonly YearOutcome[];
   readonly fxRateUsdThb: number;
+  readonly accounts: readonly Account[];
 }
 
 function esc(s: string): string {
@@ -18,7 +19,8 @@ function esc(s: string): string {
 
 export function columnAnchorMap(): ReadonlyMap<string, string> {
   return new Map([
-    ['Portfolio total', 'monte-carlo-defaults'],
+    ['Thai portfolio (THB)', 'monte-carlo-defaults'],
+    ['US portfolio (USD)', 'monte-carlo-defaults'],
     ['RMD', 'us-rmd-table'],
     ['Roth conversion', 'roth-conversion-value-test'],
     ['LTCG harvested', 'us-ltcg-2026'],
@@ -29,10 +31,19 @@ export function columnAnchorMap(): ReadonlyMap<string, string> {
   ]);
 }
 
-export function buildRow(outcome: YearOutcome): { readonly cells: readonly string[] } {
-  let portfolioTotal = 0;
-  for (const bal of Object.values(outcome.balancesByAccount)) {
-    portfolioTotal += bal;
+export function buildRow(
+  outcome: YearOutcome,
+  accounts: readonly Account[],
+): { readonly cells: readonly string[] } {
+  let thbTotal = 0;
+  let usdTotal = 0;
+  for (const [accountId, balance] of Object.entries(outcome.balancesByAccount)) {
+    const account = accounts.find(a => a.id === accountId);
+    if (account?.currency === 'THB') {
+      thbTotal += balance;
+    } else {
+      usdTotal += balance;
+    }
   }
 
   let remittanceUsd = 0;
@@ -43,7 +54,8 @@ export function buildRow(outcome: YearOutcome): { readonly cells: readonly strin
   return {
     cells: [
       `Year ${outcome.year} (Age ${outcome.age})`,
-      formatUsd(portfolioTotal),
+      formatThb(thbTotal),
+      formatUsd(usdTotal),
       formatUsd(outcome.rmdAmount),
       formatUsd(outcome.rothConversionAmount),
       formatUsd(outcome.ltcgHarvestedAmount),
@@ -58,10 +70,11 @@ export function buildRow(outcome: YearOutcome): { readonly cells: readonly strin
 
 export function renderYearTable(container: HTMLElement, inputs: YearTableInputs): void {
   const map = columnAnchorMap();
-  
+
   const headers = [
     'Year / Age',
-    'Portfolio total',
+    'Thai portfolio (THB)',
+    'US portfolio (USD)',
     'RMD',
     'Roth conversion',
     'LTCG harvested',
@@ -69,7 +82,7 @@ export function renderYearTable(container: HTMLElement, inputs: YearTableInputs)
     'US tax',
     'Thai tax',
     'FTC applied',
-    'Spending met'
+    'Spending met',
   ];
 
   const thead = headers.map(h => {
@@ -81,7 +94,7 @@ export function renderYearTable(container: HTMLElement, inputs: YearTableInputs)
   }).join('');
 
   const tbody = inputs.p50.map(outcome => {
-    const row = buildRow(outcome);
+    const row = buildRow(outcome, inputs.accounts);
     return `<tr>${row.cells.map(c => `<td>${esc(c)}</td>`).join('')}</tr>`;
   }).join('');
 

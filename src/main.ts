@@ -6,7 +6,7 @@ import { renderYearTable } from './ui/year-table.js';
 import { portfolioBandChart, withdrawalSourceChart } from './ui/charts.js';
 import { mountMethodologyPage } from './ui/methodology-page.js';
 import { switchTab, deepLinkToMethodology, type TabId } from './ui/navigate.js';
-import { DEFAULT_ASSUMPTION } from './data/defaults.js';
+import { DEFAULT_ASSUMPTION, DEFAULT_USER_INPUTS } from './data/defaults.js';
 import { restore, save } from './storage.js';
 import type { WorkerRequest, WorkerResponse } from './workers/monte-carlo.worker.js';
 
@@ -16,6 +16,7 @@ interface LastResult {
   readonly optimistic: SimResult;
   readonly pessimistic: SimResult;
   readonly successThreshold: number;
+  readonly inputs?: UserInputs;
 }
 
 function setProgress(pct: number, text?: string): void {
@@ -49,7 +50,8 @@ function renderAllResults(data: LastResult): void {
   }
   const yt = document.querySelector<HTMLElement>('#year-table-container');
   if (yt) {
-    renderYearTable(yt, { p50: data.pessimistic.p50, fxRateUsdThb: DEFAULT_ASSUMPTION.fxUsdThb.mean });
+    const accounts = data.inputs?.accounts ?? DEFAULT_USER_INPUTS.accounts;
+    renderYearTable(yt, { p50: data.pessimistic.p50, fxRateUsdThb: DEFAULT_ASSUMPTION.fxUsdThb.mean, accounts });
   }
   const portfolioCanvas = document.querySelector<HTMLCanvasElement>('#portfolio-chart');
   const withdrawalCanvas = document.querySelector<HTMLCanvasElement>('#withdrawal-chart');
@@ -80,6 +82,7 @@ function runSimulation(inputs: UserInputs): void {
         optimistic: msg.optimistic,
         pessimistic: msg.pessimistic,
         successThreshold: inputs.successThreshold,
+        inputs,
       };
       save(LAST_RESULT_KEY, data);
       renderAllResults(data);
@@ -92,6 +95,7 @@ function runSimulation(inputs: UserInputs): void {
         optimistic: msg.result,
         pessimistic: msg.result,
         successThreshold: inputs.successThreshold,
+        inputs,
       };
       save(LAST_RESULT_KEY, data);
       renderAllResults(data);

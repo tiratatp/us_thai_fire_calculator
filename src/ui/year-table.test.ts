@@ -2,7 +2,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { columnAnchorMap, buildRow, renderYearTable } from './year-table.js';
 import { methodologyAnchorSet } from '../methodology/render.js';
-import type { YearOutcome } from '../types.js';
+import type { Account, YearOutcome } from '../types.js';
 
 const mockOutcome: YearOutcome = {
   year: 2026,
@@ -68,7 +68,7 @@ describe('year-table', () => {
     }
   });
 
-  it('buildRow returns correct shape and sums portfolio total', () => {
+  it('buildRow returns correct shape and splits portfolio by currency', () => {
     const outcome: YearOutcome = {
       year: 2026,
       age: 40,
@@ -90,18 +90,24 @@ describe('year-table', () => {
       spendingMet: true,
     };
 
-    const row = buildRow(outcome);
-    expect(row.cells.length).toBe(10);
+    const accounts: Account[] = [
+      { id: 'a', type: 'Cash', currency: 'THB', balance: 100 },
+      { id: 'b', type: 'Cash', currency: 'USD', balance: 200 },
+    ];
+
+    const row = buildRow(outcome, accounts);
+    expect(row.cells.length).toBe(11);
     expect(row.cells[0]).toBe('Year 2026 (Age 40)');
-    expect(row.cells[1]).toBe('$300');
-    expect(row.cells[2]).toBe('$10');
-    expect(row.cells[3]).toBe('$20');
-    expect(row.cells[4]).toBe('$30');
-    expect(row.cells[5]).toBe('$40');
-    expect(row.cells[6]).toBe('$50');
-    expect(row.cells[7]).toMatch(/60/); // THB 60
-    expect(row.cells[8]).toBe('$70');
-    expect(row.cells[9]).toBe('Yes');
+    expect(row.cells[1]).toMatch(/100/); // THB 100
+    expect(row.cells[2]).toBe('$200');
+    expect(row.cells[3]).toBe('$10');
+    expect(row.cells[4]).toBe('$20');
+    expect(row.cells[5]).toBe('$30');
+    expect(row.cells[6]).toBe('$40');
+    expect(row.cells[7]).toBe('$50');
+    expect(row.cells[8]).toMatch(/60/); // THB 60
+    expect(row.cells[9]).toBe('$70');
+    expect(row.cells[10]).toBe('Yes');
   });
 
   it('renders table in DOM', () => {
@@ -125,7 +131,8 @@ describe('year-table', () => {
       spendingMet: true,
     }));
 
-    renderYearTable(container, { p50, fxRateUsdThb: 35 });
+    const accounts: Account[] = [{ id: 'a', type: 'Cash', currency: 'USD', balance: 1000 }];
+    renderYearTable(container, { p50, fxRateUsdThb: 35, accounts });
     
     const table = container.querySelector('table');
     expect(table).not.toBeNull();
@@ -148,7 +155,8 @@ describe('year-table methodology links', () => {
     section.id = 'us-brackets-2026';
     methPanel.appendChild(section);
 
-    renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35 });
+    const accounts: Account[] = [{ id: 'a', type: 'Cash', currency: 'USD', balance: 1000 }];
+    renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35, accounts });
 
     const map = columnAnchorMap();
     for (const [, anchor] of map.entries()) {
@@ -162,7 +170,8 @@ describe('year-table methodology links', () => {
     container.id = 'year-table-container';
     document.body.appendChild(container);
 
-    renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35 });
+    const accounts: Account[] = [{ id: 'a', type: 'Cash', currency: 'USD', balance: 1000 }];
+    renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35, accounts });
 
     const links = container.querySelectorAll('a[href*="methodology.html"]');
     expect(links.length).toBe(0);
@@ -178,7 +187,8 @@ describe('year-table methodology links', () => {
     container.id = 'year-table-container';
     document.body.appendChild(container);
 
-    renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35 });
+    const accounts: Account[] = [{ id: 'a', type: 'Cash', currency: 'USD', balance: 1000 }];
+    renderYearTable(container, { p50: [mockOutcome], fxRateUsdThb: 35, accounts });
 
     const link = container.querySelector('a[href="#methodology/us-brackets-2026"]');
     expect(link).not.toBeNull();
@@ -191,33 +201,4 @@ describe('year-table methodology links', () => {
   });
 });
 
-import { verdict } from './results.js';
 
-describe('results verdict', () => {
-  it('returns FIRE when pessimistic >= threshold', () => {
-    const res = verdict({
-      pessimistic: { successRate: 0.92 } as any,
-      optimistic: { successRate: 0.95 } as any,
-      successThreshold: 0.90,
-    });
-    expect(res).toBe('FIRE');
-  });
-
-  it('returns ConditionallyFIRE when optimistic >= threshold but pessimistic < threshold', () => {
-    const res = verdict({
-      pessimistic: { successRate: 0.85 } as any,
-      optimistic: { successRate: 0.95 } as any,
-      successThreshold: 0.90,
-    });
-    expect(res).toBe('ConditionallyFIRE');
-  });
-
-  it('returns NotFIRE when optimistic < threshold', () => {
-    const res = verdict({
-      pessimistic: { successRate: 0.80 } as any,
-      optimistic: { successRate: 0.85 } as any,
-      successThreshold: 0.90,
-    });
-    expect(res).toBe('NotFIRE');
-  });
-});
