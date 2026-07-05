@@ -1,5 +1,6 @@
 import type { SimResult } from '../types.js';
 import { formatPercent, formatUsd } from './format.js';
+import { deepLinkToMethodology } from './navigate.js';
 
 export interface ResultsInputs {
   readonly optimistic: SimResult;
@@ -39,6 +40,16 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
 
   const delta = Math.abs(inputs.optimistic.successRate - inputs.pessimistic.successRate);
 
+  const anchors = [
+    { id: 'monte-carlo-defaults', text: formatPercent(inputs.pessimistic.successRate) },
+    { id: 'ftc-corrected', text: formatUsd(inputs.pessimistic.medianTaxUsd) },
+    { id: 'monte-carlo-defaults', text: formatPercent(inputs.optimistic.successRate) },
+    { id: 'ftc-corrected', text: formatUsd(inputs.optimistic.medianTaxUsd) },
+    { id: 'roth-uncertainty', text: formatPercent(delta) },
+    { id: 'ftc-corrected', text: 'FTC' },
+    { id: 'roth-conversion-value-test', text: 'Roth' },
+  ];
+
   container.innerHTML = `
     <div class="results-card">
       <h2>Verdict: ${badgeHtml}</h2>
@@ -46,26 +57,38 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
         <div class="result-col">
           <h3>Pessimistic Scenario</h3>
           <p class="success-rate" style="font-size: 2rem; font-weight: bold;">
-            <a href="methodology.html#monte-carlo-defaults">${esc(formatPercent(inputs.pessimistic.successRate))}</a>
+            <a href="#methodology/${esc(anchors[0]!.id)}" data-methodology-anchor="${esc(anchors[0]!.id)}">${esc(anchors[0]!.text)}</a>
           </p>
-          <p>Median Lifetime Tax: <a href="methodology.html#ftc-corrected">${esc(formatUsd(inputs.pessimistic.medianTaxUsd))}</a></p>
+          <p>Median Lifetime Tax: <a href="#methodology/${esc(anchors[1]!.id)}" data-methodology-anchor="${esc(anchors[1]!.id)}">${esc(anchors[1]!.text)}</a></p>
         </div>
         <div class="result-col">
           <h3>Optimistic Scenario</h3>
           <p class="success-rate" style="font-size: 2rem; font-weight: bold;">
-            <a href="methodology.html#monte-carlo-defaults">${esc(formatPercent(inputs.optimistic.successRate))}</a>
+            <a href="#methodology/${esc(anchors[2]!.id)}" data-methodology-anchor="${esc(anchors[2]!.id)}">${esc(anchors[2]!.text)}</a>
           </p>
-          <p>Median Lifetime Tax: <a href="methodology.html#ftc-corrected">${esc(formatUsd(inputs.optimistic.medianTaxUsd))}</a></p>
+          <p>Median Lifetime Tax: <a href="#methodology/${esc(anchors[3]!.id)}" data-methodology-anchor="${esc(anchors[3]!.id)}">${esc(anchors[3]!.text)}</a></p>
         </div>
       </div>
       <p class="delta-note" style="margin-top: 1rem;">
-        Regulatory exposure delta: <strong><a href="methodology.html#roth-uncertainty">${esc(formatPercent(delta))}</a></strong>.
+        Regulatory exposure delta: <strong><a href="#methodology/${esc(anchors[4]!.id)}" data-methodology-anchor="${esc(anchors[4]!.id)}">${esc(anchors[4]!.text)}</a></strong>.
         <br>
         <small>
           <em>Disclaimer: Not tax advice; Roth Thai treatment unsettled.</em>
-          See <a href="methodology.html#ftc-corrected">FTC</a> and <a href="methodology.html#roth-conversion-value-test">Roth</a> methodology.
+          See <a href="#methodology/${esc(anchors[5]!.id)}" data-methodology-anchor="${esc(anchors[5]!.id)}">${esc(anchors[5]!.text)}</a> and <a href="#methodology/${esc(anchors[6]!.id)}" data-methodology-anchor="${esc(anchors[6]!.id)}">${esc(anchors[6]!.text)}</a> methodology.
         </small>
       </p>
     </div>
   `;
+
+  container.addEventListener('click', (e) => {
+    const t = e.target instanceof HTMLElement
+      ? e.target.closest<HTMLElement>('a[data-methodology-anchor]')
+      : null;
+    if (!t) return;
+    e.preventDefault();
+    const id = t.dataset.methodologyAnchor;
+    if (!id) return;
+    history.pushState(null, '', `#methodology/${id}`);
+    deepLinkToMethodology(id);
+  });
 }

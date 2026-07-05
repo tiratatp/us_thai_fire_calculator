@@ -5,5 +5,6 @@ export default defineConfig({
     globals: true,
     include: ['src/**/*.test.ts', 'tests/**/*.test.ts'],
     passWithNoTests: true,
+    setupFiles: ['src/setup-jest.ts'],
   },
 });
