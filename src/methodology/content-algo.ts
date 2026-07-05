@@ -47,31 +47,6 @@ export const ALGO_SECTIONS: readonly MethodologySection[] = [
     ],
   },
   {
-    id: 'withdrawal-order',
-    title: 'Withdrawal Order Used to Fund Thai Baht Spending',
-    paragraphs: [
-      'When a Thai tax resident needs to remit money to Thailand to fund living expenses, the tax cost of the remittance depends heavily on which account the money comes from. The Thai personal income tax under Paw 161/2566 assesses the "assessable portion" of what is remitted, and the US federal tax treatment (ordinary income, LTCG, penalty) depends on account type. A greedy, source-by-source funding order minimizes the combined US + Thai bill on a per-baht basis.',
-      'The tax-minimizing order, from cheapest to most expensive on the combined bill, is: (1) Cash held on or before Jan 1, 2024 (grandfathered under Paw 162, zero-assessable in Thailand and no US tax); (2) return of basis from a taxable brokerage account (already-taxed principal, zero on both sides); (3) taxable brokerage capital gains (US LTCG plus Thai assessment on the gain portion); (4) Traditional IRA / 401(k) distributions (US ordinary income plus, if optimistic, the Thai pension deduction and treaty re-sourcing FTC); (5) Roth IRA (US-tax-free but Thailand may tax as pension income under the pessimistic reading — the FTC cannot absorb the Thai side because there is no US tax to credit); (6) HSA (US ordinary income and possible penalty if pre-65 non-medical, plus Thai pension treatment).',
-      'The order shifts for US-dollar spending that never touches Thailand (e.g., US-based travel). In that case Roth IRA moves ahead of Traditional IRA because Roth is US-tax-free AND generates no Thai remittance — the classic "shining moment" for Roth in a Thai-resident portfolio.',
-    ],
-    citations: [
-      { text: 'RD Instruction Paw 161/2566 — English Translation (HLB Thailand)', url: 'https://www.hlbthai.com/wp-content/uploads/2023/09/RD-Instruction-No.-Paw161-2566-Translation.pdf' },
-      { text: 'PwC Tax Summaries — Thailand Individual Income Determination', url: 'https://taxsummaries.pwc.com/thailand/individual/income-determination' },
-    ],
-  },
-  {
-    id: 'drawdown-sequence',
-    title: 'Order of Operations Within Each Year',
-    paragraphs: [
-      'The tax outcome of a given year depends on the order in which events occur. This calculator applies a fixed sequence intended to match how the US and Thai systems compute liability: (1) inflate this year\'s baseline Thai baht and USD spending needs; (2) execute all Required Minimum Distributions from Traditional IRA and 401(k) accounts, which are non-optional under IRC §401(a)(9); (3) if a Thai tax resident, fund the Thai baht spending need PLUS an estimate of the Thai tax it will trigger — because the remittance to pay Thai tax is itself an assessable remittance, this requires a fixed-point iteration; (4) fund the USD-only spending need (travel, US medical), which does not create Thai remittances; (5) evaluate the Roth conversion value test and apply a conversion only if it clears; (6) compute US federal tax on the year\'s ordinary income, LTCG, and any early-withdrawal penalty; (7) compute Thai personal income tax on the assessable portion of what was actually remitted; (8) apply the per-item Foreign Tax Credit; (9) pay the net US tax from the USD cash pool; (10) apply this year\'s market returns to all account balances; (11) advance the USD/THB exchange rate by one step.',
-      'Two ordering decisions matter especially. RMDs are computed and executed BEFORE the Roth conversion value test, so the conversion sees the correct post-RMD ordinary income floor. The 0% LTCG bracket and Roth conversions both compete for the same headroom in the 12% ordinary bracket; because both would draw down that headroom, they are treated as mutually exclusive within a single year, with 0% LTCG harvesting preferred when both are otherwise attractive.',
-    ],
-    citations: [
-      { text: 'IRC §401(a)(9) — Required Minimum Distributions', url: 'https://www.law.cornell.edu/uscode/text/26/401' },
-      { text: 'IRC §408A(d)(3) — Roth Conversion Rules', url: 'https://www.law.cornell.edu/uscode/text/26/408A' },
-    ],
-  },
-  {
     id: 'monte-carlo-defaults',
     title: 'Monte Carlo Default Assumptions',
     paragraphs: [
