@@ -5,6 +5,7 @@ import { renderResults } from './ui/results.js';
 import { renderYearTable } from './ui/year-table.js';
 import { portfolioBandChart, withdrawalSourceChart } from './ui/charts.js';
 import { mountMethodologyPage } from './ui/methodology-page.js';
+import { switchTab, deepLinkToMethodology, type TabId } from './ui/navigate.js';
 import { DEFAULT_ASSUMPTION } from './data/defaults.js';
 import { restore, save } from './storage.js';
 import type { WorkerRequest, WorkerResponse } from './workers/monte-carlo.worker.js';
@@ -15,18 +16,6 @@ interface LastResult {
   readonly optimistic: SimResult;
   readonly pessimistic: SimResult;
   readonly successThreshold: number;
-}
-
-function switchTab(target: 'inputs' | 'results' | 'methodology'): void {
-  document.querySelectorAll<HTMLElement>('.tab').forEach((el) => {
-    const active = el.dataset.tab === target;
-    el.classList.toggle('active', active);
-    el.setAttribute('aria-selected', String(active));
-  });
-  document.querySelectorAll<HTMLElement>('.tab-panel').forEach((el) => {
-    const active = el.id === `${target}-tab`;
-    el.classList.toggle('hidden', !active);
-  });
 }
 
 function setProgress(pct: number, text?: string): void {
@@ -70,6 +59,7 @@ function renderAllResults(data: LastResult): void {
 
 function runSimulation(inputs: UserInputs): void {
   clearError();
+  history.pushState(null, '', '#results');
   switchTab('results');
   setProgress(0, 'Running Monte Carlo...');
 
@@ -133,7 +123,7 @@ function runSimulation(inputs: UserInputs): void {
   worker.postMessage(req);
 }
 
-function bootstrap(): void {
+export function bootstrap(): void {
   const inputsTab = document.querySelector<HTMLElement>('#inputs-tab');
   const methodologyTab = document.querySelector<HTMLElement>('#methodology-tab');
 
@@ -144,10 +134,28 @@ function bootstrap(): void {
     mountMethodologyPage(methodologyTab);
   }
 
+  function handleHash(): void {
+    const methMatch = /^#methodology\/(.+)$/.exec(location.hash);
+    if (methMatch && methMatch[1]) {
+      switchTab('methodology');
+      deepLinkToMethodology(methMatch[1]);
+      return;
+    }
+    const tabMatch = /^#(inputs|results|methodology)$/.exec(location.hash);
+    if (tabMatch) {
+      switchTab(tabMatch[1] as TabId);
+    }
+  }
+  window.addEventListener('hashchange', handleHash);
+  handleHash();
+
   document.querySelectorAll<HTMLElement>('.tab').forEach((el) => {
     el.addEventListener('click', () => {
       const target = el.dataset.tab as 'inputs' | 'results' | 'methodology';
-      if (target) switchTab(target);
+      if (target) {
+        history.pushState(null, '', '#' + target);
+        switchTab(target);
+      }
     });
   });
 
