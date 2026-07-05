@@ -1,4 +1,4 @@
-import type { UserInputs, Account } from '../types.js';
+import type { UserInputs } from '../types.js';
 import { DEFAULT_USER_INPUTS } from '../data/defaults.js';
 import { save, restore } from '../storage.js';
 import { ACCOUNT_TYPES, CURRENCIES, REGULATORY_STANCES, parseFormData, validateField } from './form-schema.js';
