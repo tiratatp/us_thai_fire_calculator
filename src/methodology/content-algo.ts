@@ -76,3 +76,21 @@ export const ALGO_SECTIONS: readonly MethodologySection[] = [
     ],
   },
 ];
+
+// ---------- FIRE multipliers ----------
+
+export const FIRE_MULTIPLIERS: readonly MethodologySection[] = [
+  {
+    id: 'fire-multipliers',
+    title: 'FIRE Multipliers (25× / 33×) by Retirement Horizon',
+    paragraphs: [
+      'The calculator uses two FIRE multipliers to determine the target retirement portfolio (FIRE number = annual expenses × multiplier). The multiplier depends on the retirement horizon (years from current age to life expectancy).',
+      'If the horizon is ≤ 30 years, the calculator uses 25× (the 4% rule: 1 / 0.04). This multiplier is derived from the Trinity Study, which found that a 4% initial withdrawal rate had a high probability of success over a 30-year retirement period.',
+      'If the horizon is > 30 years, the calculator uses 33× (the 3% rule: 1 / 0.03). A longer retirement horizon requires a more conservative withdrawal rate to reduce the risk of portfolio depletion. The 3% rate provides additional margin for extended retirement periods.',
+    ],
+    citations: [
+      { text: 'Trinity Study — 4% safe withdrawal rate', url: 'https://www.portfoliovisualizer.com/triangle-of-safety' },
+    ],
+    constantRef: 'FIRE_MULTIPLIER_30_YR',
+  },
+];

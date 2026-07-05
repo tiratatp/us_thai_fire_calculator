@@ -6,6 +6,8 @@ import { describe, expect, it } from 'vitest';
 import type { Cited } from '../types.js';
 import {
   EARLY_WITHDRAWAL_PENALTY_RATE,
+  FIRE_MULTIPLIER_30_YR,
+  FIRE_MULTIPLIER_LONG,
   HSA_MEDICARE_AGE,
   HSA_PRE_65_PENALTY_RATE,
   PAW_162_CUTOFF_DATE,
@@ -87,6 +89,28 @@ describe('Paw 162 grandfathering', () => {
   });
 });
 
+describe('FIRE multipliers', () => {
+  it('30-year horizon multiplier = 25 (4% rule)', () => {
+    expect(FIRE_MULTIPLIER_30_YR.value).toBe(25);
+  });
+
+  it('long horizon multiplier = 33 (3% rule)', () => {
+    expect(FIRE_MULTIPLIER_LONG.value).toBe(33);
+  });
+
+  it('33× > 25× (longer horizon needs larger buffer)', () => {
+    expect(FIRE_MULTIPLIER_LONG.value).toBeGreaterThan(FIRE_MULTIPLIER_30_YR.value);
+  });
+
+  it('25× is the reciprocal of 4%', () => {
+    expect(FIRE_MULTIPLIER_30_YR.value).toBeCloseTo(1 / 0.04, 0);
+  });
+
+  it('33× is the reciprocal of 3%', () => {
+    expect(FIRE_MULTIPLIER_LONG.value).toBeCloseTo(1 / 0.03, 0);
+  });
+});
+
 describe('Citation coverage', () => {
   const all: readonly Cited<unknown>[] = [
     US_ORDINARY_BRACKETS_2025_SINGLE,
@@ -107,6 +131,8 @@ describe('Citation coverage', () => {
     THAI_PENSION_DEDUCTION_CAP,
     THAI_PENSION_DEDUCTION_PCT,
     PAW_162_CUTOFF_DATE,
+    FIRE_MULTIPLIER_30_YR,
+    FIRE_MULTIPLIER_LONG,
   ];
 
   it('every constant is a Cited<T> with an https URL and source name', () => {

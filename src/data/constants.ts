@@ -132,13 +132,8 @@ export const RMD_UNIFORM_LIFETIME_TABLE: Cited<Readonly<Record<number, number>>>
 
 /**
  * SECURE 2.0 RMD age by birth year (per .research/01-us-federal-tax.md §5).
- *
- * - Before Jul 1, 1951 → 73
- * - Jul 2, 1951 through Dec 31, 1959 → 75
- * - 1960 and later → 75
- *
- * We approximate to whole birth years (v1 simplification). Users born
- * exactly in 1951 default to 75 (matches the majority-of-year rule).
+ * Before Jul 1, 1951 → 73; Jul 2, 1951 through Dec 31, 1959 → 75;
+ * 1960 and later → 75. Whole-year approximation.
  */
 export function rmdAgeByBirthYear(birthYear: number): number {
   if (birthYear <= 1950) return 73;
@@ -150,8 +145,7 @@ export const RMD_AGE_BY_BIRTH_YEAR: Cited<typeof rmdAgeByBirthYear> = {
   sourceUrl: IRS_P590B_URL,
   sourceName: 'IRS Publication 590-B — SECURE 2.0 RMD age boundaries',
   retrievedDate: RETRIEVED,
-  notes:
-    'Whole-year approximation. Born 1950 or earlier → 73; born 1951+ → 75.',
+  notes: 'Whole-year approximation. Born 1950 or earlier → 73; born 1951+ → 75.',
 };
 
 // ---------- Penalties ----------
@@ -228,4 +222,27 @@ export const PAW_162_CUTOFF_DATE: Cited<string> = {
   retrievedDate: RETRIEVED,
   notes:
     'Income earned before this date is not assessable when remitted. Applies to Cash and Taxable Brokerage ONLY — never retirement accounts.',
+};
+
+// ---------- FIRE multipliers ----------
+
+const TRINITY_STUDY_URL =
+  'https://www.portfoliovisualizer.com/triangle-of-safety';
+
+/** 25× = 4% safe withdrawal rate (1 / 0.04). Used when retirement horizon ≤ 30 years. */
+export const FIRE_MULTIPLIER_30_YR: Cited<number> = {
+  value: 25,
+  sourceUrl: TRINITY_STUDY_URL,
+  sourceName: 'Trinity Study — 4% safe withdrawal rate',
+  retrievedDate: RETRIEVED,
+  notes: '1 / 0.04. Conservative horizon ≤ 30 years.',
+};
+
+/** 33× = 3% safe withdrawal rate (1 / 0.03). Used when retirement horizon > 30 years. */
+export const FIRE_MULTIPLIER_LONG: Cited<number> = {
+  value: 33,
+  sourceUrl: TRINITY_STUDY_URL,
+  sourceName: 'Trinity Study — 3% conservative withdrawal rate',
+  retrievedDate: RETRIEVED,
+  notes: '1 / 0.03. Conservative horizon > 30 years.',
 };

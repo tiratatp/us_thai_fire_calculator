@@ -13,6 +13,7 @@ import { US_SECTIONS } from './content-us.js';
 import { THAI_SECTIONS } from './content-thai.js';
 import { TREATY_SECTIONS } from './content-treaty.js';
 import { ALGO_SECTIONS } from './content-algo.js';
+import { FIRE_MULTIPLIERS } from './content-algo.js';
 
 // ---------- Shared types ----------
 
@@ -32,6 +33,8 @@ export interface MethodologySection {
     | 'THAI_PIT_BRACKETS'
     | 'RMD_UNIFORM_LIFETIME_TABLE'
     | 'CORRELATION_MATRIX'
+    | 'FIRE_MULTIPLIER_30_YR'
+    | 'FIRE_MULTIPLIER_LONG'
     | undefined;
 }
 
@@ -64,4 +67,5 @@ export const METHODOLOGY_SECTIONS: readonly MethodologySection[] = [
   ...THAI_SECTIONS,
   ...TREATY_SECTIONS,
   ...ALGO_SECTIONS,
+  ...FIRE_MULTIPLIERS,
 ];
