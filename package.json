@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@playwright/test": "^1.61.1",
     "chart.js": "^4.4.8"
   },
   "devDependencies": {
