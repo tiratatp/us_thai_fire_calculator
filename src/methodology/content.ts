@@ -5,10 +5,6 @@
  * to keep each file under the 250 LOC ceiling.
  */
 
-import type { Bracket } from '../types.js';
-import { US_ORDINARY_BRACKETS_2026_SINGLE } from '../data/constants.js';
-import { THAI_PIT_BRACKETS } from '../data/constants.js';
-import { RMD_UNIFORM_LIFETIME_TABLE } from '../data/constants.js';
 import { READ_FIRST_GROUP } from './content-read-first.js';
 import { US_RULES_GROUP } from './content-us-rules.js';
 import { THAI_RULES_GROUP } from './content-thai-rules.js';

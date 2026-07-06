@@ -77,3 +77,10 @@ The following intro strings were written for the 5 methodology groups in `src/me
 - Verified `npm run typecheck`, `npm run test` (328/328), and `npm run build` all pass.
 - Verified LOC ceiling audit passes with no violations.
 - This completes the methodology reader-task-sections plan.
+
+## F2 Dead-Import Cleanup Completion Note
+- Removed 6 dead/unused imports left over from Task 8 refactor (Oracle F2 code-quality finding).
+- `src/methodology/content.ts`: deleted unused imports `Bracket`, `US_ORDINARY_BRACKETS_2026_SINGLE`, `THAI_PIT_BRACKETS`, `RMD_UNIFORM_LIFETIME_TABLE` (4 lines).
+- `src/methodology/content-us-rules.ts`: removed unused `MethodologySection` from type import, kept `MethodologyGroup`.
+- `src/methodology/content-thai-rules.ts`: same change as above.
+- Verified `npm run typecheck` (exit 0), `npm run test` (328/328 passed), `npm run build` (30 modules).

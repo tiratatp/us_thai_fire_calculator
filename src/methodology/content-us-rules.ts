@@ -1,4 +1,4 @@
-import type { MethodologyGroup, MethodologySection } from './content.js';
+import type { MethodologyGroup } from './content.js';
 
 export const US_RULES_GROUP: MethodologyGroup = {
   id: 'group-us-rules',
