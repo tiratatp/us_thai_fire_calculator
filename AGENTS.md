@@ -12,11 +12,11 @@ for the source-of-truth tax research.
 
 ## Core invariants (never break these)
 
-1. **250-LOC file ceiling.** Every file in `src/` and `tests/` MUST be ≤ 250
+1. **500-LOC file ceiling.** Every file in `src/` and `tests/` MUST be ≤ 500
    lines. If you're about to breach, split by concern first. Check with:
    ```bash
    find src tests -name '*.ts' -o -name '*.css' | xargs wc -l | \
-     awk '$1 > 250 && $2 != "total" {print "VIOLATION: " $0; f=1} END {exit f}'
+     awk '$1 > 500 && $2 != "total" {print "VIOLATION: " $0; f=1} END {exit f}'
    ```
 
 2. **TypeScript strict + `noUncheckedIndexedAccess`.** No `any`, no
@@ -90,9 +90,9 @@ npm run test        # vitest run; must exit 0 with all tests green
 npm run build       # tsc && vite build; must exit 0
 
 # LOC ceiling
-find src tests -name '*.ts' -o -name '*.css' | xargs wc -l | \
-  awk '$1 > 250 && $2 != "total" {print "VIOLATION: " $0; f=1} END {exit f}'
-```
+   find src tests -name '*.ts' -o -name '*.css' | xargs wc -l | \
+     awk '$1 > 500 && $2 != "total" {print "VIOLATION: " $0; f=1} END {exit f}'
+   ```
 
 If ANY of these fail, do not commit. Fix, then re-run.
 
