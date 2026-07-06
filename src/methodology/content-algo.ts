@@ -80,6 +80,16 @@ export const ALGO_SECTIONS: readonly MethodologySection[] = [
       { text: 'Mulberry32 — Tommy Ettinger (public-domain gist, gjrand-tested)', url: 'https://gist.github.com/tommyettinger/46a874533244883189143505d203312c' },
     ],
   },
+  {
+    id: 'thai-tax-timing',
+    title: 'Why Thai Tax Appears Only in Certain Years',
+    paragraphs: [
+      'With default inputs (THB Cash = 9.5M THB, USD Cash = $165k, Taxable Brokerage = $1.275M with $900k basis), Thai tax follows a distinctive pattern.',
+      'THB Cash lasts ~3 years. When it runs out, remittations from USD Cash begin. Under post-2024 Thai rules, USD Cash remittances are <strong>fully assessable</strong> (no grandfathering applies), triggering Thai personal income tax on amounts above the 150k THB deduction. This creates a sharp tax spike in years 4–5.',
+      'Once USD Cash is spent, the calculator remits <strong>Taxable Brokerage basis</strong> ($900k) before touching gains. Under <em>Paw 162/2566</em>, basis remittances are <strong>not assessable</strong> in Thailand — so Thai tax drops to near zero. This gap lasts ~10 years while the $900k basis is drawn down.',
+      'After basis is exhausted, <strong>capital gains</strong> are remitted and taxed in Thailand (with FTC offset). Simultaneously, <strong>Traditional IRA RMDs</strong> begin at age 75. Both are fully assessable in Thailand, creating sustained Thai tax liability offset by foreign tax credits on US-paid tax.',
+    ],
+  },
 ];
 
 // ---------- FIRE multipliers ----------

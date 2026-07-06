@@ -38,7 +38,7 @@ export function mountDrawdownPage(container: HTMLElement): void {
       </li>
       <li>
         <strong>Taxable Brokerage — basis</strong> — after USD Cash is
-        spent, the original investment basis ($900k of $1.275M) is
+        spent, the original investment basis is
         remitted. Under the <em>Paw 162/2566</em> grandfathering rule,
         basis remittances are <strong>tax-free</strong> in Thailand.
       </li>
@@ -49,9 +49,9 @@ export function mountDrawdownPage(container: HTMLElement): void {
         US tax already paid on those gains.
       </li>
       <li>
-        <strong>Traditional IRA / 401(k)</strong> — RMDs (starting at
+        <strong>Traditional IRA / 401(k)</strong> — <abbr title="Required Minimum Distribution">RMDs</abbr> (starting at
         age 75) and voluntary withdrawals. Fully assessable in Thailand.
-        US tax is first, then Thai tax with FTC.
+        US tax is first, then Thai tax with <abbr title="Foreign Tax Credit">FTC</abbr>.
       </li>
       <li>
         <strong>Roth IRA / 401(k)</strong> — not assessable in Thailand
@@ -85,49 +85,11 @@ export function mountDrawdownPage(container: HTMLElement): void {
       Thailand, so Thai tax = 0. This is Roth's "shining moment."
     </p>
 
-    <h2 id="thai-tax-timing">Why Thai Tax Appears Only in Certain Years</h2>
-
-    <p>
-      With default inputs (THB Cash = 9.5M THB, USD Cash = $165k,
-      Taxable Brokerage = $1.275M with $900k basis), Thai tax follows
-      a distinctive pattern:
-    </p>
-
-    <h3 id="years-4-5-spike">Years 4–5: The USD Cash Spike</h3>
-
-    <p>
-      THB Cash lasts ~3 years. When it runs out, remittations from USD
-      Cash begin. Under post-2024 Thai rules, USD Cash remittances are
-      <strong>fully assessable</strong> (no grandfathering applies),
-      triggering Thai personal income tax on amounts above the 150k THB
-      deduction. This creates a sharp tax spike in years 4–5.
-    </p>
-
-    <h3 id="years-6-16-gap">Years 6–16: The Tax-Free Gap</h3>
-
-    <p>
-      Once USD Cash is spent, the calculator remits <strong>Taxable
-      Brokerage basis</strong> ($900k) before touching gains. Under
-      <em>Paw 162/2566</em>, basis remittances are <strong>not
-      assessable</strong> in Thailand — so Thai tax drops to near zero.
-      This gap lasts ~10 years while the $900k basis is drawn down.
-    </p>
-
-    <h3 id="years-17-plus">Year 17+: Gains + RMDs</h3>
-
-    <p>
-      After basis is exhausted, <strong>capital gains</strong> are
-      remitted and taxed in Thailand (with FTC offset). Simultaneously,
-      <strong>Traditional IRA RMDs</strong> begin at age 75. Both are
-      fully assessable in Thailand, creating sustained Thai tax liability
-      offset by foreign tax credits on US-paid tax.
-    </p>
-
     <h2 id="key-rules">Key Rules</h2>
 
     <ul>
       <li>
-        <strong>Single-primary-taxer FTC:</strong> Each income item has
+        <strong>Single-primary-taxer <abbr title="Foreign Tax Credit">FTC</abbr>:</strong> Each income item has
         exactly one primary taxer (US or Thailand). The other country
         grants a limited credit. Prevents double-crediting.
       </li>
@@ -137,7 +99,7 @@ export function mountDrawdownPage(container: HTMLElement): void {
         benefit.
       </li>
       <li>
-        <strong>LTCG harvest vs Roth mutex:</strong> Both use the same
+        <strong><abbr title="Long-Term Capital Gains">LTCG</abbr> harvest vs Roth mutex:</strong> Both use the same
         0%–15% US bracket space. You can do one or the other, not both.
       </li>
       <li>

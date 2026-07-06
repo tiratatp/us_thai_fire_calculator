@@ -32,38 +32,11 @@ describe('mountDrawdownPage', () => {
     expect(text).toContain('HSA');
   });
 
-  it('has thai-tax-timing section', () => {
-    const container = document.createElement('div');
-    mountDrawdownPage(container);
-    expect(container.querySelector('#thai-tax-timing')).not.toBeNull();
-  });
-
-  it('explains years 4-5 USD Cash spike', () => {
-    const container = document.createElement('div');
-    mountDrawdownPage(container);
-    expect(container.querySelector('#years-4-5-spike')).not.toBeNull();
-    expect(container.innerHTML).toContain('fully assessable');
-  });
-
-  it('explains years 6-16 tax-free gap', () => {
-    const container = document.createElement('div');
-    mountDrawdownPage(container);
-    expect(container.querySelector('#years-6-16-gap')).not.toBeNull();
-    expect(container.innerHTML).toContain('not assessable');
-  });
-
-  it('explains years 17+ gains + RMDs', () => {
-    const container = document.createElement('div');
-    mountDrawdownPage(container);
-    expect(container.querySelector('#years-17-plus')).not.toBeNull();
-    expect(container.innerHTML).toContain('RMD');
-  });
-
   it('has key-rules section with FTC explanation', () => {
     const container = document.createElement('div');
     mountDrawdownPage(container);
     expect(container.querySelector('#key-rules')).not.toBeNull();
-    expect(container.innerHTML).toContain('Single-primary-taxer FTC');
+    expect(container.innerHTML).toContain('<abbr title="Foreign Tax Credit">FTC</abbr>');
   });
 
   it('has usd-travel section', () => {
