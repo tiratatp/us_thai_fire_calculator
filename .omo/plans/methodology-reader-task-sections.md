@@ -157,7 +157,7 @@ Group-membership mapping (canonical, used by every content todo):
   QA scenarios: happy — full `npm run test` green (evidence `.omo/evidence/task-9-methodology-reader-task-sections.txt`). failure — revert Task 5's merge (put `residency-180-days` back as its own section), keep this test file's assertions: expect the new `renderMethodology emits H3 per section` count to be off by one because a duplicate `thai-residency`/`residency-180-days` pair exists.
   Commit: Y | test(methodology): update anchor set and add group/H3/uniqueness assertions
 
-- [ ] 10. src/methodology/: Delete the 5 legacy content files and run full acceptance gate (LOC ceiling + typecheck + test + build)
+- [x] 10. src/methodology/: Delete the 5 legacy content files and run full acceptance gate (LOC ceiling + typecheck + test + build)
   What to do / Must NOT do: (a) Delete `src/methodology/content-us.ts`, `src/methodology/content-thai.ts`, `src/methodology/content-treaty.ts`, `src/methodology/content-algo.ts`, `src/methodology/content-uncertainties.ts` — every symbol they exported is now covered by the 5 new group files. Confirm via `grep -rn "from './content-us" src/` and equivalents that no import remains. (b) Run the full AGENTS.md verify sequence: `npm run typecheck`, `npm run test`, `npm run build`. (c) Run the LOC ceiling audit: `find src tests -name '*.ts' -o -name '*.css' | xargs wc -l | awk '$1 > 500 && $2 != "total" {print "VIOLATION: " $0; f=1} END {exit f}'` — must exit 0. Do NOT keep any legacy file as a shim. Do NOT commit if any check fails.
   Parallelization: Wave 3 | Blocked by: 3, 4, 5, 6, 7, 8, 9 | Blocks: F1–F4
   References: AGENTS.md §Verify-commands (typecheck / test / build / LOC), the 5 legacy file paths above.

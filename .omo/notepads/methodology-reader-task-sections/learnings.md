@@ -69,3 +69,11 @@ The following intro strings were written for the 5 methodology groups in `src/me
 - Verified `npm run typecheck`, `npm run test`, and `npm run build` all pass.
 - Verified `residency-180-days` is absent from the test file.
 - Total tests in `render.test.ts` increased from 13 to 18.
+
+## Task 10 Completion Note
+- Deleted 5 legacy content files: `content-us.ts`, `content-thai.ts`, `content-treaty.ts`, `content-algo.ts`, `content-uncertainties.ts`.
+- Verified zero remaining imports of legacy files in `src/` via grep.
+- Verified `src/methodology/` contains exactly 6 `content*.ts` files.
+- Verified `npm run typecheck`, `npm run test` (328/328), and `npm run build` all pass.
+- Verified LOC ceiling audit passes with no violations.
+- This completes the methodology reader-task-sections plan.
