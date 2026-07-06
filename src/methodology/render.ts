@@ -5,13 +5,17 @@
  */
 
 import type { Bracket } from '../types.js';
-import type { MethodologySection } from './content.js';
+import type { MethodologySection, MethodologyGroup } from './content.js';
 import {
   US_ORDINARY_BRACKETS_2026_SINGLE,
   THAI_PIT_BRACKETS,
   RMD_UNIFORM_LIFETIME_TABLE,
 } from '../data/constants.js';
-import { METHODOLOGY_SECTIONS, CORRELATION_MATRIX } from './content.js';
+import {
+  METHODOLOGY_GROUPS,
+  METHODOLOGY_SECTIONS,
+  CORRELATION_MATRIX,
+} from './content.js';
 
 // ---------- HTML escaping ----------
 
@@ -40,6 +44,28 @@ export function renderSection(section: MethodologySection): string {
     : '';
 
   return `<section id="${section.id}">\n<h2>${escapeHtml(section.title)}</h2>\n${paragraphs}\n${citations}\n</section>\n`;
+}
+
+export function renderSubsection(section: MethodologySection): string {
+  const paragraphs = section.paragraphs
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join('\n');
+
+  const citations = section.citations
+    ? `<div class="citations">${section.citations
+        .map(
+          (c) =>
+            `<a href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(c.text)}</a>`,
+        )
+        .join(' · ')}</div>`
+    : '';
+
+  return `<section id="${section.id}">\n<h3>${escapeHtml(section.title)}</h3>\n${paragraphs}\n${citations}\n</section>\n`;
+}
+
+export function renderGroup(group: MethodologyGroup): string {
+  const subsections = group.sections.map(renderSubsection).join('\n');
+  return `<section class="group" id="${group.id}">\n<h2>${escapeHtml(group.title)}</h2>\n<p class="intro">${escapeHtml(group.intro)}</p>\n${subsections}\n</section>\n`;
 }
 
 // ---------- Bracket table ----------
@@ -112,13 +138,16 @@ export function renderCorrelationMatrix(): string {
 // ---------- Full methodology page ----------
 
 export function renderMethodology(): string {
-  const tocItems = METHODOLOGY_SECTIONS.map(
-    (s) => `<li><a href="#${s.id}">${escapeHtml(s.title)}</a></li>`,
-  ).join('\n');
+  const tocItems = METHODOLOGY_GROUPS.map((g) => {
+    const sectionLinks = g.sections
+      .map((s) => `<li><a href="#${s.id}">${escapeHtml(s.title)}</a></li>`)
+      .join('\n');
+    return `<li><a href="#${g.id}">${escapeHtml(g.title)}</a>\n<ol>\n${sectionLinks}\n</ol>\n</li>`;
+  }).join('\n');
 
   const toc = `<nav><h2>Table of Contents</h2><ol>\n${tocItems}\n</ol></nav>\n`;
 
-  const sections = METHODOLOGY_SECTIONS.map((s) => renderSection(s)).join('\n');
+  const groupsHtml = METHODOLOGY_GROUPS.map((g) => renderGroup(g)).join('\n');
 
   // Inject bracket tables for sections that reference constants
   const usBracketsHtml = renderBracketTable(
@@ -131,7 +160,7 @@ export function renderMethodology(): string {
   const rmdHtml = renderRmdTable();
   const corrHtml = renderCorrelationMatrix();
 
-  return `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="utf-8"><title>Methodology</title></head>\n<body>\n<h1>Methodology</h1>\n${toc}${sections}\n<!-- Injected constant tables -->\n<div id="constant-tables">\n<h2>US Ordinary Brackets 2026</h2>\n${usBracketsHtml}\n<h2>Thai PIT Brackets</h2>\n${thaiBracketsHtml}\n<h2>RMD Uniform Lifetime Table</h2>\n${rmdHtml}\n<h2>Correlation Matrix</h2>\n${corrHtml}\n</div>\n</body>\n</html>\n`;
+  return `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="utf-8"><title>Methodology</title></head>\n<body>\n<h1>Methodology</h1>\n${toc}${groupsHtml}\n<!-- Injected constant tables -->\n<div id="constant-tables">\n<h2>US Ordinary Brackets 2026</h2>\n${usBracketsHtml}\n<h2>Thai PIT Brackets</h2>\n${thaiBracketsHtml}\n<h2>RMD Uniform Lifetime Table</h2>\n${rmdHtml}\n<h2>Correlation Matrix</h2>\n${corrHtml}\n</div>\n</body>\n</html>\n`;
 }
 
 // ---------- Anchor set ----------

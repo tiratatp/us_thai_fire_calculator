@@ -47,3 +47,12 @@ The following intro strings were written for the 5 methodology groups in `src/me
 - Reused `group-interaction` intro string verbatim.
 - Verified all 6 section IDs are present and in the correct order.
 - Verified typecheck, tests, and LOC ceiling (90 lines).
+
+## Task 8 Completion Note
+- Rewired `src/methodology/content.ts` to import the 5 new group files.
+- Updated `METHODOLOGY_GROUPS` to use the imported groups.
+- Deleted `DISCLAIMER_SECTION` export from `content.ts` (now in `content-read-first.ts`).
+- Updated `src/methodology/render.ts` with `renderSubsection` (H3) and `renderGroup` (H2 + intro).
+- Updated `renderMethodology` to render groups and a nested Table of Contents.
+- Verified 5 groups and 30 H3 sections in the final HTML output.
+- Verified typecheck passes and tests pass (except for the expected `residency-180-days` failure).
