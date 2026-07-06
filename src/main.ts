@@ -6,6 +6,7 @@ import { renderYearTable } from './ui/year-table.js';
 import { portfolioBandChart, withdrawalSourceChart } from './ui/charts.js';
 import { mountMethodologyPage } from './ui/methodology-page.js';
 import { mountDrawdownPage } from './ui/drawdown-page.js';
+import { mountGapYearPage } from './ui/gap-year-page.js';
 import { switchTab, deepLinkToMethodology, type TabId } from './ui/navigate.js';
 import { DEFAULT_ASSUMPTION, DEFAULT_USER_INPUTS } from './data/defaults.js';
 import { restore, save } from './storage.js';
@@ -131,6 +132,7 @@ function runSimulation(inputs: UserInputs): void {
 export function bootstrap(): void {
   const inputsTab = document.querySelector<HTMLElement>('#inputs-tab');
   const drawdownTab = document.querySelector<HTMLElement>('#drawdown-tab');
+  const gapYearTab = document.querySelector<HTMLElement>('#gap-year-tab');
   const referencesTab = document.querySelector<HTMLElement>('#references-tab');
 
   if (inputsTab) {
@@ -138,6 +140,9 @@ export function bootstrap(): void {
   }
   if (drawdownTab) {
     mountDrawdownPage(drawdownTab);
+  }
+  if (gapYearTab) {
+    mountGapYearPage(gapYearTab);
   }
   if (referencesTab) {
     mountMethodologyPage(referencesTab);
@@ -150,7 +155,7 @@ export function bootstrap(): void {
       deepLinkToMethodology(methMatch[1]);
       return;
     }
-    const tabMatch = /^#(inputs|results|drawdown|references)$/.exec(location.hash);
+    const tabMatch = /^#(inputs|results|drawdown|gap-year|references)$/.exec(location.hash);
     if (tabMatch) {
       switchTab(tabMatch[1] as TabId);
     }
