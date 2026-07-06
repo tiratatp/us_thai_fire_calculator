@@ -13,4 +13,8 @@ coverage/
 .DS_Store
 
 # Ephemeral opencode session state (keep .omo/plans/, ignore the rest)
-.omo/run-continuation/
+.omo/*
+!.omo/plans/
+
+# Playwright traces
+.playwright-mcp/
