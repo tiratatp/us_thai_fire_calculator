@@ -1,0 +1,106 @@
+- generic [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - heading "US-Thai FIRE Calculator" [level=1] [ref=f2e3]
+    - paragraph [ref=f2e4]:
+      - strong [ref=f2e5]: Not tax advice.
+      - text: Consult a cross-border tax professional. Roth treatment in Thailand is unsettled.
+  - tablist [ref=f2e6]:
+    - tab "Inputs" [ref=f2e7] [cursor=pointer]
+    - tab "Results" [ref=f2e8] [cursor=pointer]
+    - tab "Drawdown" [active] [selected] [ref=f2e9] [cursor=pointer]
+    - tab "References" [ref=f2e10] [cursor=pointer]
+  - main [ref=f2e11]:
+    - tabpanel "Withdrawal Waterfall" [ref=f2e721]:
+      - heading "Withdrawal Waterfall" [level=1] [ref=f2e722]
+      - paragraph [ref=f2e723]:
+        - text: When you retire, your accounts don't all fund your lifestyle equally. This page explains the
+        - strong [ref=f2e724]: order
+        - text: the calculator uses to pull money out of each account — and why Thai tax appears only in certain years.
+      - heading "THB Living Expenses" [level=2] [ref=f2e725]
+      - paragraph [ref=f2e726]:
+        - text: Your monthly THB cost-of-living (plus any annual THB expenses) is funded first from
+        - strong [ref=f2e727]: THB Cash
+        - text: ", then remitted from USD accounts if THB Cash runs out. Remittances follow this priority:"
+      - list [ref=f2e728]:
+        - listitem [ref=f2e729]:
+          - strong [ref=f2e730]: THB Cash
+          - text: — drawn first. Fully available and already in THB, so no remittance or Thai tax applies.
+        - listitem [ref=f2e731]:
+          - strong [ref=f2e732]: USD Cash
+          - text: — if THB Cash is exhausted, USD Cash is converted at the current FX rate and remitted. Under post-2024 Thai rules, this is
+          - strong [ref=f2e733]: fully assessable
+          - text: as Thai taxable income.
+        - listitem [ref=f2e734]:
+          - strong [ref=f2e735]: Taxable Brokerage — basis
+          - text: — after USD Cash is spent, the original investment basis ($900k of $1.275M) is remitted. Under the
+          - emphasis [ref=f2e736]: Paw 162/2566
+          - text: grandfathering rule, basis remittances are
+          - strong [ref=f2e737]: tax-free
+          - text: in Thailand.
+        - listitem [ref=f2e738]:
+          - strong [ref=f2e739]: Taxable Brokerage — gains
+          - text: — once basis is exhausted, capital gains are remitted. Gains are subject to Thai tax, but you get a
+          - strong [ref=f2e740]: foreign tax credit
+          - text: for any US tax already paid on those gains.
+        - listitem [ref=f2e741]:
+          - strong [ref=f2e742]: Traditional IRA / 401(k)
+          - text: — RMDs (starting at age 75) and voluntary withdrawals. Fully assessable in Thailand. US tax is first, then Thai tax with FTC.
+        - listitem [ref=f2e743]:
+          - strong [ref=f2e744]: Roth IRA / 401(k)
+          - text: — not assessable in Thailand under current Thai law (treaty predates Roth, but Thailand does not currently recognize Roth tax-free status).
+        - listitem [ref=f2e745]:
+          - strong [ref=f2e746]: HSA
+          - text: — tax-free in Thailand if used for qualified medical expenses. Otherwise treated as ordinary income.
+      - heading "USD Travel Spending" [level=2] [ref=f2e747]
+      - paragraph [ref=f2e748]:
+        - text: USD-denominated travel expenses are funded
+        - emphasis [ref=f2e749]: after
+        - text: "THB living expenses. The order is:"
+      - list [ref=f2e750]:
+        - listitem [ref=f2e751]:
+          - text: Remaining
+          - strong [ref=f2e752]: USD Cash
+          - text: (if any after THB funding)
+        - listitem [ref=f2e753]: Then the same waterfall above (Taxable Brokerage → Roth → Traditional → HSA).
+      - paragraph [ref=f2e754]:
+        - strong [ref=f2e755]: "Why USD travel often draws Roth first:"
+        - text: Roth withdrawals are US-tax-free
+        - emphasis [ref=f2e756]: and
+        - text: not remitted to Thailand, so Thai tax = 0. This is Roth's "shining moment."
+      - heading "Why Thai Tax Appears Only in Certain Years" [level=2] [ref=f2e757]
+      - paragraph [ref=f2e758]: "With default inputs (THB Cash = 9.5M THB, USD Cash = $165k, Taxable Brokerage = $1.275M with $900k basis), Thai tax follows a distinctive pattern:"
+      - 'heading "Years 4–5: The USD Cash Spike" [level=3] [ref=f2e759]'
+      - paragraph [ref=f2e760]:
+        - text: THB Cash lasts ~3 years. When it runs out, remittations from USD Cash begin. Under post-2024 Thai rules, USD Cash remittances are
+        - strong [ref=f2e761]: fully assessable
+        - text: (no grandfathering applies), triggering Thai personal income tax on amounts above the 150k THB deduction. This creates a sharp tax spike in years 4–5.
+      - 'heading "Years 6–16: The Tax-Free Gap" [level=3] [ref=f2e762]'
+      - paragraph [ref=f2e763]:
+        - text: Once USD Cash is spent, the calculator remits
+        - strong [ref=f2e764]: Taxable Brokerage basis
+        - text: ($900k) before touching gains. Under
+        - emphasis [ref=f2e765]: Paw 162/2566
+        - text: ", basis remittances are"
+        - strong [ref=f2e766]: not assessable
+        - text: in Thailand — so Thai tax drops to near zero. This gap lasts ~10 years while the $900k basis is drawn down.
+      - 'heading "Year 17+: Gains + RMDs" [level=3] [ref=f2e767]'
+      - paragraph [ref=f2e768]:
+        - text: After basis is exhausted,
+        - strong [ref=f2e769]: capital gains
+        - text: are remitted and taxed in Thailand (with FTC offset). Simultaneously,
+        - strong [ref=f2e770]: Traditional IRA RMDs
+        - text: begin at age 75. Both are fully assessable in Thailand, creating sustained Thai tax liability offset by foreign tax credits on US-paid tax.
+      - heading "Key Rules" [level=2] [ref=f2e771]
+      - list [ref=f2e772]:
+        - listitem [ref=f2e773]:
+          - strong [ref=f2e774]: "Single-primary-taxer FTC:"
+          - text: Each income item has exactly one primary taxer (US or Thailand). The other country grants a limited credit. Prevents double-crediting.
+        - listitem [ref=f2e775]:
+          - strong [ref=f2e776]: "Roth conversion value test:"
+          - text: Defaults to 0 for Thai residents — converting to Roth costs US tax with zero Thai benefit.
+        - listitem [ref=f2e777]:
+          - strong [ref=f2e778]: "LTCG harvest vs Roth mutex:"
+          - text: Both use the same 0%–15% US bracket space. You can do one or the other, not both.
+        - listitem [ref=f2e779]:
+          - strong [ref=f2e780]: "No retirement-account grandfathering:"
+          - text: Pre-2024 grandfathering applies to Cash and Taxable Brokerage only, not Traditional IRA, Roth IRA, or HSA.

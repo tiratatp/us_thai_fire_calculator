@@ -1,0 +1,45 @@
+SCOPE-FIDELITY HTML DIFF CHECK - Task F4
+Verdict: FAIL
+
+Summary of Differences:
+
+1. MISSING SECTIONS (IDs):
+   - withdrawal-order
+   - drawdown-sequence
+   (These were present in BEFORE but are absent in AFTER. They were not listed as expected exceptions.)
+
+2. EXTRA SECTIONS (IDs):
+   - thai-tax-timing
+   (This is a new section added in AFTER, not present in BEFORE.)
+
+3. CONTENT LOSS (Paragraphs):
+   - All paragraphs from 'withdrawal-order' are missing.
+   - All paragraphs from 'drawdown-sequence' are missing.
+
+4. MERGE ISSUES (thai-residency):
+   - Paragraphs from 'residency-180-days' were merged into 'thai-residency' as expected, but the resulting section has redundant/overlapping content.
+   - Paragraph 1 and 3 both define the 180-day rule with slightly different wording.
+   - Paragraph 2 and 3 both describe the non-resident tax treatment.
+
+5. CITATION DIFFERENCES:
+   - 'thai-residency' now has two citations with the same URL (https://www.rd.go.th/english/6045) but different text. BEFORE only had one.
+
+Detailed Section ID Comparison:
+BEFORE IDs: 32
+AFTER IDs: 30
+Net change: -2 (Expected -1 from residency merge, but actually -3 + 1 new)
+
+Missing in AFTER:
+- residency-180-days (Expected)
+- withdrawal-order (UNEXPECTED)
+- drawdown-sequence (UNEXPECTED)
+
+Extra in AFTER:
+- thai-tax-timing (UNEXPECTED)
+- group-read-first (Group container)
+- group-us-rules (Group container)
+- group-thai-rules (Group container)
+- group-interaction (Group container)
+- group-simulation (Group container)
+
+Note: Group containers are expected due to the structural refactor to grouped rendering.

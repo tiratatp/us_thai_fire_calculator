@@ -3,7 +3,7 @@ import type { MethodologyGroup } from './content.js';
 export const SIMULATION_GROUP: MethodologyGroup = {
   id: 'group-simulation',
   title: 'How this calculator simulates it',
-  intro: 'The technical implementation of the simulation, including the Monte Carlo engine and the step-by-step drawdown algorithm.',
+  intro: 'The technical implementation of the simulation and the step-by-step drawdown algorithm.',
   sections: [
     {
       id: 'roth-conversion-value-test',
@@ -19,40 +19,6 @@ export const SIMULATION_GROUP: MethodologyGroup = {
       ],
     },
     {
-      id: 'monte-carlo-defaults',
-      title: 'Monte Carlo Default Assumptions',
-      paragraphs: [
-        'Monte Carlo simulation of portfolio outcomes uses forward-looking capital market assumptions rather than pure historical bootstrapping, following the approach used by Vanguard\'s Capital Markets Model (VCMM) and similar institutional forecasts. Default annualized parameters are: US Equities 6.0% mean / 17.0% volatility, International Developed Equities 6.0% / 19.0%, US Aggregate Bonds 4.0% / 7.0%, Cash 3.5% / 1.0%. US CPI inflation defaults to a 3.0% mean with 1.4% standard deviation; Thai CPI inflation defaults to 2.0% / 2.5%. The USD/THB exchange rate follows a geometric random walk centered at 35 THB/USD with 8% annual log-volatility.',
-        'The default trial count is 1,000, adjustable upward to 10,000. A trial "succeeds" when the portfolio remains positive through the specified life expectancy AND every year\'s desired real spending was fully funded from portfolio and non-portfolio income. The reported success rate is the fraction of trials meeting both conditions.',
-      ],
-      citations: [
-        { text: 'Vanguard Capital Markets Model — Return Forecasts', url: 'https://corporate.vanguard.com/content/corporatesite/us/en/corp/vemo/vemo-return-forecasts.html' },
-        { text: 'Federal Reserve Economic Data — USD/THB Exchange Rate', url: 'https://fred.stlouisfed.org/data/AEXTHUS' },
-        { text: 'Federal Reserve Economic Data — Thai CPI Inflation', url: 'https://fred.stlouisfed.org/data/FPCPITOTLZGTHA' },
-      ],
-    },
-    {
-      id: 'correlation-matrix',
-      title: 'Correlation Matrix',
-      paragraphs: [
-        'Correlated multi-asset returns are drawn using Cholesky decomposition of a 4×4 correlation matrix over the asset ordering (US Stock, US Bond, International Stock, Cash). The default correlations approximate long-run historical values as reported by Portfolio Visualizer and consistent with the cFIREsim methodology: a mild negative US-stock/US-bond correlation, a strong positive US-stock/international-stock correlation, and near-zero correlations between cash and the risky assets.',
-      ],
-      citations: [
-        { text: 'Portfolio Visualizer — Monte Carlo Simulation', url: 'https://www.portfoliovisualizer.com/monte-carlo-simulation' },
-      ],
-      constantRef: 'CORRELATION_MATRIX',
-    },
-    {
-      id: 'mulberry32',
-      title: 'PRNG: Mulberry32 Seeded Random Number Generator',
-      paragraphs: [
-        'Random draws are produced by the Mulberry32 pseudorandom number generator, a 32-bit generator that passes the gjrand statistical test suite. Mulberry32 takes an integer seed and produces a deterministic sequence — identical seeds produce byte-identical return paths, so results are fully reproducible. Uniform draws are converted to standard normal variates via the Box-Muller transform, and correlated multi-asset draws are obtained by matrix-multiplying the independent normal vector by the lower-triangular Cholesky factor of the correlation matrix.',
-      ],
-      citations: [
-        { text: 'Mulberry32 — Tommy Ettinger (public-domain gist, gjrand-tested)', url: 'https://gist.github.com/tommyettinger/46a874533244883189143505d203312c' },
-      ],
-    },
-    {
       id: 'thai-tax-timing',
       title: 'Why Thai Tax Appears Only in Certain Years',
       paragraphs: [
@@ -64,17 +30,17 @@ export const SIMULATION_GROUP: MethodologyGroup = {
     },
     {
       id: 'fire-multipliers',
-      title: 'FIRE Multipliers (25× / 33×) by Retirement Horizon',
+      title: 'FIRE Multiplier (33×)',
       paragraphs: [
-        'The FIRE number — the portfolio value at which a retiree could reasonably expect to fund annual real spending indefinitely — is expressed as a multiplier applied to annual expenses. The multiplier is the reciprocal of the assumed sustainable withdrawal rate.',
-        'A 25× multiplier corresponds to a 4% initial withdrawal rate. This is the "4% rule" derived from the Trinity Study (Cooley, Hubbard, and Walz, 1998), which found that historical US returns supported a 4% inflation-adjusted withdrawal rate at high success probability over 30-year retirement horizons. The 25× multiplier is applied when the projected retirement horizon (life expectancy minus retirement age) is 30 years or less.',
-        'A 33× multiplier corresponds to a 3% initial withdrawal rate and is applied when the retirement horizon exceeds 30 years. The lower rate provides additional margin for the sequence-of-returns and longevity risk inherent in longer horizons; contemporary academic work (Bengen, Kitces, and Pfau, among others) supports rates in the 3.0–3.5% range for horizons of 40+ years.',
+        'The FIRE target — the portfolio value at which a retiree could reasonably expect to fund annual real spending indefinitely — is expressed as a multiplier applied to annual expenses. The multiplier is the reciprocal of the assumed sustainable withdrawal rate.',
+        'While the traditional "4% rule" (a 25× multiplier) derived from the Trinity Study (Cooley, Hubbard, and Walz, 1998) is commonly cited for 30-year retirements, cross-border retirements introduce severe structural frictions. This calculator enforces a more conservative 33× multiplier (a 3% initial withdrawal rate) globally, regardless of your time horizon.',
+        'The 33× target provides a necessary buffer against three major risks inherent to US/Thai retirements: Sequence of Returns Risk, FX Volatility (spending in THB while holding USD assets), and most importantly, Double-Tax Drag. When pre-tax or capital-gains heavy assets are drawn down, the combined friction of US tax, Thai Personal Income Tax, and imperfect Foreign Tax Credits drastically inflates the gross withdrawal required to net the desired spending.'
       ],
       citations: [
         { text: 'Trinity Study — Cooley, Hubbard, Walz (1998) — overview', url: 'https://en.wikipedia.org/wiki/Trinity_study' },
         { text: 'Bengen (1994) — 4% Rule — overview', url: 'https://en.wikipedia.org/wiki/William_Bengen' },
       ],
-      constantRef: 'FIRE_MULTIPLIER_30_YR',
+      constantRef: 'FIRE_MULTIPLIER',
     },
   ],
 };

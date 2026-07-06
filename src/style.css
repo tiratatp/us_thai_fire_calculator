@@ -126,7 +126,14 @@ button { font-family: inherit; }
 
 /* Charts */
 canvas { max-width: 100%; height: auto; }
-#portfolio-chart-container, #withdrawal-chart-container { margin-bottom: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-2); }
+#portfolio-chart-container, #withdrawal-chart-container {
+  margin-bottom: var(--space-6);
+  margin-top: calc(var(--space-4) + 48px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  height: 400px;
+}
 
 /* Year table */
 #year-table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--color-border); border-radius: var(--radius); }

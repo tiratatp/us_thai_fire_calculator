@@ -32,14 +32,12 @@ export const GAP_YEAR_HINT_MAX_AGE = 65;
 
 export function columnAnchorMap(): ReadonlyMap<string, string> {
   return new Map([
-    ['Thai portfolio (THB)', 'monte-carlo-defaults'],
-    ['US portfolio (USD)', 'monte-carlo-defaults'],
     ['RMD', 'us-rmd-table'],
     ['LTCG harvested', 'us-ltcg-2026'],
     ['Remittance amount USD', 'ftc-corrected'],
     ['US tax', 'us-brackets-2026'],
     ['Thai tax', 'thai-pit-brackets'],
-    ['FTC applied', 'ftc-corrected'],
+    ['US tax after FTC', 'ftc-corrected'],
   ]);
 }
 

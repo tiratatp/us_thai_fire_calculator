@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "active_work_id": "make-charts-bigger-0e0a29be",
+  "works": {
+    "make-charts-bigger-0e0a29be": {
+      "work_id": "make-charts-bigger-0e0a29be",
+      "active_plan": "/Users/tiratatp/Repositories/us_thai_fire_calculator/.omo/plans/make-charts-bigger.md",
+      "plan_name": "make-charts-bigger",
+      "status": "active",
+      "started_at": "2026-07-06T14:06:37.918Z",
+      "updated_at": "2026-07-06T14:06:37.918Z",
+      "session_ids": [
+        "opencode:ses_0c841cb5affeINWDRDvxaA2GU7"
+      ],
+      "session_origins": {
+        "opencode:ses_0c841cb5affeINWDRDvxaA2GU7": "direct"
+      },
+      "agent": "atlas",
+      "task_sessions": {}
+    }
+  },
+  "active_plan": "/Users/tiratatp/Repositories/us_thai_fire_calculator/.omo/plans/make-charts-bigger.md",
+  "started_at": "2026-07-06T14:06:37.918Z",
+  "status": "active",
+  "updated_at": "2026-07-06T14:06:37.918Z",
+  "session_ids": [
+    "opencode:ses_0c841cb5affeINWDRDvxaA2GU7"
+  ],
+  "session_origins": {
+    "opencode:ses_0c841cb5affeINWDRDvxaA2GU7": "direct"
+  },
+  "plan_name": "make-charts-bigger",
+  "task_sessions": {},
+  "agent": "atlas"
+}

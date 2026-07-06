@@ -230,7 +230,7 @@ describe('form', () => {
     expect(summary.innerHTML).toContain('$200,000');
     // Total Expenses: 5k + (30k * 12 / 30) + (30k / 30) = 5k + 12k + 1k = 18k
     expect(summary.innerHTML).toContain('$18,000');
-    // FIRE Target: 18k * 25 = 450k
-    expect(summary.innerHTML).toContain('$450,000');
+    // FIRE Target: 18k * 33 = 594k
+    expect(summary.innerHTML).toContain('$594,000');
   });
 });

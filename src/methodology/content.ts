@@ -29,8 +29,7 @@ export interface MethodologySection {
     | 'THAI_PIT_BRACKETS'
     | 'RMD_UNIFORM_LIFETIME_TABLE'
     | 'CORRELATION_MATRIX'
-    | 'FIRE_MULTIPLIER_30_YR'
-    | 'FIRE_MULTIPLIER_LONG'
+    | 'FIRE_MULTIPLIER'
     | undefined;
 }
 

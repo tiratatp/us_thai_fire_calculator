@@ -41,9 +41,7 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
   const delta = Math.abs(inputs.optimistic.successRate - inputs.pessimistic.successRate);
 
   const anchors = [
-    { id: 'monte-carlo-defaults', text: formatPercent(inputs.pessimistic.successRate) },
     { id: 'ftc-corrected', text: formatUsd(inputs.pessimistic.medianTaxUsd) },
-    { id: 'monte-carlo-defaults', text: formatPercent(inputs.optimistic.successRate) },
     { id: 'ftc-corrected', text: formatUsd(inputs.optimistic.medianTaxUsd) },
     { id: 'roth-uncertainty', text: formatPercent(delta) },
     { id: 'ftc-corrected', text: 'FTC' },
@@ -56,24 +54,24 @@ export function renderResults(container: HTMLElement, inputs: ResultsInputs): vo
         <div class="result-col">
           <h3>Pessimistic Scenario</h3>
           <p class="success-rate" style="font-size: 2rem; font-weight: bold;">
-            <a href="#references/${esc(anchors[0]!.id)}" data-methodology-anchor="${esc(anchors[0]!.id)}">${esc(anchors[0]!.text)}</a>
+            <a href="#monte-carlo">${esc(formatPercent(inputs.pessimistic.successRate))}</a>
           </p>
-          <p>Median Lifetime Tax: <a href="#references/${esc(anchors[1]!.id)}" data-methodology-anchor="${esc(anchors[1]!.id)}">${esc(anchors[1]!.text)}</a></p>
+          <p>Median Lifetime Tax: <a href="#references/${esc(anchors[0]!.id)}" data-methodology-anchor="${esc(anchors[0]!.id)}">${esc(anchors[0]!.text)}</a></p>
         </div>
         <div class="result-col">
           <h3>Optimistic Scenario</h3>
           <p class="success-rate" style="font-size: 2rem; font-weight: bold;">
-            <a href="#references/${esc(anchors[2]!.id)}" data-methodology-anchor="${esc(anchors[2]!.id)}">${esc(anchors[2]!.text)}</a>
+            <a href="#monte-carlo">${esc(formatPercent(inputs.optimistic.successRate))}</a>
           </p>
-          <p>Median Lifetime Tax: <a href="#references/${esc(anchors[3]!.id)}" data-methodology-anchor="${esc(anchors[3]!.id)}">${esc(anchors[3]!.text)}</a></p>
+          <p>Median Lifetime Tax: <a href="#references/${esc(anchors[1]!.id)}" data-methodology-anchor="${esc(anchors[1]!.id)}">${esc(anchors[1]!.text)}</a></p>
         </div>
       </div>
       <p class="delta-note" style="margin-top: 1rem;">
-        Regulatory exposure delta: <strong><a href="#references/${esc(anchors[4]!.id)}" data-methodology-anchor="${esc(anchors[4]!.id)}">${esc(anchors[4]!.text)}</a></strong>.
+        Regulatory exposure delta: <strong><a href="#references/${esc(anchors[2]!.id)}" data-methodology-anchor="${esc(anchors[2]!.id)}">${esc(anchors[2]!.text)}</a></strong>.
         <br>
         <small>
           <em>Disclaimer: Not tax advice; Roth Thai treatment unsettled.</em>
-          See <a href="#references/${esc(anchors[5]!.id)}" data-methodology-anchor="${esc(anchors[5]!.id)}">${esc(anchors[5]!.text)}</a> methodology.
+          See <a href="#references/${esc(anchors[3]!.id)}" data-methodology-anchor="${esc(anchors[3]!.id)}">${esc(anchors[3]!.text)}</a> methodology.
         </small>
       </p>
     </div>

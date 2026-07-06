@@ -1,0 +1,465 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "US-Thai FIRE Calculator" [level=1] [ref=e3]
+    - paragraph [ref=e4]:
+      - strong [ref=e5]: Not tax advice.
+      - text: Consult a cross-border tax professional. Roth treatment in Thailand is unsettled.
+  - tablist [ref=e6]:
+    - tab "Inputs" [selected] [ref=e7] [cursor=pointer]
+    - tab "Results" [ref=e8] [cursor=pointer]
+    - tab "Drawdown" [ref=e9] [cursor=pointer]
+    - tab "References" [ref=e10] [cursor=pointer]
+  - main [ref=e11]:
+    - tabpanel [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - heading "Basics" [level=2] [ref=e15]
+          - generic [ref=e16]:
+            - generic [ref=e17]:
+              - text: Current Age
+              - spinbutton "Current Age" [ref=e18]: "38"
+            - generic [ref=e19]:
+              - text: Life Expectancy
+              - spinbutton "Life Expectancy" [ref=e20]: "95"
+            - generic [ref=e21]:
+              - text: Current USD/THB
+              - spinbutton "Current USD/THB" [ref=e22]: "33"
+        - generic [ref=e23]:
+          - heading "Accounts" [level=2] [ref=e24]
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e27]:
+                - text: Type
+                - combobox "Type" [ref=e28]:
+                  - option "Cash" [selected]
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA"
+                  - option "Roth IRA"
+                  - option "HSA"
+              - generic [ref=e29]:
+                - text: Currency
+                - combobox "Currency" [ref=e30]:
+                  - option "USD"
+                  - option "THB" [selected]
+              - generic [ref=e31]:
+                - text: Balance
+                - textbox "Balance" [ref=e32]: "9500000"
+              - generic [ref=e33]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e34]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e35]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [ref=e36]
+              - button "X" [ref=e37] [cursor=pointer]
+            - generic [ref=e38]:
+              - generic [ref=e39]:
+                - text: Type
+                - combobox "Type" [ref=e40]:
+                  - option "Cash" [selected]
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA"
+                  - option "Roth IRA"
+                  - option "HSA"
+              - generic [ref=e41]:
+                - text: Currency
+                - combobox "Currency" [ref=e42]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e43]:
+                - text: Balance
+                - textbox "Balance" [ref=e44]: "165000"
+              - generic [ref=e45]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e46]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e47]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [ref=e48]
+              - button "X" [ref=e49] [cursor=pointer]
+            - generic [ref=e50]:
+              - generic [ref=e51]:
+                - text: Type
+                - combobox "Type" [ref=e52]:
+                  - option "Cash"
+                  - option "Taxable Brokerage" [selected]
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA"
+                  - option "Roth IRA"
+                  - option "HSA"
+              - generic [ref=e53]:
+                - text: Currency
+                - combobox "Currency" [ref=e54]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e55]:
+                - text: Balance
+                - textbox "Balance" [ref=e56]: "1275000"
+              - generic [ref=e57]:
+                - text: Basis
+                - textbox "Basis" [ref=e58]: "900000"
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e59]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [ref=e60]
+              - button "X" [ref=e61] [cursor=pointer]
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - text: Type
+                - combobox "Type" [ref=e64]:
+                  - option "Cash"
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)" [selected]
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA"
+                  - option "Roth IRA"
+                  - option "HSA"
+              - generic [ref=e65]:
+                - text: Currency
+                - combobox "Currency" [ref=e66]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e67]:
+                - text: Balance
+                - textbox "Balance" [ref=e68]: "320000"
+              - generic [ref=e69]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e70]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e71]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [disabled] [ref=e72]
+              - button "X" [ref=e73] [cursor=pointer]
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - text: Type
+                - combobox "Type" [ref=e76]:
+                  - option "Cash"
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)" [selected]
+                  - option "Traditional IRA"
+                  - option "Roth IRA"
+                  - option "HSA"
+              - generic [ref=e77]:
+                - text: Currency
+                - combobox "Currency" [ref=e78]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e79]:
+                - text: Balance
+                - textbox "Balance" [ref=e80]: "240000"
+              - generic [ref=e81]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e82]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e83]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [disabled] [ref=e84]
+              - button "X" [ref=e85] [cursor=pointer]
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - text: Type
+                - combobox "Type" [ref=e88]:
+                  - option "Cash"
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA" [selected]
+                  - option "Roth IRA"
+                  - option "HSA"
+              - generic [ref=e89]:
+                - text: Currency
+                - combobox "Currency" [ref=e90]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e91]:
+                - text: Balance
+                - textbox "Balance" [ref=e92]: "55000"
+              - generic [ref=e93]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e94]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e95]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [disabled] [ref=e96]
+              - button "X" [ref=e97] [cursor=pointer]
+            - generic [ref=e98]:
+              - generic [ref=e99]:
+                - text: Type
+                - combobox "Type" [ref=e100]:
+                  - option "Cash"
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA"
+                  - option "Roth IRA" [selected]
+                  - option "HSA"
+              - generic [ref=e101]:
+                - text: Currency
+                - combobox "Currency" [ref=e102]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e103]:
+                - text: Balance
+                - textbox "Balance" [ref=e104]: "52000"
+              - generic [ref=e105]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e106]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e107]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [disabled] [ref=e108]
+              - button "X" [ref=e109] [cursor=pointer]
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - text: Type
+                - combobox "Type" [ref=e112]:
+                  - option "Cash"
+                  - option "Taxable Brokerage"
+                  - option "Traditional 401(k)"
+                  - option "Roth 401(k)"
+                  - option "Traditional IRA"
+                  - option "Roth IRA"
+                  - option "HSA" [selected]
+              - generic [ref=e113]:
+                - text: Currency
+                - combobox "Currency" [ref=e114]:
+                  - option "USD" [selected]
+                  - option "THB"
+              - generic [ref=e115]:
+                - text: Balance
+                - textbox "Balance" [ref=e116]: "68000"
+              - generic [ref=e117]:
+                - text: Basis
+                - textbox "Basis" [disabled] [ref=e118]
+              - generic "Grandfathering (Paw 162/2566) does not apply to retirement accounts." [ref=e119]:
+                - text: Pre-2024 Snapshot ℹ️
+                - textbox "Pre-2024 Snapshot ℹ️" [disabled] [ref=e120]
+              - button "X" [ref=e121] [cursor=pointer]
+          - button "Add Account" [ref=e122] [cursor=pointer]
+        - generic [ref=e123]:
+          - heading "Expenses" [level=2] [ref=e124]
+          - generic [ref=e125]:
+            - generic [ref=e126]:
+              - text: Housing (THB/mo)
+              - textbox "Housing (THB/mo)" [ref=e127]: "80000"
+            - generic [ref=e128]:
+              - text: Food (THB/mo)
+              - textbox "Food (THB/mo)" [ref=e129]: "27000"
+            - generic [ref=e130]:
+              - text: Transport (THB/mo)
+              - textbox "Transport (THB/mo)" [ref=e131]: "13000"
+            - generic [ref=e132]:
+              - text: Other (THB/mo)
+              - textbox "Other (THB/mo)" [ref=e133]: "45000"
+            - generic [ref=e134]:
+              - text: Healthcare (THB/yr)
+              - textbox "Healthcare (THB/yr)" [ref=e135]: "110000"
+            - generic [ref=e136]:
+              - text: Legal/Tax (THB/yr)
+              - textbox "Legal/Tax (THB/yr)" [ref=e137]: "8000"
+            - generic [ref=e138]:
+              - text: Travel (USD/yr)
+              - textbox "Travel (USD/yr)" [ref=e139]: "20000"
+        - generic [ref=e140]:
+          - heading "Residency" [level=2] [ref=e141]
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - checkbox "Age 38" [checked] [ref=e144]
+              - generic [ref=e145]: Age 38
+            - generic [ref=e146]:
+              - checkbox "Age 39" [checked] [ref=e147]
+              - generic [ref=e148]: Age 39
+            - generic [ref=e149]:
+              - checkbox "Age 40" [checked] [ref=e150]
+              - generic [ref=e151]: Age 40
+            - generic [ref=e152]:
+              - checkbox "Age 41" [checked] [ref=e153]
+              - generic [ref=e154]: Age 41
+            - generic [ref=e155]:
+              - checkbox "Age 42" [checked] [ref=e156]
+              - generic [ref=e157]: Age 42
+            - generic [ref=e158]:
+              - checkbox "Age 43" [checked] [ref=e159]
+              - generic [ref=e160]: Age 43
+            - generic [ref=e161]:
+              - checkbox "Age 44" [checked] [ref=e162]
+              - generic [ref=e163]: Age 44
+            - generic [ref=e164]:
+              - checkbox "Age 45" [checked] [ref=e165]
+              - generic [ref=e166]: Age 45
+            - generic [ref=e167]:
+              - checkbox "Age 46" [checked] [ref=e168]
+              - generic [ref=e169]: Age 46
+            - generic [ref=e170]:
+              - checkbox "Age 47" [checked] [ref=e171]
+              - generic [ref=e172]: Age 47
+            - generic [ref=e173]:
+              - checkbox "Age 48" [checked] [ref=e174]
+              - generic [ref=e175]: Age 48
+            - generic [ref=e176]:
+              - checkbox "Age 49" [checked] [ref=e177]
+              - generic [ref=e178]: Age 49
+            - generic [ref=e179]:
+              - checkbox "Age 50" [checked] [ref=e180]
+              - generic [ref=e181]: Age 50
+            - generic [ref=e182]:
+              - checkbox "Age 51" [checked] [ref=e183]
+              - generic [ref=e184]: Age 51
+            - generic [ref=e185]:
+              - checkbox "Age 52" [checked] [ref=e186]
+              - generic [ref=e187]: Age 52
+            - generic [ref=e188]:
+              - checkbox "Age 53" [checked] [ref=e189]
+              - generic [ref=e190]: Age 53
+            - generic [ref=e191]:
+              - checkbox "Age 54" [checked] [ref=e192]
+              - generic [ref=e193]: Age 54
+            - generic [ref=e194]:
+              - checkbox "Age 55" [checked] [ref=e195]
+              - generic [ref=e196]: Age 55
+            - generic [ref=e197]:
+              - checkbox "Age 56" [checked] [ref=e198]
+              - generic [ref=e199]: Age 56
+            - generic [ref=e200]:
+              - checkbox "Age 57" [checked] [ref=e201]
+              - generic [ref=e202]: Age 57
+            - generic [ref=e203]:
+              - checkbox "Age 58" [checked] [ref=e204]
+              - generic [ref=e205]: Age 58
+            - generic [ref=e206]:
+              - checkbox "Age 59" [checked] [ref=e207]
+              - generic [ref=e208]: Age 59
+            - generic [ref=e209]:
+              - checkbox "Age 60" [checked] [ref=e210]
+              - generic [ref=e211]: Age 60
+            - generic [ref=e212]:
+              - checkbox "Age 61" [checked] [ref=e213]
+              - generic [ref=e214]: Age 61
+            - generic [ref=e215]:
+              - checkbox "Age 62" [checked] [ref=e216]
+              - generic [ref=e217]: Age 62
+            - generic [ref=e218]:
+              - checkbox "Age 63" [checked] [ref=e219]
+              - generic [ref=e220]: Age 63
+            - generic [ref=e221]:
+              - checkbox "Age 64" [checked] [ref=e222]
+              - generic [ref=e223]: Age 64
+            - generic [ref=e224]:
+              - checkbox "Age 65" [checked] [ref=e225]
+              - generic [ref=e226]: Age 65
+            - generic [ref=e227]:
+              - checkbox "Age 66" [checked] [ref=e228]
+              - generic [ref=e229]: Age 66
+            - generic [ref=e230]:
+              - checkbox "Age 67" [checked] [ref=e231]
+              - generic [ref=e232]: Age 67
+            - generic [ref=e233]:
+              - checkbox "Age 68" [checked] [ref=e234]
+              - generic [ref=e235]: Age 68
+            - generic [ref=e236]:
+              - checkbox "Age 69" [checked] [ref=e237]
+              - generic [ref=e238]: Age 69
+            - generic [ref=e239]:
+              - checkbox "Age 70" [checked] [ref=e240]
+              - generic [ref=e241]: Age 70
+            - generic [ref=e242]:
+              - checkbox "Age 71" [checked] [ref=e243]
+              - generic [ref=e244]: Age 71
+            - generic [ref=e245]:
+              - checkbox "Age 72" [checked] [ref=e246]
+              - generic [ref=e247]: Age 72
+            - generic [ref=e248]:
+              - checkbox "Age 73" [checked] [ref=e249]
+              - generic [ref=e250]: Age 73
+            - generic [ref=e251]:
+              - checkbox "Age 74" [checked] [ref=e252]
+              - generic [ref=e253]: Age 74
+            - generic [ref=e254]:
+              - checkbox "Age 75" [checked] [ref=e255]
+              - generic [ref=e256]: Age 75
+            - generic [ref=e257]:
+              - checkbox "Age 76" [checked] [ref=e258]
+              - generic [ref=e259]: Age 76
+            - generic [ref=e260]:
+              - checkbox "Age 77" [checked] [ref=e261]
+              - generic [ref=e262]: Age 77
+            - generic [ref=e263]:
+              - checkbox "Age 78" [checked] [ref=e264]
+              - generic [ref=e265]: Age 78
+            - generic [ref=e266]:
+              - checkbox "Age 79" [checked] [ref=e267]
+              - generic [ref=e268]: Age 79
+            - generic [ref=e269]:
+              - checkbox "Age 80" [checked] [ref=e270]
+              - generic [ref=e271]: Age 80
+            - generic [ref=e272]:
+              - checkbox "Age 81" [checked] [ref=e273]
+              - generic [ref=e274]: Age 81
+            - generic [ref=e275]:
+              - checkbox "Age 82" [checked] [ref=e276]
+              - generic [ref=e277]: Age 82
+            - generic [ref=e278]:
+              - checkbox "Age 83" [checked] [ref=e279]
+              - generic [ref=e280]: Age 83
+            - generic [ref=e281]:
+              - checkbox "Age 84" [checked] [ref=e282]
+              - generic [ref=e283]: Age 84
+            - generic [ref=e284]:
+              - checkbox "Age 85" [checked] [ref=e285]
+              - generic [ref=e286]: Age 85
+            - generic [ref=e287]:
+              - checkbox "Age 86" [checked] [ref=e288]
+              - generic [ref=e289]: Age 86
+            - generic [ref=e290]:
+              - checkbox "Age 87" [checked] [ref=e291]
+              - generic [ref=e292]: Age 87
+            - generic [ref=e293]:
+              - checkbox "Age 88" [checked] [ref=e294]
+              - generic [ref=e295]: Age 88
+            - generic [ref=e296]:
+              - checkbox "Age 89" [checked] [ref=e297]
+              - generic [ref=e298]: Age 89
+            - generic [ref=e299]:
+              - checkbox "Age 90" [checked] [ref=e300]
+              - generic [ref=e301]: Age 90
+            - generic [ref=e302]:
+              - checkbox "Age 91" [checked] [ref=e303]
+              - generic [ref=e304]: Age 91
+            - generic [ref=e305]:
+              - checkbox "Age 92" [checked] [ref=e306]
+              - generic [ref=e307]: Age 92
+            - generic [ref=e308]:
+              - checkbox "Age 93" [checked] [ref=e309]
+              - generic [ref=e310]: Age 93
+            - generic [ref=e311]:
+              - checkbox "Age 94" [checked] [ref=e312]
+              - generic [ref=e313]: Age 94
+        - generic [ref=e314]:
+          - heading "Assumptions" [level=2] [ref=e315]
+          - generic [ref=e316]:
+            - generic [ref=e317]:
+              - text: MC Trials
+              - spinbutton "MC Trials" [ref=e318]: "1000"
+            - generic [ref=e319]:
+              - text: Success Threshold
+              - spinbutton "Success Threshold" [ref=e320]: "0.9"
+            - generic [ref=e321]:
+              - text: Regulatory Stance
+              - combobox "Regulatory Stance" [ref=e322]:
+                - option "Optimistic"
+                - option "Pessimistic"
+                - option "Both" [selected]
+        - generic [ref=e323]:
+          - paragraph [ref=e324]:
+            - strong [ref=e325]: "Total Assets:"
+            - text: $2,462,879
+          - paragraph [ref=e326]:
+            - strong [ref=e327]: "Total Expenses:"
+            - text: $83,576
+          - paragraph [ref=e328]:
+            - strong [ref=e329]: "FIRE Target:"
+            - text: $2,758,000 (
+            - link "multipliers" [ref=e330] [cursor=pointer]:
+              - /url: "#references/fire-multipliers"
+            - text: )
+        - button "Run Simulation" [ref=e331] [cursor=pointer]

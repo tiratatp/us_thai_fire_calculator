@@ -95,7 +95,7 @@ describe('results methodology links', () => {
 
     const refPanel = document.querySelector('#references-tab') as HTMLElement;
     // Add all anchors referenced by results.ts
-    ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty'].forEach((id) => {
+    ['ftc-corrected', 'roth-uncertainty'].forEach((id) => {
       const section = document.createElement('div');
       section.id = id;
       refPanel.appendChild(section);
@@ -104,9 +104,7 @@ describe('results methodology links', () => {
     renderResults(container, mockInputs);
 
     const expectedAnchors = [
-      'monte-carlo-defaults',
       'ftc-corrected',
-      'monte-carlo-defaults',
       'ftc-corrected',
       'roth-uncertainty',
       'ftc-corrected',
@@ -123,7 +121,7 @@ describe('results methodology links', () => {
     document.body.appendChild(container);
 
     const refPanel = document.querySelector('#references-tab') as HTMLElement;
-    ['monte-carlo-defaults', 'ftc-corrected', 'roth-uncertainty'].forEach((id) => {
+    ['ftc-corrected', 'roth-uncertainty'].forEach((id) => {
       const section = document.createElement('div');
       section.id = id;
       refPanel.appendChild(section);

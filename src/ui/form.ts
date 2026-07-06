@@ -4,7 +4,7 @@ import { save, restore } from '../storage.js';
 import { ACCOUNT_TYPES, CURRENCIES, REGULATORY_STANCES, parseFormData, validateField } from './form-schema.js';
 import { renderAccount } from './form-account.js';
 import { formatUsd } from './format.js';
-import { FIRE_MULTIPLIER_30_YR, FIRE_MULTIPLIER_LONG } from '../data/constants.js';
+import { FIRE_MULTIPLIER } from '../data/constants.js';
 
 const STORAGE_KEY = 'v1_inputs';
 
@@ -94,9 +94,7 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
       + (inputs.expenses.housingThbMo + inputs.expenses.foodThbMo
         + inputs.expenses.transportThbMo + inputs.expenses.otherThbMo) * 12 / fx
       + (inputs.expenses.healthcareThbYr + inputs.expenses.legalTaxThbYr) / fx;
-    const horizon = inputs.lifeExpectancy - inputs.currentAge;
-    const multiplier = horizon <= 30 ? FIRE_MULTIPLIER_30_YR.value : FIRE_MULTIPLIER_LONG.value;
-    const fireTargetUsd = totalExpenseUsd * multiplier;
+    const fireTargetUsd = totalExpenseUsd * FIRE_MULTIPLIER.value;
     container.querySelector('#live-summary')!.innerHTML = `
       <p><strong>Total Assets:</strong> ${formatUsd(totalAssetUsd)}</p>
       <p><strong>Total Expenses:</strong> ${formatUsd(totalExpenseUsd)}</p>

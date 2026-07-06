@@ -1,0 +1,419 @@
+- generic [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - heading "US-Thai FIRE Calculator" [level=1] [ref=f1e3]
+    - paragraph [ref=f1e4]:
+      - strong [ref=f1e5]: Not tax advice.
+      - text: Consult a cross-border tax professional. Roth treatment in Thailand is unsettled.
+  - tablist [ref=f1e6]:
+    - tab "Inputs" [ref=f1e7] [cursor=pointer]
+    - tab "Results" [active] [ref=f1e8] [cursor=pointer]
+    - tab "Methodology" [selected] [ref=f1e9] [cursor=pointer]
+  - main [ref=f1e10]:
+    - tabpanel [ref=f1e329]:
+      - heading "Methodology" [level=1] [ref=f1e330]
+      - navigation [ref=f1e331]:
+        - heading "Table of Contents" [level=2] [ref=f1e332]
+        - list [ref=f1e333]:
+          - listitem [ref=f1e334]:
+            - link "Disclaimer" [ref=f1e335] [cursor=pointer]:
+              - /url: "#disclaimer"
+          - listitem [ref=f1e336]:
+            - link "2026 US Ordinary Income Brackets (Single)" [ref=f1e337] [cursor=pointer]:
+              - /url: "#us-brackets-2026"
+          - listitem [ref=f1e338]:
+            - link "2026 US Long-Term Capital Gains Brackets (Single)" [ref=f1e339] [cursor=pointer]:
+              - /url: "#us-ltcg-2026"
+          - listitem [ref=f1e340]:
+            - link "2026 US Standard Deduction (Single)" [ref=f1e341] [cursor=pointer]:
+              - /url: "#us-standard-deduction"
+          - listitem [ref=f1e342]:
+            - link "US Net Investment Income Tax (NIIT)" [ref=f1e343] [cursor=pointer]:
+              - /url: "#us-niit"
+          - listitem [ref=f1e344]:
+            - link "US Required Minimum Distribution (RMD) Table" [ref=f1e345] [cursor=pointer]:
+              - /url: "#us-rmd-table"
+          - listitem [ref=f1e346]:
+            - link "SECURE 2.0 RMD Age Boundaries" [ref=f1e347] [cursor=pointer]:
+              - /url: "#us-secure-2-age"
+          - listitem [ref=f1e348]:
+            - link "Roth IRA 5-Year Rules" [ref=f1e349] [cursor=pointer]:
+              - /url: "#roth-5yr-rules"
+          - listitem [ref=f1e350]:
+            - link "US 10% Early Withdrawal Penalty Exceptions" [ref=f1e351] [cursor=pointer]:
+              - /url: "#early-withdrawal-penalty"
+          - listitem [ref=f1e352]:
+            - link "HSA Non-Medical Withdrawals Post-Age-65" [ref=f1e353] [cursor=pointer]:
+              - /url: "#hsa-post-65"
+          - listitem [ref=f1e354]:
+            - link "Thai PIT Progressive Brackets" [ref=f1e355] [cursor=pointer]:
+              - /url: "#thai-pit-brackets"
+          - listitem [ref=f1e356]:
+            - link "Thai Personal Allowance" [ref=f1e357] [cursor=pointer]:
+              - /url: "#thai-personal-allowance"
+          - listitem [ref=f1e358]:
+            - link "Thai 50% Pension Deduction" [ref=f1e359] [cursor=pointer]:
+              - /url: "#thai-pension-deduction"
+          - listitem [ref=f1e360]:
+            - link "Por 161/2566 — Foreign Income Taxable on Remittance" [ref=f1e361] [cursor=pointer]:
+              - /url: "#por-161-remittance"
+          - listitem [ref=f1e362]:
+            - link "Paw 162/2566 — Pre-2024 Grandfathering (NOT for Retirement)" [ref=f1e363] [cursor=pointer]:
+              - /url: "#paw-162-grandfathering"
+          - listitem [ref=f1e364]:
+            - link "Thai Capital Gains on SET-Listed Shares" [ref=f1e365] [cursor=pointer]:
+              - /url: "#thai-cgt-set-listed"
+          - listitem [ref=f1e366]:
+            - link "Article 20 — Pensions and Social Security" [ref=f1e367] [cursor=pointer]:
+              - /url: "#treaty-article-20"
+          - listitem [ref=f1e368]:
+            - link "Article 25 — Foreign Tax Credit (FTC)" [ref=f1e369] [cursor=pointer]:
+              - /url: "#treaty-article-25"
+          - listitem [ref=f1e370]:
+            - link "Saving Clause Exceptions" [ref=f1e371] [cursor=pointer]:
+              - /url: "#saving-clause"
+          - listitem [ref=f1e372]:
+            - link "Treaty Re-sourcing of US-Source Pensions" [ref=f1e373] [cursor=pointer]:
+              - /url: "#treaty-resourcing"
+          - listitem [ref=f1e374]:
+            - link "Roth IRA Treatment in Thailand — UNSETTLED" [ref=f1e375] [cursor=pointer]:
+              - /url: "#roth-uncertainty"
+          - listitem [ref=f1e376]:
+            - link "Corrected FTC — Single Primary Taxer Per Item" [ref=f1e377] [cursor=pointer]:
+              - /url: "#ftc-corrected"
+          - listitem [ref=f1e378]:
+            - 'link "Roth Conversion Value Test (Oracle Systemic #2)" [ref=f1e379] [cursor=pointer]':
+              - /url: "#roth-conversion-value-test"
+          - listitem [ref=f1e380]:
+            - link "Thai Residency as a Control Lever (<180 Days)" [ref=f1e381] [cursor=pointer]:
+              - /url: "#residency-180-days"
+          - listitem [ref=f1e382]:
+            - link "Monte Carlo Default Assumptions" [ref=f1e383] [cursor=pointer]:
+              - /url: "#monte-carlo-defaults"
+          - listitem [ref=f1e384]:
+            - link "Correlation Matrix" [ref=f1e385] [cursor=pointer]:
+              - /url: "#correlation-matrix"
+          - listitem [ref=f1e386]:
+            - 'link "PRNG: Mulberry32 Seeded Random Number Generator" [ref=f1e387] [cursor=pointer]':
+              - /url: "#mulberry32"
+      - generic [ref=f1e388]:
+        - heading "Disclaimer" [level=2] [ref=f1e389]
+        - paragraph [ref=f1e390]: This is not tax advice. The information on this page is for educational purposes only and does not constitute legal, tax, or financial advice. Consult a cross-border tax professional before making any decisions.
+        - paragraph [ref=f1e391]: Roth treatment in Thailand is UNSETTLED. Thailand does not have statutory recognition of Roth IRAs. The prevailing view among cross-border practitioners is that Thailand will tax remitted Roth withdrawals as pension income under Thai Revenue Code Section 40(1). This is an unsettled area with no binding authority.
+        - paragraph [ref=f1e392]: Paw 162/2566 grandfathering does NOT extend to retirement accounts. Traditional IRA, Roth IRA, 401(k), and HSA distributions are considered "earned" at the time of distribution (post-2024), so no grandfathering applies. Only Cash and Taxable Brokerage balances can use the optional Jan-1-2024 snapshot for grandfathering.
+      - generic [ref=f1e393]:
+        - heading "2026 US Ordinary Income Brackets (Single)" [level=2] [ref=f1e394]
+        - paragraph [ref=f1e395]: "The calculator uses the 2026 tax brackets for single filers as published by the IRS under the One Big Beautiful Bill Act (OBBBA). These are the seven marginal rates: 10%, 12%, 22%, 24%, 32%, 35%, and 37%."
+        - paragraph [ref=f1e396]: Bracket thresholds are inflation-adjusted each year. The calculator always renders the values from src/data/constants.ts, so any update to the constants file immediately updates the methodology page.
+        - link "IRS 2026 Inflation Adjustments (OBBBA)" [ref=f1e398] [cursor=pointer]:
+          - /url: https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill
+      - generic [ref=f1e399]:
+        - heading "2026 US Long-Term Capital Gains Brackets (Single)" [level=2] [ref=f1e400]
+        - paragraph [ref=f1e401]: Long-term capital gains stack on top of ordinary income. The 0% bracket covers taxable income up to $49,450 for single filers in 2026. The 15% bracket applies from $49,451 to $545,500. The 20% bracket applies above $545,501.
+        - paragraph [ref=f1e402]: The calculator accounts for ordinary income crowding into the LTCG brackets. If a Traditional IRA RMD pushes taxable ordinary income above $49,450, LTCG gains that would have been 0% become 15%.
+        - link "IRS Topic No. 409" [ref=f1e404] [cursor=pointer]:
+          - /url: https://www.irs.gov/taxtopics/tc409
+      - generic [ref=f1e405]:
+        - heading "2026 US Standard Deduction (Single)" [level=2] [ref=f1e406]
+        - paragraph [ref=f1e407]: The standard deduction for single filers in 2026 is $16,100. This amount reduces taxable ordinary income before bracket calculation. An additional $1,600 is available for taxpayers aged 65 or older or blind.
+        - paragraph [ref=f1e408]: The calculator uses the base single-filer amount. The user only enters a single filing status in v1.
+        - link "IRS Topic No. 551" [ref=f1e410] [cursor=pointer]:
+          - /url: https://www.irs.gov/taxtopics/tc551
+      - generic [ref=f1e411]:
+        - heading "US Net Investment Income Tax (NIIT)" [level=2] [ref=f1e412]
+        - paragraph [ref=f1e413]: The NIIT imposes a 3.8% tax on the lesser of (a) net investment income or (b) modified adjusted gross income (MAGI) above the threshold. For single filers, the threshold is $200,000 and is not inflation-adjusted.
+        - paragraph [ref=f1e414]: NIIT applies to interest, dividends, capital gains, rental income, and passive business income. Roth IRA distributions are generally excluded from NII. NIIT can be triggered by MAGI creep from Roth conversions.
+        - link "IRS Topic No. 559 (IRC §1411)" [ref=f1e416] [cursor=pointer]:
+          - /url: https://www.irs.gov/taxtopics/tc559
+      - generic [ref=f1e417]:
+        - heading "US Required Minimum Distribution (RMD) Table" [level=2] [ref=f1e418]
+        - paragraph [ref=f1e419]: Required Minimum Distributions (RMDs) from Traditional IRAs and 401(k)s are calculated using the IRS Uniform Lifetime Table. The divisor depends on the account holder's age.
+        - paragraph [ref=f1e420]: "The RMD age is 73 for those born before July 1, 1951, and 75 for those born in 1960 or later under SECURE 2.0. The calculator uses a whole-year approximation: birth year 1950 or earlier gives RMD age 73; 1951 and later gives 75."
+        - link "IRS Publication 590-B (Uniform Lifetime Table)" [ref=f1e422] [cursor=pointer]:
+          - /url: https://www.irs.gov/publications/p590b
+      - generic [ref=f1e423]:
+        - heading "SECURE 2.0 RMD Age Boundaries" [level=2] [ref=f1e424]
+        - paragraph [ref=f1e425]: SECURE 2.0 raised the RMD age in phases. People born before July 1, 1951, start RMDs at age 73. People born July 2, 1951 through December 31, 1959, start at 75. Those born in 1960 and later also start at 75.
+        - link "IRS Publication 590-B — SECURE 2.0 RMD age boundaries" [ref=f1e427] [cursor=pointer]:
+          - /url: https://www.irs.gov/publications/p590b
+      - generic [ref=f1e428]:
+        - heading "Roth IRA 5-Year Rules" [level=2] [ref=f1e429]
+        - paragraph [ref=f1e430]: A qualified Roth IRA distribution (tax-free earnings) requires the account to have been open for at least five tax years starting January 1 of the first contribution year, plus the account holder being age 59½, deceased, or disabled.
+        - paragraph [ref=f1e431]: "Each conversion has its own separate 5-year clock for the 10% early withdrawal penalty on converted principal if withdrawn before age 59½. Distribution ordering rules are: (1) contributions, (2) conversions FIFO, (3) earnings."
+        - link "IRS Publication 590-B" [ref=f1e433] [cursor=pointer]:
+          - /url: https://www.irs.gov/publications/p590b
+      - generic [ref=f1e434]:
+        - heading "US 10% Early Withdrawal Penalty Exceptions" [level=2] [ref=f1e435]
+        - paragraph [ref=f1e436]: "Withdrawals from Traditional IRAs and 401(k)s before age 59½ are subject to a 10% additional tax under IRC §72(t). Exceptions include: age 59½, Rule of 55 (401(k)/403(b) separation at 55+), 72(t) SEPP, Roth basis withdrawals, unreimbursed medical over 7.5% of AGI, first-time homebuyer ($10k lifetime), higher education, disability, death, and health insurance while unemployed."
+        - link "IRC §72(t) — exceptions to tax on early distributions" [ref=f1e438] [cursor=pointer]:
+          - /url: https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-exceptions-to-tax-on-early-distributions
+      - generic [ref=f1e439]:
+        - heading "HSA Non-Medical Withdrawals Post-Age-65" [level=2] [ref=f1e440]
+        - paragraph [ref=f1e441]: After age 65, Health Savings Account (HSA) non-qualified withdrawals are subject to ordinary income tax but the 20% penalty is removed. HSA withdrawals for qualified medical expenses remain tax-free at any age.
+        - paragraph [ref=f1e442]: HSA has no RMD requirement. In Thailand retirement, most Thai medical expenses do not qualify as US-qualified medical under IRC §213(d), so HSA effectively becomes a Traditional IRA for daily Thai spending after age 65.
+        - link "IRS Publication 969" [ref=f1e444] [cursor=pointer]:
+          - /url: https://www.irs.gov/publications/p969
+      - generic [ref=f1e445]:
+        - heading "Thai PIT Progressive Brackets" [level=2] [ref=f1e446]
+        - paragraph [ref=f1e447]: "Thailand taxes personal income at progressive rates from 0% to 35%. The brackets are: 0% up to 150,000 THB, 5% from 150,001 to 300,000, 10% from 300,001 to 500,000, 15% from 500,001 to 750,000, 20% from 750,001 to 1,000,000, 25% from 1,000,001 to 2,000,000, 30% from 2,000,001 to 4,000,000, and 35% above 4,000,000 THB."
+        - link "Thai Revenue Department — Personal Income Tax" [ref=f1e449] [cursor=pointer]:
+          - /url: https://www.rd.go.th/english/6045
+      - generic [ref=f1e450]:
+        - heading "Thai Personal Allowance" [level=2] [ref=f1e451]
+        - paragraph [ref=f1e452]: Every Thai tax resident gets a flat personal allowance of 60,000 THB against assessable income. Additional allowances are available for spouses, children, parents, disabled family members, and antenatal expenses.
+        - link "PwC Tax Summaries — Thailand individual deductions" [ref=f1e454] [cursor=pointer]:
+          - /url: https://taxsummaries.pwc.com/thailand/individual/deductions
+      - generic [ref=f1e455]:
+        - heading "Thai 50% Pension Deduction" [level=2] [ref=f1e456]
+        - paragraph [ref=f1e457]: Pension income qualifies for a 50% deduction capped at 100,000 THB. The calculator applies this only when the optimistic regulatory scenario sets thaiPensionDeductionApplies to true. The combined cap for life insurance, pension, PVD, and RMF deductions is 500,000 THB.
+        - link "PwC Tax Summaries — Thailand" [ref=f1e459] [cursor=pointer]:
+          - /url: https://taxsummaries.pwc.com/thailand/individual/deductions
+      - generic [ref=f1e460]:
+        - heading "Por 161/2566 — Foreign Income Taxable on Remittance" [level=2] [ref=f1e461]
+        - paragraph [ref=f1e462]: Effective January 1, 2024, foreign-sourced income (sections 40(1) through 40(8) of the Thai Revenue Code) becomes taxable in the year it is remitted to Thailand, regardless of when it was earned. This is governed by Revenue Department Instruction Por 161/2566.
+        - link "RD Instruction Paw 161/2566 Translation" [ref=f1e464] [cursor=pointer]:
+          - /url: https://www.hlbthai.com/wp-content/uploads/2023/09/RD-Instruction-No.-Paw161-2566-Translation.pdf
+      - generic [ref=f1e465]:
+        - heading "Paw 162/2566 — Pre-2024 Grandfathering (NOT for Retirement)" [level=2] [ref=f1e466]
+        - paragraph [ref=f1e467]: Revenue Department Instruction Paw 162/2566 (November 20, 2023) provides grandfathering for income earned before January 1, 2024. Such income is NOT taxable when remitted, even if remitted in 2024 or later.
+        - paragraph [ref=f1e468]: "However, this grandfathering does NOT extend to retirement accounts. Traditional IRA, Roth IRA, 401(k), and HSA distributions are considered \"earned\" at the time of distribution (post-2024), so no grandfathering applies. The calculator enforces this: the pre-2024 snapshot input is disabled in the UI for all retirement account types, and the engine ignores it if injected. Only Cash and Taxable Brokerage balances can use the optional Jan-1-2024 snapshot for grandfathering."
+        - link "RD Instruction Paw 162/2566 — pre-2024 grandfathering" [ref=f1e470] [cursor=pointer]:
+          - /url: https://www.hlbthai.com/wp-content/uploads/2023/09/RD-Instruction-No.-Paw161-2566-Translation.pdf
+      - generic [ref=f1e471]:
+        - heading "Thai Capital Gains on SET-Listed Shares" [level=2] [ref=f1e472]
+        - paragraph [ref=f1e473]: Capital gains from the sale of SET-listed shares are exempt from Thai personal income tax for individual taxpayers. ASEAN-Link shares and mutual fund units (Royal Decree 689/2562) are also exempt. Unlisted shares and OTC securities are fully taxable at PIT rates. Digital assets traded on SEC-licensed platforms are exempt through 2029.
+        - link "Stock Exchange of Thailand — Tax Information" [ref=f1e475] [cursor=pointer]:
+          - /url: https://www.set.or.th/en/market/information/tax
+      - generic [ref=f1e476]:
+        - heading "Article 20 — Pensions and Social Security" [level=2] [ref=f1e477]
+        - paragraph [ref=f1e478]: Article 20(1) grants the residence state (Thailand) exclusive taxing rights over private pensions and similar remuneration. Article 20(2) grants the paying state (US) exclusive taxing rights over social security and public pensions.
+        - paragraph [ref=f1e479]: However, the Saving Clause (Article 1(2)) lets the US tax its citizens as if the treaty did not exist. Article 20(1) is subject to the Saving Clause, meaning both countries can tax Traditional IRA/401(k) distributions. Social Security under Article 20(2) is excepted from the Saving Clause, so Thailand cannot tax US Social Security.
+        - generic [ref=f1e480]:
+          - link "US-Thailand Tax Treaty (IRS)" [ref=f1e481] [cursor=pointer]:
+            - /url: https://www.irs.gov/pub/irs-trty/thailand.pdf
+          - text: ·
+          - link "Technical Explanation (Treasury)" [ref=f1e482] [cursor=pointer]:
+            - /url: https://www.irs.gov/pub/irs-trty/thaitech.pdf
+      - generic [ref=f1e483]:
+        - heading "Article 25 — Foreign Tax Credit (FTC)" [level=2] [ref=f1e484]
+        - paragraph [ref=f1e485]: Article 25 provides relief from double taxation. The US grants a credit for Thai tax paid by a US citizen under IRC §904. Thailand grants a credit for US tax on US-source income. The FTC is limited to the domestic tax on that specific income in both directions.
+        - paragraph [ref=f1e486]: "The calculator implements the corrected single-primary-taxer model: for each remitted income item, one country is the primary taxer per treaty article, and the other grants a limited credit. This avoids the double-credit bug that would understate total liability."
+        - link "US-Thailand Tax Treaty — Article 25" [ref=f1e488] [cursor=pointer]:
+          - /url: https://www.irs.gov/pub/irs-trty/thailand.pdf
+      - generic [ref=f1e489]:
+        - heading "Saving Clause Exceptions" [level=2] [ref=f1e490]
+        - paragraph [ref=f1e491]: "The US Saving Clause (Article 1(2)) preserves US taxation of its citizens despite treaty benefits. Articles that survive for US citizens: Article 20(2) (Social Security), Article 20(5) (child support), Article 25 (FTC), Article 26 (non-discrimination), and Article 27 (Mutual Agreement Procedure). Articles that do NOT survive: Article 10 (dividends), Article 11 (interest), Article 13 (capital gains), Article 20(1) (private pensions), and Article 20(3) (annuities)."
+        - link "Technical Explanation (Treasury)" [ref=f1e493] [cursor=pointer]:
+          - /url: https://www.irs.gov/pub/irs-trty/thaitech.pdf
+      - generic [ref=f1e494]:
+        - heading "Treaty Re-sourcing of US-Source Pensions" [level=2] [ref=f1e495]
+        - paragraph [ref=f1e496]: When the optimistic regulatory scenario sets treatyResourcesUsSourcePensions to true, the US treats remitted pension income as foreign-source for FTC purposes under Article 25(3). This means the US grants a foreign tax credit for Thai tax paid on that income, reducing US tax to zero. The total tax paid equals the higher of the two countries' rates.
+        - paragraph [ref=f1e497]: When this flag is false (pessimistic scenario), both countries tax the same income independently. The user pays the sum of both taxes — genuine double taxation.
+        - link "US-Thailand Tax Treaty — Article 25(3)" [ref=f1e499] [cursor=pointer]:
+          - /url: https://www.irs.gov/pub/irs-trty/thailand.pdf
+      - generic [ref=f1e500]:
+        - heading "Roth IRA Treatment in Thailand — UNSETTLED" [level=2] [ref=f1e501]
+        - paragraph [ref=f1e502]: The US-Thailand treaty was signed in 1996, before Roth IRAs existed (created in 1997). The treaty's definition of "pension" does not distinguish Roth distributions. The US treats qualified Roth distributions as tax-free under domestic law, unaffected by the treaty.
+        - paragraph [ref=f1e503]: Thailand does not have statutory recognition of Roth IRAs. The prevailing view among cross-border practitioners is that Thailand will tax remitted Roth withdrawals as pension income under §40(1). This is an UNSETTLED area with no binding authority. The calculator treats Roth as Thailand-taxable in the pessimistic scenario and provides an optimistic toggle.
+        - link "Expat Tax Thailand — Your Questions Answered" [ref=f1e505] [cursor=pointer]:
+          - /url: https://www.expattaxthailand.com/your-questions-answered/
+      - generic [ref=f1e506]:
+        - heading "Corrected FTC — Single Primary Taxer Per Item" [level=2] [ref=f1e507]
+        - paragraph [ref=f1e508]: "The calculator implements a corrected Foreign Tax Credit model based on the Oracle critique (Systemic #1). Instead of double-crediting Thai tax against US tax AND US tax against Thai tax on the same income, the model assigns exactly one primary taxer per income item per treaty article."
+        - paragraph [ref=f1e509]: For US-source pensions (Traditional IRA/401(k)/Roth remittances), Thailand is the primary taxer under Article 20(1). The US grants an FTC = min(usTaxOnItem, thaiTaxOnItem). For capital gains remittances, Thailand is primary under Article 13.
+        - paragraph [ref=f1e510]: "Walkthrough example (Oracle D3): $50,000 Traditional IRA remitted at FX 35 = 1,750,000 THB. US tax on $50,000 ordinary ≈ $3,850. Thai PIT on 1,750,000 THB (after deductions) ≈ 262,500 THB ≈ $7,500. With treaty re-sourcing (optimistic): US FTC = min($3,850, $7,500) = $3,850, US net = $0, total = $7,500. Without re-sourcing (pessimistic): US $3,850 + Thai $7,500 = $11,350 total. The primary taxer model ensures the user always pays at least the higher of the two rates."
+        - 'link "Oracle Critique — Systemic #1 Double-FTC Bug" [ref=f1e512] [cursor=pointer]':
+          - /url: https://github.com/tiratatp/us_thai_fire_calculator/blob/main/.research/07-oracle-critique.md
+      - generic [ref=f1e513]:
+        - 'heading "Roth Conversion Value Test (Oracle Systemic #2)" [level=2] [ref=f1e514]'
+        - paragraph [ref=f1e515]: The calculator does NOT default to "fill the 12% bracket" with Roth conversions. For a Thai resident, a Roth conversion costs US out-of-pocket tax with zero Thai benefit (since no remittance means no Thai tax, and no Thai tax means no FTC to absorb the US cost). The conversion must pass a value test.
+        - paragraph [ref=f1e516]: "The value test only returns a positive conversion amount when: (a) age is below RMD age, (b) Traditional US balance is positive, (c) the 0% LTCG bracket is NOT being used for taxable harvest this year (the two compete for the same bracket space), and (d) forecasted future US marginal rate on RMDs exceeds current US marginal rate plus Thai marginal rate on eventual remittance."
+        - paragraph [ref=f1e517]: For a Thai-resident user at typical FIRE balances, the value test almost always returns 0 because future RMDs are trivial and there is no Thai FTC to justify prepaying US tax. The algorithm does not fill 12% with conversions — it only converts if the value test clears.
+        - 'link "Oracle Critique — Systemic #2 Roth Ladder Collapse" [ref=f1e519] [cursor=pointer]':
+          - /url: https://github.com/tiratatp/us_thai_fire_calculator/blob/main/.research/07-oracle-critique.md
+      - generic [ref=f1e520]:
+        - heading "Thai Residency as a Control Lever (<180 Days)" [level=2] [ref=f1e521]
+        - paragraph [ref=f1e522]: A dual citizen spending fewer than 180 days in Thailand in a given year is NOT a Thai tax resident that year. Foreign-sourced income remitted during a non-resident year triggers zero Thai tax.
+        - paragraph [ref=f1e523]: "This is a powerful planning lever: bunch Roth conversions or capital gain realizations into non-resident years to avoid Thai tax entirely. Pre-position cash in Thailand during non-resident years to minimize future remittances."
+        - link "Oracle Critique — D1b Residency Lever" [ref=f1e525] [cursor=pointer]:
+          - /url: https://github.com/tiratatp/us_thai_fire_calculator/blob/main/.research/07-oracle-critique.md
+      - generic [ref=f1e526]:
+        - heading "Monte Carlo Default Assumptions" [level=2] [ref=f1e527]
+        - paragraph [ref=f1e528]: "The calculator uses Vanguard VCMM forward-looking return forecasts as defaults: US Equities 6% mean / 17% vol, International Developed 6% / 19%, US Aggregate Bonds 4% / 7%, Cash 3.5% / 1%. US inflation defaults to 3% mean / 1.4% std dev. Thai inflation defaults to 2% / 2.5%. USD/THB FX defaults to a random walk centered at 35 THB/USD with 8% annual log-vol."
+        - paragraph [ref=f1e529]: The default number of trials is 1,000 (fast in-browser). Users can adjust upward to 10,000 for higher confidence. Success rate is the fraction of trials where the portfolio stays positive through life expectancy with no unmet spending year.
+        - link "Vanguard VCMM Return Forecasts (2026)" [ref=f1e531] [cursor=pointer]:
+          - /url: https://corporate.vanguard.com/content/corporatesite/us/en/corp/vemo/vemo-return-forecasts.html
+      - generic [ref=f1e532]:
+        - heading "Correlation Matrix" [level=2] [ref=f1e533]
+        - paragraph [ref=f1e534]: The Monte Carlo engine draws correlated returns across four asset classes using Cholesky decomposition. The default 4x4 correlation matrix (ordered US Stock, US Bond, Intl Stock, Cash) is based on cFIREsim and Portfolio Visualizer data.
+        - link "cFIREsim FAQ; Portfolio Visualizer" [ref=f1e536] [cursor=pointer]:
+          - /url: https://www.portfoliovisualizer.com/monte-carlo-simulation
+      - generic [ref=f1e537]:
+        - 'heading "PRNG: Mulberry32 Seeded Random Number Generator" [level=2] [ref=f1e538]'
+        - paragraph [ref=f1e539]: The Monte Carlo engine uses the Mulberry32 PRNG, a 32-bit fast PRNG that passes the gjrand statistical tests. It accepts a numeric seed, producing deterministic sequences — identical seeds yield byte-identical return paths. Box-Muller pairs convert uniform random draws into standard normal variates for correlated asset returns.
+        - link "Mulberry32 by Tommy Ettinger (gjrand tests)" [ref=f1e541] [cursor=pointer]:
+          - /url: https://gist.github.com/tommyettinger/46a874533244883189143505d203312c
+      - generic [ref=f1e542]:
+        - heading "US Ordinary Brackets 2026" [level=2] [ref=f1e543]
+        - table [ref=f1e544]:
+          - rowgroup [ref=f1e545]:
+            - row "Top of bracket Rate" [ref=f1e546]:
+              - columnheader "Top of bracket" [ref=f1e547]
+              - columnheader "Rate" [ref=f1e548]
+          - rowgroup [ref=f1e549]:
+            - row "$12,225 10%" [ref=f1e550]:
+              - cell "$12,225" [ref=f1e551]
+              - cell "10%" [ref=f1e552]
+            - row "$49,725 12%" [ref=f1e553]:
+              - cell "$49,725" [ref=f1e554]
+              - cell "12%" [ref=f1e555]
+            - row "$106,150 22%" [ref=f1e556]:
+              - cell "$106,150" [ref=f1e557]
+              - cell "22%" [ref=f1e558]
+            - row "$202,875 24%" [ref=f1e559]:
+              - cell "$202,875" [ref=f1e560]
+              - cell "24%" [ref=f1e561]
+            - row "$257,475 32%" [ref=f1e562]:
+              - cell "$257,475" [ref=f1e563]
+              - cell "32%" [ref=f1e564]
+            - row "$644,675 35%" [ref=f1e565]:
+              - cell "$644,675" [ref=f1e566]
+              - cell "35%" [ref=f1e567]
+            - row "Over 37%" [ref=f1e568]:
+              - cell "Over" [ref=f1e569]
+              - cell "37%" [ref=f1e570]
+        - heading "Thai PIT Brackets" [level=2] [ref=f1e571]
+        - table [ref=f1e572]:
+          - rowgroup [ref=f1e573]:
+            - row "Top of bracket Rate" [ref=f1e574]:
+              - columnheader "Top of bracket" [ref=f1e575]
+              - columnheader "Rate" [ref=f1e576]
+          - rowgroup [ref=f1e577]:
+            - row "THB 150,000 0%" [ref=f1e578]:
+              - cell "THB 150,000" [ref=f1e579]
+              - cell "0%" [ref=f1e580]
+            - row "THB 300,000 5%" [ref=f1e581]:
+              - cell "THB 300,000" [ref=f1e582]
+              - cell "5%" [ref=f1e583]
+            - row "THB 500,000 10%" [ref=f1e584]:
+              - cell "THB 500,000" [ref=f1e585]
+              - cell "10%" [ref=f1e586]
+            - row "THB 750,000 15%" [ref=f1e587]:
+              - cell "THB 750,000" [ref=f1e588]
+              - cell "15%" [ref=f1e589]
+            - row "THB 1,000,000 20%" [ref=f1e590]:
+              - cell "THB 1,000,000" [ref=f1e591]
+              - cell "20%" [ref=f1e592]
+            - row "THB 2,000,000 25%" [ref=f1e593]:
+              - cell "THB 2,000,000" [ref=f1e594]
+              - cell "25%" [ref=f1e595]
+            - row "THB 4,000,000 30%" [ref=f1e596]:
+              - cell "THB 4,000,000" [ref=f1e597]
+              - cell "30%" [ref=f1e598]
+            - row "Over 35%" [ref=f1e599]:
+              - cell "Over" [ref=f1e600]
+              - cell "35%" [ref=f1e601]
+        - heading "RMD Uniform Lifetime Table" [level=2] [ref=f1e602]
+        - table [ref=f1e603]:
+          - rowgroup [ref=f1e604]:
+            - row "Age Divisor Age Divisor" [ref=f1e605]:
+              - columnheader "Age" [ref=f1e606]
+              - columnheader "Divisor" [ref=f1e607]
+              - columnheader "Age" [ref=f1e608]
+              - columnheader "Divisor" [ref=f1e609]
+          - rowgroup [ref=f1e610]:
+            - 'row "72: 27.4 73: 26.5 74: 25.5 75: 24.6" [ref=f1e611]':
+              - 'cell "72: 27.4" [ref=f1e612]'
+              - 'cell "73: 26.5" [ref=f1e613]'
+              - 'cell "74: 25.5" [ref=f1e614]'
+              - 'cell "75: 24.6" [ref=f1e615]'
+            - 'row "76: 23.7 77: 22.9 78: 22.0 79: 21.1" [ref=f1e616]':
+              - 'cell "76: 23.7" [ref=f1e617]'
+              - 'cell "77: 22.9" [ref=f1e618]'
+              - 'cell "78: 22.0" [ref=f1e619]'
+              - 'cell "79: 21.1" [ref=f1e620]'
+            - 'row "80: 20.2 81: 19.4 82: 18.5 83: 17.7" [ref=f1e621]':
+              - 'cell "80: 20.2" [ref=f1e622]'
+              - 'cell "81: 19.4" [ref=f1e623]'
+              - 'cell "82: 18.5" [ref=f1e624]'
+              - 'cell "83: 17.7" [ref=f1e625]'
+            - 'row "84: 16.8 85: 16.0 86: 15.2 87: 14.4" [ref=f1e626]':
+              - 'cell "84: 16.8" [ref=f1e627]'
+              - 'cell "85: 16.0" [ref=f1e628]'
+              - 'cell "86: 15.2" [ref=f1e629]'
+              - 'cell "87: 14.4" [ref=f1e630]'
+            - 'row "88: 13.7 89: 12.9 90: 12.2 91: 11.5" [ref=f1e631]':
+              - 'cell "88: 13.7" [ref=f1e632]'
+              - 'cell "89: 12.9" [ref=f1e633]'
+              - 'cell "90: 12.2" [ref=f1e634]'
+              - 'cell "91: 11.5" [ref=f1e635]'
+            - 'row "92: 10.8 93: 10.1 94: 9.5 95: 8.9" [ref=f1e636]':
+              - 'cell "92: 10.8" [ref=f1e637]'
+              - 'cell "93: 10.1" [ref=f1e638]'
+              - 'cell "94: 9.5" [ref=f1e639]'
+              - 'cell "95: 8.9" [ref=f1e640]'
+            - 'row "96: 8.4 97: 7.8 98: 7.3 99: 6.8" [ref=f1e641]':
+              - 'cell "96: 8.4" [ref=f1e642]'
+              - 'cell "97: 7.8" [ref=f1e643]'
+              - 'cell "98: 7.3" [ref=f1e644]'
+              - 'cell "99: 6.8" [ref=f1e645]'
+            - 'row "100: 6.4 101: 6.0 102: 5.6 103: 5.2" [ref=f1e646]':
+              - 'cell "100: 6.4" [ref=f1e647]'
+              - 'cell "101: 6.0" [ref=f1e648]'
+              - 'cell "102: 5.6" [ref=f1e649]'
+              - 'cell "103: 5.2" [ref=f1e650]'
+            - 'row "104: 4.9 105: 4.6 106: 4.3 107: 4.1" [ref=f1e651]':
+              - 'cell "104: 4.9" [ref=f1e652]'
+              - 'cell "105: 4.6" [ref=f1e653]'
+              - 'cell "106: 4.3" [ref=f1e654]'
+              - 'cell "107: 4.1" [ref=f1e655]'
+            - 'row "108: 3.9 109: 3.7 110: 3.5 111: 3.4" [ref=f1e656]':
+              - 'cell "108: 3.9" [ref=f1e657]'
+              - 'cell "109: 3.7" [ref=f1e658]'
+              - 'cell "110: 3.5" [ref=f1e659]'
+              - 'cell "111: 3.4" [ref=f1e660]'
+            - 'row "112: 3.3 113: 3.1 114: 3.0 115: 2.9" [ref=f1e661]':
+              - 'cell "112: 3.3" [ref=f1e662]'
+              - 'cell "113: 3.1" [ref=f1e663]'
+              - 'cell "114: 3.0" [ref=f1e664]'
+              - 'cell "115: 2.9" [ref=f1e665]'
+            - 'row "116: 2.8 117: 2.7 118: 2.5 119: 2.3" [ref=f1e666]':
+              - 'cell "116: 2.8" [ref=f1e667]'
+              - 'cell "117: 2.7" [ref=f1e668]'
+              - 'cell "118: 2.5" [ref=f1e669]'
+              - 'cell "119: 2.3" [ref=f1e670]'
+            - 'row "120: 2.0" [ref=f1e671]':
+              - 'cell "120: 2.0" [ref=f1e672]'
+        - heading "Correlation Matrix" [level=2] [ref=f1e673]
+        - table [ref=f1e674]:
+          - rowgroup [ref=f1e675]:
+            - row "US Stock US Bond Intl Cash" [ref=f1e676]:
+              - columnheader [ref=f1e677]
+              - columnheader "US Stock" [ref=f1e678]
+              - columnheader "US Bond" [ref=f1e679]
+              - columnheader "Intl" [ref=f1e680]
+              - columnheader "Cash" [ref=f1e681]
+          - rowgroup [ref=f1e682]:
+            - row "US Stock 1.00 -0.20 0.70 0.00" [ref=f1e683]:
+              - rowheader "US Stock" [ref=f1e684]
+              - cell "1.00" [ref=f1e685]
+              - cell "-0.20" [ref=f1e686]
+              - cell "0.70" [ref=f1e687]
+              - cell "0.00" [ref=f1e688]
+            - row "US Bond -0.20 1.00 0.10 0.10" [ref=f1e689]:
+              - rowheader "US Bond" [ref=f1e690]
+              - cell "-0.20" [ref=f1e691]
+              - cell "1.00" [ref=f1e692]
+              - cell "0.10" [ref=f1e693]
+              - cell "0.10" [ref=f1e694]
+            - row "Intl 0.70 0.10 1.00 0.05" [ref=f1e695]:
+              - rowheader "Intl" [ref=f1e696]
+              - cell "0.70" [ref=f1e697]
+              - cell "0.10" [ref=f1e698]
+              - cell "1.00" [ref=f1e699]
+              - cell "0.05" [ref=f1e700]
+            - row "Cash 0.00 0.10 0.05 1.00" [ref=f1e701]:
+              - rowheader "Cash" [ref=f1e702]
+              - cell "0.00" [ref=f1e703]
+              - cell "0.10" [ref=f1e704]
+              - cell "0.05" [ref=f1e705]
+              - cell "1.00" [ref=f1e706]

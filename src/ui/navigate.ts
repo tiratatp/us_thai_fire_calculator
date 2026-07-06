@@ -1,4 +1,4 @@
-export type TabId = 'inputs' | 'results' | 'drawdown' | 'gap-year' | 'references';
+export type TabId = 'inputs' | 'results' | 'monte-carlo' | 'drawdown' | 'gap-year' | 'references';
 
 export function switchTab(target: TabId): void {
   document.querySelectorAll<HTMLElement>('.tab').forEach((el) => {

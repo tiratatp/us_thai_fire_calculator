@@ -14,6 +14,7 @@
   <nav class="tabs" role="tablist">
     <button class="tab" data-tab="inputs" role="tab" aria-selected="true">Inputs</button>
     <button class="tab" data-tab="results" role="tab" aria-selected="false">Results</button>
+    <button class="tab" data-tab="monte-carlo" role="tab" aria-selected="false">Monte Carlo</button>
     <button class="tab" data-tab="drawdown" role="tab" aria-selected="false">Drawdown</button>
     <button class="tab" data-tab="gap-year" role="tab" aria-selected="false">Gap year</button>
     <button class="tab" data-tab="references" role="tab" aria-selected="false">References</button>
@@ -31,6 +32,9 @@
         <canvas id="withdrawal-chart"></canvas>
       </div>
       <div id="year-table-container"></div>
+    </section>
+    <section id="monte-carlo-tab" class="tab-panel hidden" role="tabpanel" aria-labelledby="monte-carlo">
+      <div id="monte-carlo-explanation"></div>
     </section>
     <section id="drawdown-tab" class="tab-panel hidden" role="tabpanel" aria-labelledby="drawdown"></section>
     <section id="gap-year-tab" class="tab-panel hidden" role="tabpanel" aria-labelledby="gap-year"></section>

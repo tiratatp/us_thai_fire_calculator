@@ -156,11 +156,9 @@ export function renderMethodology(): string {
   );
   const thaiBracketsHtml = renderBracketTable(THAI_PIT_BRACKETS.value, 'THB');
 
-  // RMD and correlation tables
   const rmdHtml = renderRmdTable();
-  const corrHtml = renderCorrelationMatrix();
 
-  return `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="utf-8"><title>Methodology</title></head>\n<body>\n<h1>Methodology</h1>\n${toc}${groupsHtml}\n<!-- Injected constant tables -->\n<div id="constant-tables">\n<h2>US Ordinary Brackets 2026</h2>\n${usBracketsHtml}\n<h2>Thai PIT Brackets</h2>\n${thaiBracketsHtml}\n<h2>RMD Uniform Lifetime Table</h2>\n${rmdHtml}\n<h2>Correlation Matrix</h2>\n${corrHtml}\n</div>\n</body>\n</html>\n`;
+  return `<!DOCTYPE html>\n<html lang="en">\n<head><meta charset="utf-8"><title>Methodology</title></head>\n<body>\n<h1>Methodology</h1>\n${toc}${groupsHtml}\n<!-- Injected constant tables -->\n<div id="constant-tables">\n<h2>US Ordinary Brackets 2026</h2>\n${usBracketsHtml}\n<h2>Thai PIT Brackets</h2>\n${thaiBracketsHtml}\n<h2>RMD Uniform Lifetime Table</h2>\n${rmdHtml}\n</div>\n</body>\n</html>\n`;
 }
 
 // ---------- Anchor set ----------

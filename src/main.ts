@@ -12,6 +12,8 @@ import { DEFAULT_ASSUMPTION, DEFAULT_USER_INPUTS } from './data/defaults.js';
 import { restore, save } from './storage.js';
 import type { WorkerRequest, WorkerResponse } from './workers/monte-carlo.worker.js';
 
+import { renderMonteCarloExplanation } from './ui/monte-carlo-page.js';
+
 const LAST_RESULT_KEY = 'v1_last_result';
 
 interface LastResult {
@@ -55,6 +57,12 @@ function renderAllResults(data: LastResult): void {
     const accounts = data.inputs?.accounts ?? DEFAULT_USER_INPUTS.accounts;
     renderYearTable(yt, { p50: data.pessimistic.p50, fxRateUsdThb: DEFAULT_ASSUMPTION.fxUsdThb.mean, accounts });
   }
+  
+  const mcExpl = document.querySelector<HTMLElement>('#monte-carlo-explanation');
+  if (mcExpl) {
+    renderMonteCarloExplanation(mcExpl, data.optimistic, data.pessimistic, data.successThreshold);
+  }
+
   const portfolioCanvas = document.querySelector<HTMLCanvasElement>('#portfolio-chart');
   const withdrawalCanvas = document.querySelector<HTMLCanvasElement>('#withdrawal-chart');
   if (portfolioCanvas) portfolioBandChart(portfolioCanvas, data.pessimistic);
@@ -155,7 +163,7 @@ export function bootstrap(): void {
       deepLinkToMethodology(methMatch[1]);
       return;
     }
-    const tabMatch = /^#(inputs|results|drawdown|gap-year|references)$/.exec(location.hash);
+    const tabMatch = /^#(inputs|results|monte-carlo|drawdown|gap-year|references)$/.exec(location.hash);
     if (tabMatch) {
       switchTab(tabMatch[1] as TabId);
     }

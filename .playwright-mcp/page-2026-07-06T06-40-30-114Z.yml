@@ -1,0 +1,442 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "US-Thai FIRE Calculator" [level=1] [ref=e3]
+    - paragraph [ref=e4]:
+      - strong [ref=e5]: Not tax advice.
+      - text: Consult a cross-border tax professional. Roth treatment in Thailand is unsettled.
+  - tablist [ref=e6]:
+    - tab "Inputs" [ref=e7] [cursor=pointer]
+    - tab "Results" [selected] [ref=e8] [cursor=pointer]
+    - tab "Drawdown" [ref=e9] [cursor=pointer]
+    - tab "Gap year" [ref=e10] [cursor=pointer]
+    - tab "References" [ref=e11] [cursor=pointer]
+  - main [ref=e12]:
+    - tabpanel [ref=e344]:
+      - generic [ref=e351]:
+        - 'heading "Verdict: Not FIRE" [level=2] [ref=e352]':
+          - text: "Verdict:"
+          - generic [ref=e353]: Not FIRE
+        - generic [ref=e354]:
+          - generic [ref=e355]:
+            - heading "Pessimistic Scenario" [level=3] [ref=e356]
+            - paragraph [ref=e357]:
+              - link "9%" [ref=e358] [cursor=pointer]:
+                - /url: "#references/monte-carlo-defaults"
+            - paragraph [ref=e359]:
+              - text: "Median Lifetime Tax:"
+              - link "$1,220,100" [ref=e360] [cursor=pointer]:
+                - /url: "#references/ftc-corrected"
+          - generic [ref=e361]:
+            - heading "Optimistic Scenario" [level=3] [ref=e362]
+            - paragraph [ref=e363]:
+              - link "14%" [ref=e364] [cursor=pointer]:
+                - /url: "#references/monte-carlo-defaults"
+            - paragraph [ref=e365]:
+              - text: "Median Lifetime Tax:"
+              - link "$732,493" [ref=e366] [cursor=pointer]:
+                - /url: "#references/ftc-corrected"
+        - paragraph [ref=e367]:
+          - text: "Regulatory exposure delta:"
+          - strong [ref=e368]:
+            - link "5%" [ref=e369] [cursor=pointer]:
+              - /url: "#references/roth-uncertainty"
+          - text: .
+          - generic [ref=e370]:
+            - emphasis [ref=e371]: "Disclaimer: Not tax advice; Roth Thai treatment unsettled."
+            - text: See
+            - link "FTC" [ref=e372] [cursor=pointer]:
+              - /url: "#references/ftc-corrected"
+            - text: methodology.
+      - table [ref=e373]:
+        - rowgroup [ref=e374]:
+          - row "Year / Age Thai portfolio (THB) US portfolio (USD) RMD LTCG harvested Remittance amount USD US tax Thai tax FTC applied Spending met Gap year?" [ref=e375]:
+            - columnheader "Year / Age" [ref=e376]
+            - columnheader "Thai portfolio (THB)" [ref=e377]:
+              - link "Thai portfolio (THB)" [ref=e378] [cursor=pointer]:
+                - /url: "#references/monte-carlo-defaults"
+            - columnheader "US portfolio (USD)" [ref=e379]:
+              - link "US portfolio (USD)" [ref=e380] [cursor=pointer]:
+                - /url: "#references/monte-carlo-defaults"
+            - columnheader "RMD" [ref=e381]:
+              - link "RMD" [ref=e382] [cursor=pointer]:
+                - /url: "#references/us-rmd-table"
+            - columnheader "LTCG harvested" [ref=e383]:
+              - link "LTCG harvested" [ref=e384] [cursor=pointer]:
+                - /url: "#references/us-ltcg-2026"
+            - columnheader "Remittance amount USD" [ref=e385]:
+              - link "Remittance amount USD" [ref=e386] [cursor=pointer]:
+                - /url: "#references/ftc-corrected"
+            - columnheader "US tax" [ref=e387]:
+              - link "US tax" [ref=e388] [cursor=pointer]:
+                - /url: "#references/us-brackets-2026"
+            - columnheader "Thai tax" [ref=e389]:
+              - link "Thai tax" [ref=e390] [cursor=pointer]:
+                - /url: "#references/thai-pit-brackets"
+            - columnheader "FTC applied" [ref=e391]:
+              - link "FTC applied" [ref=e392] [cursor=pointer]:
+                - /url: "#references/ftc-corrected"
+            - columnheader "Spending met" [ref=e393]
+            - columnheader "Gap year?" [ref=e394]:
+              - link "Gap year?" [ref=e395] [cursor=pointer]:
+                - /url: "#gap-year"
+        - rowgroup [ref=e396]:
+          - row "Year 0 (Age 38) THB 7,629,209 $2,342,214 $0 $0 $0 $0 THB 0 $0 Yes" [ref=e397]:
+            - cell "Year 0 (Age 38)" [ref=e398]
+            - cell "THB 7,629,209" [ref=e399]
+            - cell "$2,342,214" [ref=e400]
+            - cell "$0" [ref=e401]
+            - cell "$0" [ref=e402]
+            - cell "$0" [ref=e403]
+            - cell "$0" [ref=e404]
+            - cell "THB 0" [ref=e405]
+            - cell "$0" [ref=e406]
+            - cell "Yes" [ref=e407]
+            - cell [ref=e408]
+          - row "Year 1 (Age 39) THB 5,752,980 $2,418,273 $0 $0 $0 $0 THB 0 $0 Yes" [ref=e409]:
+            - cell "Year 1 (Age 39)" [ref=e410]
+            - cell "THB 5,752,980" [ref=e411]
+            - cell "$2,418,273" [ref=e412]
+            - cell "$0" [ref=e413]
+            - cell "$0" [ref=e414]
+            - cell "$0" [ref=e415]
+            - cell "$0" [ref=e416]
+            - cell "THB 0" [ref=e417]
+            - cell "$0" [ref=e418]
+            - cell "Yes" [ref=e419]
+            - cell [ref=e420]
+          - row "Year 2 (Age 40) THB 3,629,025 $2,376,241 $0 $0 $0 $0 THB 0 $0 Yes" [ref=e421]:
+            - cell "Year 2 (Age 40)" [ref=e422]
+            - cell "THB 3,629,025" [ref=e423]
+            - cell "$2,376,241" [ref=e424]
+            - cell "$0" [ref=e425]
+            - cell "$0" [ref=e426]
+            - cell "$0" [ref=e427]
+            - cell "$0" [ref=e428]
+            - cell "THB 0" [ref=e429]
+            - cell "$0" [ref=e430]
+            - cell "Yes" [ref=e431]
+            - cell [ref=e432]
+          - row "Year 3 (Age 41) THB 1,489,653 $2,131,693 $0 $0 $0 $0 THB 0 $0 Yes" [ref=e433]:
+            - cell "Year 3 (Age 41)" [ref=e434]
+            - cell "THB 1,489,653" [ref=e435]
+            - cell "$2,131,693" [ref=e436]
+            - cell "$0" [ref=e437]
+            - cell "$0" [ref=e438]
+            - cell "$0" [ref=e439]
+            - cell "$0" [ref=e440]
+            - cell "THB 0" [ref=e441]
+            - cell "$0" [ref=e442]
+            - cell "Yes" [ref=e443]
+            - cell [ref=e444]
+          - row "Year 4 (Age 42) THB 0 $2,442,820 $0 $0 $21,662 $0 THB 75,540 $0 Yes" [ref=e445]:
+            - cell "Year 4 (Age 42)" [ref=e446]
+            - cell "THB 0" [ref=e447]
+            - cell "$2,442,820" [ref=e448]
+            - cell "$0" [ref=e449]
+            - cell "$0" [ref=e450]
+            - cell "$21,662" [ref=e451]
+            - cell "$0" [ref=e452]
+            - cell "THB 75,540" [ref=e453]
+            - cell "$0" [ref=e454]
+            - cell "Yes" [ref=e455]
+            - cell [ref=e456]
+          - row "Year 5 (Age 43) THB 0 $2,487,422 $0 $0 $89,932 $0 THB 358,552 $0 Yes Consider gap year abroad" [ref=e457]:
+            - cell "Year 5 (Age 43)" [ref=e458]
+            - cell "THB 0" [ref=e459]
+            - cell "$2,487,422" [ref=e460]
+            - cell "$0" [ref=e461]
+            - cell "$0" [ref=e462]
+            - cell "$89,932" [ref=e463]
+            - cell "$0" [ref=e464]
+            - cell "THB 358,552" [ref=e465]
+            - cell "$0" [ref=e466]
+            - cell "Yes" [ref=e467]
+            - cell "Consider gap year abroad" [ref=e468]
+          - row "Year 6 (Age 44) THB 0 $2,165,925 $0 $0 $50,935 $0 THB 0 $0 Yes" [ref=e469]:
+            - cell "Year 6 (Age 44)" [ref=e470]
+            - cell "THB 0" [ref=e471]
+            - cell "$2,165,925" [ref=e472]
+            - cell "$0" [ref=e473]
+            - cell "$0" [ref=e474]
+            - cell "$50,935" [ref=e475]
+            - cell "$0" [ref=e476]
+            - cell "THB 0" [ref=e477]
+            - cell "$0" [ref=e478]
+            - cell "Yes" [ref=e479]
+            - cell [ref=e480]
+          - row "Year 7 (Age 45) THB 0 $2,015,627 $0 $0 $63,860 $0 THB 0 $0 Yes" [ref=e481]:
+            - cell "Year 7 (Age 45)" [ref=e482]
+            - cell "THB 0" [ref=e483]
+            - cell "$2,015,627" [ref=e484]
+            - cell "$0" [ref=e485]
+            - cell "$0" [ref=e486]
+            - cell "$63,860" [ref=e487]
+            - cell "$0" [ref=e488]
+            - cell "THB 0" [ref=e489]
+            - cell "$0" [ref=e490]
+            - cell "Yes" [ref=e491]
+            - cell [ref=e492]
+          - row "Year 8 (Age 46) THB 0 $1,972,585 $0 $0 $58,487 $0 THB 0 $0 Yes" [ref=e493]:
+            - cell "Year 8 (Age 46)" [ref=e494]
+            - cell "THB 0" [ref=e495]
+            - cell "$1,972,585" [ref=e496]
+            - cell "$0" [ref=e497]
+            - cell "$0" [ref=e498]
+            - cell "$58,487" [ref=e499]
+            - cell "$0" [ref=e500]
+            - cell "THB 0" [ref=e501]
+            - cell "$0" [ref=e502]
+            - cell "Yes" [ref=e503]
+            - cell [ref=e504]
+          - row "Year 9 (Age 47) THB 0 $1,746,760 $0 $0 $45,102 $0 THB 0 $0 Yes" [ref=e505]:
+            - cell "Year 9 (Age 47)" [ref=e506]
+            - cell "THB 0" [ref=e507]
+            - cell "$1,746,760" [ref=e508]
+            - cell "$0" [ref=e509]
+            - cell "$0" [ref=e510]
+            - cell "$45,102" [ref=e511]
+            - cell "$0" [ref=e512]
+            - cell "THB 0" [ref=e513]
+            - cell "$0" [ref=e514]
+            - cell "Yes" [ref=e515]
+            - cell [ref=e516]
+          - row "Year 10 (Age 48) THB 0 $1,380,094 $0 $0 $39,697 $0 THB 0 $0 Yes" [ref=e517]:
+            - cell "Year 10 (Age 48)" [ref=e518]
+            - cell "THB 0" [ref=e519]
+            - cell "$1,380,094" [ref=e520]
+            - cell "$0" [ref=e521]
+            - cell "$0" [ref=e522]
+            - cell "$39,697" [ref=e523]
+            - cell "$0" [ref=e524]
+            - cell "THB 0" [ref=e525]
+            - cell "$0" [ref=e526]
+            - cell "Yes" [ref=e527]
+            - cell [ref=e528]
+          - row "Year 11 (Age 49) THB 0 $1,221,454 $0 $0 $57,749 $0 THB 0 $0 Yes" [ref=e529]:
+            - cell "Year 11 (Age 49)" [ref=e530]
+            - cell "THB 0" [ref=e531]
+            - cell "$1,221,454" [ref=e532]
+            - cell "$0" [ref=e533]
+            - cell "$0" [ref=e534]
+            - cell "$57,749" [ref=e535]
+            - cell "$0" [ref=e536]
+            - cell "THB 0" [ref=e537]
+            - cell "$0" [ref=e538]
+            - cell "Yes" [ref=e539]
+            - cell [ref=e540]
+          - row "Year 12 (Age 50) THB 0 $1,259,892 $0 $0 $41,161 $0 THB 0 $0 Yes" [ref=e541]:
+            - cell "Year 12 (Age 50)" [ref=e542]
+            - cell "THB 0" [ref=e543]
+            - cell "$1,259,892" [ref=e544]
+            - cell "$0" [ref=e545]
+            - cell "$0" [ref=e546]
+            - cell "$41,161" [ref=e547]
+            - cell "$0" [ref=e548]
+            - cell "THB 0" [ref=e549]
+            - cell "$0" [ref=e550]
+            - cell "Yes" [ref=e551]
+            - cell [ref=e552]
+          - row "Year 13 (Age 51) THB 0 $1,348,396 $0 $0 $51,114 $0 THB 0 $0 Yes" [ref=e553]:
+            - cell "Year 13 (Age 51)" [ref=e554]
+            - cell "THB 0" [ref=e555]
+            - cell "$1,348,396" [ref=e556]
+            - cell "$0" [ref=e557]
+            - cell "$0" [ref=e558]
+            - cell "$51,114" [ref=e559]
+            - cell "$0" [ref=e560]
+            - cell "THB 0" [ref=e561]
+            - cell "$0" [ref=e562]
+            - cell "Yes" [ref=e563]
+            - cell [ref=e564]
+          - row "Year 14 (Age 52) THB 0 $1,402,176 $0 $0 $54,298 $0 THB 0 $0 Yes" [ref=e565]:
+            - cell "Year 14 (Age 52)" [ref=e566]
+            - cell "THB 0" [ref=e567]
+            - cell "$1,402,176" [ref=e568]
+            - cell "$0" [ref=e569]
+            - cell "$0" [ref=e570]
+            - cell "$54,298" [ref=e571]
+            - cell "$0" [ref=e572]
+            - cell "THB 0" [ref=e573]
+            - cell "$0" [ref=e574]
+            - cell "Yes" [ref=e575]
+            - cell [ref=e576]
+          - row "Year 15 (Age 53) THB 0 $1,240,770 $0 $0 $70,249 $0 THB 0 $0 Yes" [ref=e577]:
+            - cell "Year 15 (Age 53)" [ref=e578]
+            - cell "THB 0" [ref=e579]
+            - cell "$1,240,770" [ref=e580]
+            - cell "$0" [ref=e581]
+            - cell "$0" [ref=e582]
+            - cell "$70,249" [ref=e583]
+            - cell "$0" [ref=e584]
+            - cell "THB 0" [ref=e585]
+            - cell "$0" [ref=e586]
+            - cell "Yes" [ref=e587]
+            - cell [ref=e588]
+          - row "Year 16 (Age 54) THB 0 $1,164,938 $0 $76,728 $73,621 $4,092 THB 315,304 $0 Yes" [ref=e589]:
+            - cell "Year 16 (Age 54)" [ref=e590]
+            - cell "THB 0" [ref=e591]
+            - cell "$1,164,938" [ref=e592]
+            - cell "$0" [ref=e593]
+            - cell "$76,728" [ref=e594]
+            - cell "$73,621" [ref=e595]
+            - cell "$4,092" [ref=e596]
+            - cell "THB 315,304" [ref=e597]
+            - cell "$0" [ref=e598]
+            - cell "Yes" [ref=e599]
+            - cell [ref=e600]
+          - row "Year 17 (Age 55) THB 0 $1,177,050 $0 $154,003 $113,317 $15,683 THB 1,642,933 $0 Yes Consider gap year abroad" [ref=e601]:
+            - cell "Year 17 (Age 55)" [ref=e602]
+            - cell "THB 0" [ref=e603]
+            - cell "$1,177,050" [ref=e604]
+            - cell "$0" [ref=e605]
+            - cell "$154,003" [ref=e606]
+            - cell "$113,317" [ref=e607]
+            - cell "$15,683" [ref=e608]
+            - cell "THB 1,642,933" [ref=e609]
+            - cell "$0" [ref=e610]
+            - cell "Yes" [ref=e611]
+            - cell "Consider gap year abroad" [ref=e612]
+          - row "Year 18 (Age 56) THB 0 $1,225,859 $0 $83,417 $56,812 $5,095 THB 691,517 $0 Yes Consider gap year abroad" [ref=e613]:
+            - cell "Year 18 (Age 56)" [ref=e614]
+            - cell "THB 0" [ref=e615]
+            - cell "$1,225,859" [ref=e616]
+            - cell "$0" [ref=e617]
+            - cell "$83,417" [ref=e618]
+            - cell "$56,812" [ref=e619]
+            - cell "$5,095" [ref=e620]
+            - cell "THB 691,517" [ref=e621]
+            - cell "$0" [ref=e622]
+            - cell "Yes" [ref=e623]
+            - cell "Consider gap year abroad" [ref=e624]
+          - row "Year 19 (Age 57) THB 0 $958,595 $0 $145,380 $120,405 $14,390 THB 1,775,666 $0 Yes Consider gap year abroad" [ref=e625]:
+            - cell "Year 19 (Age 57)" [ref=e626]
+            - cell "THB 0" [ref=e627]
+            - cell "$958,595" [ref=e628]
+            - cell "$0" [ref=e629]
+            - cell "$145,380" [ref=e630]
+            - cell "$120,405" [ref=e631]
+            - cell "$14,390" [ref=e632]
+            - cell "THB 1,775,666" [ref=e633]
+            - cell "$0" [ref=e634]
+            - cell "Yes" [ref=e635]
+            - cell "Consider gap year abroad" [ref=e636]
+          - row "Year 20 (Age 58) THB 0 $772,064 $0 $0 $140,705 $36,636 THB 2,242,454 $0 Yes Consider gap year abroad" [ref=e637]:
+            - cell "Year 20 (Age 58)" [ref=e638]
+            - cell "THB 0" [ref=e639]
+            - cell "$772,064" [ref=e640]
+            - cell "$0" [ref=e641]
+            - cell "$0" [ref=e642]
+            - cell "$140,705" [ref=e643]
+            - cell "$36,636" [ref=e644]
+            - cell "THB 2,242,454" [ref=e645]
+            - cell "$0" [ref=e646]
+            - cell "Yes" [ref=e647]
+            - cell "Consider gap year abroad" [ref=e648]
+          - row "Year 21 (Age 59) THB 0 $816,877 $0 $0 $36,489 $5,851 THB 367,874 $0 Yes Consider gap year abroad" [ref=e649]:
+            - cell "Year 21 (Age 59)" [ref=e650]
+            - cell "THB 0" [ref=e651]
+            - cell "$816,877" [ref=e652]
+            - cell "$0" [ref=e653]
+            - cell "$0" [ref=e654]
+            - cell "$36,489" [ref=e655]
+            - cell "$5,851" [ref=e656]
+            - cell "THB 367,874" [ref=e657]
+            - cell "$0" [ref=e658]
+            - cell "Yes" [ref=e659]
+            - cell "Consider gap year abroad" [ref=e660]
+          - row "Year 22 (Age 60) THB 0 $736,012 $0 $0 $59,578 $4,973 THB 717,220 $0 Yes Consider gap year abroad" [ref=e661]:
+            - cell "Year 22 (Age 60)" [ref=e662]
+            - cell "THB 0" [ref=e663]
+            - cell "$736,012" [ref=e664]
+            - cell "$0" [ref=e665]
+            - cell "$0" [ref=e666]
+            - cell "$59,578" [ref=e667]
+            - cell "$4,973" [ref=e668]
+            - cell "THB 717,220" [ref=e669]
+            - cell "$0" [ref=e670]
+            - cell "Yes" [ref=e671]
+            - cell "Consider gap year abroad" [ref=e672]
+          - row "Year 23 (Age 61) THB 0 $732,587 $0 $0 $52,356 $4,106 THB 647,929 $0 Yes Consider gap year abroad" [ref=e673]:
+            - cell "Year 23 (Age 61)" [ref=e674]
+            - cell "THB 0" [ref=e675]
+            - cell "$732,587" [ref=e676]
+            - cell "$0" [ref=e677]
+            - cell "$0" [ref=e678]
+            - cell "$52,356" [ref=e679]
+            - cell "$4,106" [ref=e680]
+            - cell "THB 647,929" [ref=e681]
+            - cell "$0" [ref=e682]
+            - cell "Yes" [ref=e683]
+            - cell "Consider gap year abroad" [ref=e684]
+          - row "Year 24 (Age 62) THB 0 $606,549 $0 $0 $86,082 $10,179 THB 1,091,215 $0 Yes Consider gap year abroad" [ref=e685]:
+            - cell "Year 24 (Age 62)" [ref=e686]
+            - cell "THB 0" [ref=e687]
+            - cell "$606,549" [ref=e688]
+            - cell "$0" [ref=e689]
+            - cell "$0" [ref=e690]
+            - cell "$86,082" [ref=e691]
+            - cell "$10,179" [ref=e692]
+            - cell "THB 1,091,215" [ref=e693]
+            - cell "$0" [ref=e694]
+            - cell "Yes" [ref=e695]
+            - cell "Consider gap year abroad" [ref=e696]
+          - row "Year 25 (Age 63) THB 0 $464,352 $0 $0 $66,870 $5,952 THB 721,512 $0 Yes Consider gap year abroad" [ref=e697]:
+            - cell "Year 25 (Age 63)" [ref=e698]
+            - cell "THB 0" [ref=e699]
+            - cell "$464,352" [ref=e700]
+            - cell "$0" [ref=e701]
+            - cell "$0" [ref=e702]
+            - cell "$66,870" [ref=e703]
+            - cell "$5,952" [ref=e704]
+            - cell "THB 721,512" [ref=e705]
+            - cell "$0" [ref=e706]
+            - cell "Yes" [ref=e707]
+            - cell "Consider gap year abroad" [ref=e708]
+          - row "Year 26 (Age 64) THB 0 $455,242 $0 $0 $61,265 $5,175 THB 657,986 $0 Yes Consider gap year abroad" [ref=e709]:
+            - cell "Year 26 (Age 64)" [ref=e710]
+            - cell "THB 0" [ref=e711]
+            - cell "$455,242" [ref=e712]
+            - cell "$0" [ref=e713]
+            - cell "$0" [ref=e714]
+            - cell "$61,265" [ref=e715]
+            - cell "$5,175" [ref=e716]
+            - cell "THB 657,986" [ref=e717]
+            - cell "$0" [ref=e718]
+            - cell "Yes" [ref=e719]
+            - cell "Consider gap year abroad" [ref=e720]
+          - row "Year 27 (Age 65) THB 0 $237,479 $0 $0 $171,347 $27,515 THB 2,729,254 $0 Yes Consider gap year abroad" [ref=e721]:
+            - cell "Year 27 (Age 65)" [ref=e722]
+            - cell "THB 0" [ref=e723]
+            - cell "$237,479" [ref=e724]
+            - cell "$0" [ref=e725]
+            - cell "$0" [ref=e726]
+            - cell "$171,347" [ref=e727]
+            - cell "$27,515" [ref=e728]
+            - cell "THB 2,729,254" [ref=e729]
+            - cell "$0" [ref=e730]
+            - cell "Yes" [ref=e731]
+            - cell "Consider gap year abroad" [ref=e732]
+          - row "Year 28 (Age 66) THB 0 $141,223 $0 $0 $45,878 $1,068 THB 446,890 $0 Yes" [ref=e733]:
+            - cell "Year 28 (Age 66)" [ref=e734]
+            - cell "THB 0" [ref=e735]
+            - cell "$141,223" [ref=e736]
+            - cell "$0" [ref=e737]
+            - cell "$0" [ref=e738]
+            - cell "$45,878" [ref=e739]
+            - cell "$1,068" [ref=e740]
+            - cell "THB 446,890" [ref=e741]
+            - cell "$0" [ref=e742]
+            - cell "Yes" [ref=e743]
+            - cell [ref=e744]
+          - row "Year 29 (Age 67) THB 0 $0 $0 $0 $141,223 $22,690 THB 2,168,634 $0 No" [ref=e745]:
+            - cell "Year 29 (Age 67)" [ref=e746]
+            - cell "THB 0" [ref=e747]
+            - cell "$0" [ref=e748]
+            - cell "$0" [ref=e749]
+            - cell "$0" [ref=e750]
+            - cell "$141,223" [ref=e751]
+            - cell "$22,690" [ref=e752]
+            - cell "THB 2,168,634" [ref=e753]
+            - cell "$0" [ref=e754]
+            - cell "No" [ref=e755]
+            - cell [ref=e756]

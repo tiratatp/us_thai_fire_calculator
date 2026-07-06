@@ -1,0 +1,274 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - heading "US-Thai FIRE Calculator" [level=1] [ref=e3]
+    - paragraph [ref=e4]:
+      - strong [ref=e5]: Not tax advice.
+      - text: Consult a cross-border tax professional. Roth treatment in Thailand is unsettled.
+  - tablist [ref=e6]:
+    - tab "Inputs" [ref=e7] [cursor=pointer]
+    - tab "Results" [ref=e8] [cursor=pointer]
+    - tab "Drawdown" [ref=e9] [cursor=pointer]
+    - tab "Gap year" [active] [selected] [ref=e10] [cursor=pointer]
+    - tab "References" [ref=e11] [cursor=pointer]
+  - main [ref=e12]:
+    - tabpanel "Gap-Year Strategy — Escaping Thai PIT in a Single Calendar Year" [ref=e159]:
+      - heading "Gap-Year Strategy — Escaping Thai PIT in a Single Calendar Year" [level=1] [ref=e160]
+      - paragraph [ref=e161]:
+        - text: Thai tax residency is decided year by year by a
+        - strong [ref=e162]: 180-day physical-presence test
+        - text: under
+        - link "Section 41 of the Thai Revenue Code" [ref=e163] [cursor=pointer]:
+          - /url: https://www.rd.go.th/english/6045
+        - text: . Spend fewer than 180 days in Thailand in a given calendar year and you are
+        - strong [ref=e164]: not a Thai tax resident
+        - text: that year — foreign-source remittances brought in during that year fall outside Thailand's taxing jurisdiction under Section 41 paragraph 2. This is a
+        - strong [ref=e165]: statutory result
+        - text: ", not a loophole, and its practitioner-consensus reading is confirmed in the guidance issued around"
+        - link "RD Instruction Paw 161/2566" [ref=e166] [cursor=pointer]:
+          - /url: https://www.hlbthai.com/wp-content/uploads/2023/09/RD-Instruction-No.-Paw161-2566-Translation.pdf
+        - text: .
+      - navigation "On this page" [ref=e167]:
+        - list [ref=e168]:
+          - listitem [ref=e169]:
+            - link "What is a gap year?" [ref=e170] [cursor=pointer]:
+              - /url: "#gap-year-what"
+          - listitem [ref=e171]:
+            - link "When does it make sense?" [ref=e172] [cursor=pointer]:
+              - /url: "#gap-year-when"
+          - listitem [ref=e173]:
+            - link "What to do during a gap year?" [ref=e174] [cursor=pointer]:
+              - /url: "#gap-year-how"
+          - listitem [ref=e175]:
+            - link "Caveats" [ref=e176] [cursor=pointer]:
+              - /url: "#gap-year-caveats"
+          - listitem [ref=e177]:
+            - link "References" [ref=e178] [cursor=pointer]:
+              - /url: "#gap-year-references"
+      - heading "What is a gap year?" [level=2] [ref=e179]
+      - generic [ref=e180]:
+        - heading "Three tax events unlocked" [level=3] [ref=e181]
+        - paragraph [ref=e182]: "A gap year is most valuable when it unlocks three tax events that this calculator otherwise suppresses for a Thai resident:"
+        - list [ref=e183]:
+          - listitem [ref=e184]:
+            - strong [ref=e185]: Large Traditional IRA / 401(k) withdrawal
+            - text: remitted to Thailand at
+            - strong [ref=e186]: 0% Thai PIT
+            - text: ", instead of the 20–35% top-bracket Thai rate that would apply during a resident year."
+          - listitem [ref=e187]:
+            - strong [ref=e188]: Roth conversion
+            - text: "sized to fill the US 12% federal bracket. During a resident year, the calculator's Systemic #2"
+            - emphasis [ref=e189]: value test
+            - text: returns 0 — converting to Roth costs US tax with zero Thai benefit under the pessimistic assumption that Thailand does not honor the Roth wrapper on later distributions. During a gap year, this becomes a pure US-side win.
+          - listitem [ref=e190]:
+            - strong [ref=e191]: 0%-federal-LTCG harvest
+            - text: "of Taxable Brokerage lots, which shares the same 12%-bracket space as Roth conversion — Systemic #3 enforces mutual exclusion in any single year, but a gap year lets you pick one without the Thai side clawing it back."
+      - heading "When does it make sense?" [level=2] [ref=e192]
+      - generic [ref=e193]:
+        - heading "Why $10,000, Not Higher" [level=3] [ref=e194]
+        - paragraph [ref=e195]:
+          - text: The hint threshold ($10,000 USD Thai tax) is set intentionally
+          - emphasis [ref=e196]: below
+          - text: "the top-bracket break-even. In pre-RMD years the calculator otherwise reports zero Roth conversion and zero LTCG harvest (Systemic #2 and #3), so the direct Thai tax on the modeled remittance understates the real upside — the true win in those years is the Roth / LTCG activity the gap year"
+          - emphasis [ref=e197]: unlocks
+          - text: ", not just the Thai tax already visible in the projection."
+        - heading "Why the Hint Stops at Age 65" [level=3] [ref=e198]
+        - paragraph [ref=e199]:
+          - text: The year-by-year table only surfaces the gap-year hint through age
+          - strong [ref=e200]: "65"
+          - text: ". Two reasons:"
+        - list [ref=e201]:
+          - listitem [ref=e202]:
+            - strong [ref=e203]: Health and logistics.
+            - text: Relocating for ~330 days abroad — new insurance, new pharmacy chain, new emergency-care network, unfamiliar climate — gets materially harder each decade past 65.
+          - listitem [ref=e204]:
+            - strong [ref=e205]: RMDs consume the 12% bracket anyway.
+            - text: Starting at age 73 (born ≤1950) or 75 (born ≥1951) the IRS
+            - link "RMD schedule (Pub 590-B)" [ref=e206] [cursor=pointer]:
+              - /url: https://www.irs.gov/publications/p590b
+            - text: forces Traditional IRA distributions that themselves fill or exceed the $49,725 top-of-12% threshold. Roth conversion and 0%-LTCG harvest opportunities collapse; only the Trad-withdrawal Thai-tax savings remain, and by then a gap year is a bigger health bet than a tax bet.
+      - heading "What to do during a gap year?" [level=2] [ref=e207]
+      - generic [ref=e208]:
+        - heading "Where to spend the gap year — destinations & break-even" [level=3] [ref=e209]
+        - paragraph [ref=e210]:
+          - text: A one-year Chiang Mai retirement baseline for a comfortable single retiree runs roughly
+          - strong [ref=e211]: $21,600/yr
+          - text: ". The gap-year destination must (a) permit residence for the ~330 days needed to fall below the Thai 180-day threshold, and (b) impose no local tax on your US-source remittances. Options range from clean fixed-address bases to continuously-moving cruise or slow-travel patterns:"
+        - table [ref=e212]:
+          - rowgroup [ref=e213]:
+            - row "Destination Cost / yr Local tax on foreign income Verdict" [ref=e214]:
+              - columnheader "Destination" [ref=e215]
+              - columnheader "Cost / yr" [ref=e216]
+              - columnheader "Local tax on foreign income" [ref=e217]
+              - columnheader "Verdict" [ref=e218]
+          - rowgroup [ref=e219]:
+            - row "Philippines (SRRV) $10,800 – $18,000 Exempt under NIRC §32(B)(6) Good" [ref=e220]:
+              - cell "Philippines (SRRV)" [ref=e221]
+              - cell "$10,800 – $18,000" [ref=e222]
+              - cell "Exempt under NIRC §32(B)(6)" [ref=e223]
+              - cell "Good" [ref=e224]:
+                - strong [ref=e225]: Good
+            - row "Malaysia (MM2H Silver, 150k USD FD) $12,000 – $18,000 Exempt under ITA §127(3)(b), 5-yr window Good" [ref=e226]:
+              - cell "Malaysia (MM2H Silver, 150k USD FD)" [ref=e227]
+              - cell "$12,000 – $18,000" [ref=e228]
+              - cell "Exempt under ITA §127(3)(b), 5-yr window" [ref=e229]
+              - cell "Good" [ref=e230]:
+                - strong [ref=e231]: Good
+            - row "Portugal (post-NHR closure) $22,000 – $30,000 Taxed up to 48% Bad" [ref=e232]:
+              - cell "Portugal (post-NHR closure)" [ref=e233]
+              - cell "$22,000 – $30,000" [ref=e234]
+              - cell "Taxed up to 48%" [ref=e235]
+              - cell "Bad" [ref=e236]
+            - row "Mexico (Temporary Resident) $16,000 – $20,000 Facts-and-circumstances worldwide tax Complicated" [ref=e237]:
+              - cell "Mexico (Temporary Resident)" [ref=e238]
+              - cell "$16,000 – $20,000" [ref=e239]
+              - cell "Facts-and-circumstances worldwide tax" [ref=e240]
+              - cell "Complicated" [ref=e241]
+            - row "USA (FL / TN, no state income tax) $30,000 – $42,000 US federal always applies (no Thai saving) Complicated" [ref=e242]:
+              - cell "USA (FL / TN, no state income tax)" [ref=e243]
+              - cell "$30,000 – $42,000" [ref=e244]
+              - cell "US federal always applies (no Thai saving)" [ref=e245]
+              - cell "Complicated" [ref=e246]
+            - row "World cruise / continuous travel $50,000 – $100,000 Usually none if no country hits its residency test Expensive but clean" [ref=e247]:
+              - cell "World cruise / continuous travel" [ref=e248]
+              - cell "$50,000 – $100,000" [ref=e249]
+              - cell "Usually none if no country hits its residency test" [ref=e250]
+              - cell "Expensive but clean" [ref=e251]
+            - row "Multi-country slow travel (<90 days each) $18,000 – $30,000 None if you keep each stop truly short Cheap but risky" [ref=e252]:
+              - cell "Multi-country slow travel (<90 days each)" [ref=e253]
+              - cell "$18,000 – $30,000" [ref=e254]
+              - cell "None if you keep each stop truly short" [ref=e255]
+              - cell "Cheap but risky" [ref=e256]
+        - paragraph [ref=e257]:
+          - strong [ref=e258]: World cruise / continuous travel
+          - text: "keeps you outside Thailand for the full ~330 days without ever establishing local tax residency, at $50–100k/yr. Caveats: US federal tax still applies; some cruise lines require a fixed billing address; year-long medical coverage at sea is not standard travel insurance."
+        - paragraph [ref=e259]:
+          - strong [ref=e260]: Multi-country slow travel
+          - text: is cheaper but each stop must be truly short. Many countries have their own residency tests —
+          - link "Portugal's 183-day rule" [ref=e261] [cursor=pointer]:
+            - /url: https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/irs_rep/Pages/irs16.aspx
+          - text: ","
+          - link "Spain's habitual-residence test" [ref=e262] [cursor=pointer]:
+            - /url: https://www.agenciatributaria.es/AEAT.internet/en_gb/Inicio/_Segmentos_/Ciudadanos/Fiscalidad_de_no_residentes/Fiscalidad_de_no_residentes__ciudadanos_/Residencia_fiscal_en_Espana.shtml
+          - text: ", and similar. Keep each stop <90 days and avoid building a pattern (property, bank accounts, family) that looks like habitual residence."
+        - paragraph [ref=e263]:
+          - text: The calculator assumes a
+          - strong [ref=e264]: conservative $15,000/yr uplift
+          - text: (destination cost + travel + visa setup buffer) as the implicit cost that the gap-year Thai tax savings must clear. If your projected Thai tax for a year exceeds roughly $10,000 USD, the year-by-year table surfaces a "Consider gap year abroad" hint.
+        - heading "Large Traditional IRA / 401(k) Withdrawal" [level=3] [ref=e265]
+        - paragraph [ref=e266]:
+          - strong [ref=e267]: How to execute.
+          - text: If the money is in a 401(k), roll it to a Traditional IRA first — 401(k) distributions carry a
+          - strong [ref=e268]: 20% mandatory federal withholding
+          - text: that a Trad IRA distribution does not. The "Rule of 55" lets you withdraw penalty-free from a 401(k) if you separated from that employer at age 55+; from a Trad IRA the penalty-free age is 59½. Above 59½ there is no early-withdrawal penalty regardless of account type.
+        - paragraph [ref=e269]:
+          - strong [ref=e270]: How much.
+          - text: Unlike Roth conversion, there is no formulaic upper cap — the withdrawal
+          - emphasis [ref=e271]: is
+          - text: your spending funding for the gap year. The relevant question is how much of it lands in each US federal bracket. With
+          - strong [ref=e272]: zero other ordinary income
+          - text: "in the gap year:"
+        - list [ref=e273]:
+          - listitem [ref=e274]:
+            - text: First
+            - strong [ref=e275]: $65,825 gross
+            - text: ($49,725 taxable + $16,100 standard deduction) fills the 10–12% brackets → ≈
+            - strong [ref=e276]: $5,000 federal tax
+            - text: .
+          - listitem [ref=e277]: Next $56,425 pushes into the 22% bracket → +$12,414 federal tax.
+          - listitem [ref=e278]: Next $96,725 pushes into the 24% bracket → +$23,214 federal tax.
+        - paragraph [ref=e279]:
+          - strong [ref=e280]: Interactions.
+          - text: Trad withdrawal shares the 12% bracket with Roth conversion — see "Can I do both together?" below. If an RMD is forced that year, it consumes bracket space
+          - emphasis [ref=e281]: first
+          - text: ". Systemic #4: retirement-account remittances are never grandfathered by Paw 162/2566, so the Thai side of this withdrawal is entirely wiped by non-residency, not by pre-2024 origin."
+        - heading "Roth Conversion" [level=3] [ref=e282]
+        - paragraph [ref=e283]:
+          - strong [ref=e284]: How to execute.
+          - text: Instruct your Traditional IRA custodian to perform an in-kind conversion of the desired dollar amount to a Roth IRA (same custodian is easiest). The converted amount is treated as ordinary income for that tax year.
+        - paragraph [ref=e285]:
+          - strong [ref=e286]: "How much (formula, single filer 2026):"
+        - paragraph [ref=e287]: roth_conversion ≤ $65,825 − other_ordinary_income
+        - paragraph [ref=e288]: where $65,825 = $49,725 (top of 12% ordinary bracket) + $16,100 (standard deduction). This keeps the marginal rate on the last dollar converted at 12%.
+        - paragraph [ref=e289]:
+          - strong [ref=e290]: Worked example (zero other income).
+          - text: "Convert $65,825 of Traditional IRA to Roth. Taxable income after the standard deduction: $49,725. Federal tax at 2026 single brackets: 10% × $12,225 + 12% × ($49,725 − $12,225) ≈"
+          - strong [ref=e291]: $5,723
+          - text: ". Effective rate on the conversion:"
+          - strong [ref=e292]: 8.7%
+          - text: ". During a Thai-resident year this would have cost the same US tax plus the Systemic #2 pessimistic Thai bite later — so the calculator's value test returns 0 and the conversion never happens. Gap year unlocks it."
+        - heading "0%-Federal LTCG Harvest" [level=3] [ref=e293]
+        - paragraph [ref=e294]:
+          - strong [ref=e295]: How to execute.
+          - text: Sell appreciated long-held taxable lots to realize gains inside the 0% LTCG bracket, then immediately buy them back to reset the cost basis higher. The
+          - strong [ref=e296]: wash-sale rule does not apply to gains
+          - text: — only to losses — so an instant repurchase is legal for this purpose. Keep the total capital gain plus other ordinary taxable income under the 0% LTCG ceiling.
+        - paragraph [ref=e297]:
+          - strong [ref=e298]: "How much (formula, single filer 2026):"
+        - paragraph [ref=e299]: ltcg_room ≤ $49,450 − (other_ordinary_income + roth_conversion − $16,100)
+        - paragraph [ref=e300]:
+          - text: "where $49,450 is the top of the 0% LTCG bracket (note: this is"
+          - emphasis [ref=e301]: lower
+          - text: than the $49,725 top of the 12% ordinary bracket — close but not identical). With zero other income and no Roth conversion, you can harvest up to
+          - strong [ref=e302]: $49,450 + $16,100 = $65,550 gross
+          - text: and pay
+          - strong [ref=e303]: $0 federal LTCG
+          - text: .
+        - heading "Can I Do Both in the Same Year?" [level=3] [ref=e304]
+        - paragraph [ref=e305]:
+          - strong [ref=e306]: No — they compete for the same bracket space.
+          - text: LTCG stacks on top of ordinary taxable income for bracket determination. If you fill the 12% ordinary bracket with a $49,725 Roth conversion (taxable), your taxable ordinary income is $49,725 — already
+          - strong [ref=e307]: above
+          - text: "the $49,450 LTCG 0% ceiling. Every dollar of LTCG then falls into the 15% bracket, so the LTCG harvest costs 15% of the gain rather than 0%. Systemic #3 enforces this mutex: in any single year, pick one — the larger win."
+        - paragraph [ref=e308]:
+          - strong [ref=e309]: Rule of thumb.
+          - text: Roth conversion is more valuable when your Traditional balance is large and your remaining life expectancy is long enough to compound the Roth's tax-free growth. 0%-LTCG harvest is more valuable when you have a large embedded gain in a Taxable Brokerage lot you plan to spend soon. In a single gap year, pick the bigger of the two; in a second future gap year (if the age-65 cap allows), do the other.
+      - heading "Caveats" [level=2] [ref=e310]
+      - generic [ref=e311]:
+        - heading "Invariants that still apply during a gap year" [level=3] [ref=e312]
+        - list [ref=e313]:
+          - listitem [ref=e314]:
+            - strong [ref=e315]: US federal tax is unchanged.
+            - text: Ordinary income, LTCG, and NIIT apply to withdrawals in the year they happen, regardless of Thai residency.
+          - listitem [ref=e316]:
+            - strong [ref=e317]: US Foreign Tax Credit is zero for the gap year.
+            - text: There is no Thai tax to credit.
+          - listitem [ref=e318]:
+            - strong [ref=e319]: No Paw 162/2566 grandfathering on retirement accounts.
+            - text: Traditional IRA, Roth IRA, 401(k), and HSA distributions are never eligible — residency status does not change this.
+          - listitem [ref=e320]:
+            - strong [ref=e321]: Treaty Article 25(3) re-sourcing is moot
+            - text: for the gap year because no Thai tax is owed on the remittance.
+        - heading "What the calculator does not model" [level=3] [ref=e322]:
+          - text: What the calculator does
+          - emphasis [ref=e323]: not
+          - text: model
+        - paragraph [ref=e324]:
+          - text: This calculator does not simulate gap years automatically. Every projected year assumes Thai residency, which is the conservative (pessimistic) default. The Gap year? column in the year-by-year table is
+          - strong [ref=e325]: guidance
+          - text: — a flag that a particular year is a strong candidate for you to physically arrange a <180-day stay in Thailand and execute the Roth / LTCG events that would otherwise be wasted. Treat it as a planning prompt, not a scheduled outcome.
+      - heading "References" [level=2] [ref=e326]
+      - list [ref=e327]:
+        - listitem [ref=e328]:
+          - link "Thai Revenue Code Section 41 — Residency and foreign-source income" [ref=e329] [cursor=pointer]:
+            - /url: https://www.rd.go.th/english/6045
+        - listitem [ref=e330]:
+          - link "RD Instruction Paw 161/2566 — English translation (HLB Thailand)" [ref=e331] [cursor=pointer]:
+            - /url: https://www.hlbthai.com/wp-content/uploads/2023/09/RD-Instruction-No.-Paw161-2566-Translation.pdf
+        - listitem [ref=e332]:
+          - link "Philippines National Internal Revenue Code §32(B)(6) — Retirement benefit exclusions" [ref=e333] [cursor=pointer]:
+            - /url: https://www.bir.gov.ph/index.php/tax-code.html
+        - listitem [ref=e334]:
+          - link "Philippines SRRV (Special Resident Retiree Visa) — PRA" [ref=e335] [cursor=pointer]:
+            - /url: https://pra.gov.ph/srrv/
+        - listitem [ref=e336]:
+          - link "Malaysia Income Tax Act §127 — Foreign-source income exemption" [ref=e337] [cursor=pointer]:
+            - /url: https://phl.hasil.gov.my/pdf/pdfam/PR_11_2020.pdf
+        - listitem [ref=e338]:
+          - link "Malaysia MM2H programme — Silver tier requirements" [ref=e339] [cursor=pointer]:
+            - /url: https://www.mm2h.gov.my/
+        - listitem [ref=e340]:
+          - link "IRS Publication 590-B — Distributions from IRAs" [ref=e341] [cursor=pointer]:
+            - /url: https://www.irs.gov/publications/p590b
+        - listitem [ref=e342]:
+          - link "IRS Topic No. 409 — Capital gains and the 0% LTCG bracket" [ref=e343] [cursor=pointer]:
+            - /url: https://www.irs.gov/taxtopics/tc409

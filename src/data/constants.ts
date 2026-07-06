@@ -228,20 +228,11 @@ export const PAW_162_CUTOFF_DATE: Cited<string> = {
 
 const TRINITY_STUDY_URL = 'https://en.wikipedia.org/wiki/Trinity_study';
 
-/** 25× = 4% safe withdrawal rate (1 / 0.04). Used when retirement horizon ≤ 30 years. */
-export const FIRE_MULTIPLIER_30_YR: Cited<number> = {
-  value: 25,
-  sourceUrl: TRINITY_STUDY_URL,
-  sourceName: 'Trinity Study — 4% safe withdrawal rate',
-  retrievedDate: RETRIEVED,
-  notes: '1 / 0.04. Conservative horizon ≤ 30 years.',
-};
-
-/** 33× = 3% safe withdrawal rate (1 / 0.03). Used when retirement horizon > 30 years. */
-export const FIRE_MULTIPLIER_LONG: Cited<number> = {
+/** 33× = 3% safe withdrawal rate (1 / 0.03). We enforce this globally regardless of horizon due to double-tax drag in cross-border scenarios. */
+export const FIRE_MULTIPLIER: Cited<number> = {
   value: 33,
   sourceUrl: TRINITY_STUDY_URL,
   sourceName: 'Trinity Study — 3% conservative withdrawal rate',
   retrievedDate: RETRIEVED,
-  notes: '1 / 0.03. Conservative horizon > 30 years.',
+  notes: '1 / 0.03. Used globally due to Thai/US tax drag.',
 };

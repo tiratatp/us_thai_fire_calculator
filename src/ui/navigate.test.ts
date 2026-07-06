@@ -16,6 +16,12 @@ function setupDOM(): void {
   resultsBtn.setAttribute('aria-selected', 'false');
   document.body.appendChild(resultsBtn);
 
+  const monteCarloBtn = document.createElement('button');
+  monteCarloBtn.className = 'tab';
+  monteCarloBtn.dataset.tab = 'monte-carlo';
+  monteCarloBtn.setAttribute('aria-selected', 'false');
+  document.body.appendChild(monteCarloBtn);
+
   const refBtn = document.createElement('button');
   refBtn.className = 'tab';
   refBtn.dataset.tab = 'references';
@@ -31,6 +37,11 @@ function setupDOM(): void {
   resultsPanel.id = 'results-tab';
   resultsPanel.className = 'tab-panel hidden';
   document.body.appendChild(resultsPanel);
+
+  const monteCarloPanel = document.createElement('section');
+  monteCarloPanel.id = 'monte-carlo-tab';
+  monteCarloPanel.className = 'tab-panel hidden';
+  document.body.appendChild(monteCarloPanel);
 
   const refPanel = document.createElement('section');
   refPanel.id = 'references-tab';
