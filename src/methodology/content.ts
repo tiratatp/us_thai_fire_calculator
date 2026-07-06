@@ -39,6 +39,13 @@ export interface MethodologySection {
     | undefined;
 }
 
+export interface MethodologyGroup {
+  readonly id: string;
+  readonly title: string;
+  readonly intro: string;
+  readonly sections: readonly MethodologySection[];
+}
+
 // ---------- Disclaimer (always first) ----------
 
 export const DISCLAIMER_SECTION: MethodologySection = {
@@ -62,12 +69,43 @@ export const CORRELATION_MATRIX: readonly (readonly number[])[] = Object.freeze(
 
 // ---------- Combined array (ordered) ----------
 
-export const METHODOLOGY_SECTIONS: readonly MethodologySection[] = [
-  DISCLAIMER_SECTION,
-  ...US_SECTIONS,
-  ...THAI_SECTIONS,
-  ...TREATY_SECTIONS,
-  ...UNCERTAINTIES_SECTIONS,
-  ...ALGO_SECTIONS,
-  ...FIRE_MULTIPLIERS,
+export const METHODOLOGY_GROUPS: readonly MethodologyGroup[] = [
+  {
+    id: 'group-read-first',
+    title: 'Read this first',
+    intro:
+      'This calculator is for educational purposes and does not constitute tax advice. Several key regulatory questions remain unsettled; please read these critical disclosures before proceeding.',
+    sections: [DISCLAIMER_SECTION, ...UNCERTAINTIES_SECTIONS],
+  },
+  {
+    id: 'group-us-rules',
+    title: 'US tax rules that apply to you',
+    intro:
+      'US federal tax rules for citizens abroad, covering ordinary income, capital gains, and retirement account distributions.',
+    sections: [...US_SECTIONS],
+  },
+  {
+    id: 'group-thai-rules',
+    title: 'Thai tax rules that apply to you',
+    intro:
+      'Thai tax residency and personal income tax rules, including the treatment of foreign-source income remitted to Thailand.',
+    sections: [...THAI_SECTIONS],
+  },
+  {
+    id: 'group-interaction',
+    title: 'How the two systems interact',
+    intro:
+      'The interaction between US and Thai tax systems as governed by the 1996 tax treaty and foreign tax credit mechanisms.',
+    sections: [...TREATY_SECTIONS],
+  },
+  {
+    id: 'group-simulation',
+    title: 'How this calculator simulates it',
+    intro:
+      'The technical implementation of the simulation, including the Monte Carlo engine and the step-by-step drawdown algorithm.',
+    sections: [...ALGO_SECTIONS, ...FIRE_MULTIPLIERS],
+  },
 ];
+
+export const METHODOLOGY_SECTIONS: readonly MethodologySection[] =
+  METHODOLOGY_GROUPS.flatMap((g) => g.sections);
