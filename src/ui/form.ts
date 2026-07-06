@@ -53,18 +53,6 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
         </section>
 
         <section>
-          <h2 class="text-xl font-bold">Residency</h2>
-          <div class="flex flex-wrap gap-2">
-            ${Array.from({ length: Math.max(0, inputs.lifeExpectancy - inputs.currentAge) }, (_, i) => `
-              <label class="flex items-center space-x-1">
-                <input type="checkbox" name="residency_${i}" ${inputs.thaiResidencyByYear[i] !== false ? 'checked' : ''}>
-                <span>Age ${inputs.currentAge + i}</span>
-              </label>
-            `).join('')}
-          </div>
-        </section>
-
-        <section>
           <h2 class="text-xl font-bold">Assumptions</h2>
           <div class="grid grid-cols-4 gap-4">
             ${renderNumber('monteCarloTrials', 'MC Trials', inputs.monteCarloTrials, 100, 10000)}

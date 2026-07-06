@@ -95,10 +95,6 @@ describe('form', () => {
     fd.append('regulatoryStance', 'optimistic');
     fd.append('currentFxUsdThb', '33');
 
-    for (let i = 0; i < 50; i++) {
-      fd.append(`residency_${i}`, 'on');
-    }
-
     const inputs = parseFormData(fd);
     expect(inputs.currentAge).toBe(40);
     expect(inputs.accounts[0]!.balance).toBe(1000000);
@@ -147,10 +143,6 @@ describe('form', () => {
     fd.append('successThreshold', '0.95');
     fd.append('monteCarloTrials', '5000');
     fd.append('regulatoryStance', 'optimistic');
-
-    for (let i = 0; i < 50; i++) {
-      fd.append(`residency_${i}`, 'on');
-    }
 
     const inputs = parseFormData(fd);
     expect(inputs.currentAge).toBe(40);

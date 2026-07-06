@@ -74,10 +74,16 @@ export function parseFormData(fd: FormData): UserInputs {
     accounts.push(account as Account);
   }
 
+  // Residency defaults to true for every retirement year. The UI no longer
+  // exposes a per-year checkbox grid because the only legitimate reason to
+  // spend <180 days in Thailand is a planned "gap year abroad" tax strategy,
+  // which we surface as a recommendation in the year-by-year results table
+  // rather than as a set-once input (users cannot realistically plan 40 years
+  // of residency at input time). See methodology → gap-year-strategy.
   const residency: boolean[] = [];
   const years = Math.max(0, lifeExpectancy - currentAge);
   for (let i = 0; i < years; i++) {
-    residency.push(fd.get(`residency_${i}`) === 'on');
+    residency.push(true);
   }
 
   return {
