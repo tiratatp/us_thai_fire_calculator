@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { columnAnchorMap, buildRow, renderYearTable } from './year-table.js';
 import { methodologyAnchorSet } from '../methodology/render.js';
 import type { Account, YearOutcome } from '../types.js';
@@ -25,49 +25,20 @@ const mockOutcome: YearOutcome = {
 
 function setupDOM(): void {
   document.body.innerHTML = '';
-  const inputsBtn = document.createElement('button');
-  inputsBtn.className = 'tab';
-  inputsBtn.dataset.tab = 'inputs';
-  inputsBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(inputsBtn);
-
-  const resultsBtn = document.createElement('button');
-  resultsBtn.className = 'tab';
-  resultsBtn.dataset.tab = 'results';
-  resultsBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(resultsBtn);
-
-  const drawdownBtn = document.createElement('button');
-  drawdownBtn.className = 'tab';
-  drawdownBtn.dataset.tab = 'drawdown';
-  drawdownBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(drawdownBtn);
-
-  const refBtn = document.createElement('button');
-  refBtn.className = 'tab';
-  refBtn.dataset.tab = 'references';
-  refBtn.setAttribute('aria-selected', 'false');
-  document.body.appendChild(refBtn);
-
-  const inputsPanel = document.createElement('section');
-  inputsPanel.id = 'inputs-tab';
-  inputsPanel.className = 'tab-panel hidden';
-  document.body.appendChild(inputsPanel);
-
-  const resultsPanel = document.createElement('section');
-  resultsPanel.id = 'results-tab';
-  resultsPanel.className = 'tab-panel hidden';
-  document.body.appendChild(resultsPanel);
-
-  const drawdownPanel = document.createElement('section');
-  drawdownPanel.id = 'drawdown-tab';
-  drawdownPanel.className = 'tab-panel hidden';
-  document.body.appendChild(drawdownPanel);
-
-  const refPanel = document.createElement('section');
-  refPanel.id = 'references-tab';
-  refPanel.className = 'tab-panel hidden';
-  document.body.appendChild(refPanel);
+  const tabIds = ['inputs', 'results', 'drawdown', 'gap-year', 'references'] as const;
+  for (const t of tabIds) {
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.dataset.tab = t;
+    btn.setAttribute('aria-selected', 'false');
+    document.body.appendChild(btn);
+  }
+  for (const t of tabIds) {
+    const panel = document.createElement('section');
+    panel.id = `${t}-tab`;
+    panel.className = 'tab-panel hidden';
+    document.body.appendChild(panel);
+  }
 }
 
 describe('year-table', () => {
@@ -106,8 +77,8 @@ describe('year-table', () => {
       { id: 'b', type: 'Cash', currency: 'USD', balance: 200 },
     ];
 
-    const row = buildRow(outcome, accounts);
-    expect(row.cells.length).toBe(10);
+    const row = buildRow(outcome, accounts, 35);
+    expect(row.cells.length).toBe(11);
     expect(row.cells[0]).toBe('Year 2026 (Age 40)');
     expect(row.cells[1]).toMatch(/100/); // THB 100
     expect(row.cells[2]).toBe('$200');
@@ -118,6 +89,32 @@ describe('year-table', () => {
     expect(row.cells[7]).toMatch(/60/); // THB 60
     expect(row.cells[8]).toBe('$70');
     expect(row.cells[9]).toBe('Yes');
+    // Gap year column: thaiTax=60 THB, fx=35 → $1.71 USD, well below $10K threshold → blank
+    expect(row.cells[10]).toBe('');
+  });
+
+  it('buildRow falls back to id prefix when accounts array is missing entries (stale localStorage guard)', () => {
+    const outcome: YearOutcome = {
+      ...mockOutcome,
+      balancesByAccount: { 'thb-cash': 9_000_000, 'usd-cash': 150_000, 'usd-cash-pool': 5_000 },
+    };
+    const row = buildRow(outcome, [], 35);
+    expect(row.cells[1]).toMatch(/9,000,000/);
+    expect(row.cells[2]).toBe('$155,000');
+  });
+
+  it('buildRow falls back to id prefix when account entry has no currency field (stale schema guard)', () => {
+    const outcome: YearOutcome = {
+      ...mockOutcome,
+      balancesByAccount: { 'thb-cash': 9_000_000, 'usd-cash': 150_000 },
+    };
+    const staleAccounts = [
+      { id: 'thb-cash', type: 'Cash', balance: 9_000_000 },
+      { id: 'usd-cash', type: 'Cash', balance: 150_000 },
+    ] as unknown as Account[];
+    const row = buildRow(outcome, staleAccounts, 35);
+    expect(row.cells[1]).toMatch(/9,000,000/);
+    expect(row.cells[2]).toBe('$150,000');
   });
 
   it('renders table in DOM', () => {
@@ -209,6 +206,7 @@ describe('year-table methodology links', () => {
     expect(location.hash).toBe('#references/us-brackets-2026');
     expect(refPanel.classList.contains('hidden')).toBe(false);
   });
+
 });
 
 
