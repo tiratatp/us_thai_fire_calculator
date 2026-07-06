@@ -90,9 +90,6 @@ describe('form', () => {
     fd.append('healthcareThbYr', '20,000');
     fd.append('legalTaxThbYr', '5,000');
     fd.append('travelUsdYr', '3,000');
-    fd.append('successThreshold', '0.95');
-    fd.append('monteCarloTrials', '5,000');
-    fd.append('regulatoryStance', 'optimistic');
     fd.append('currentFxUsdThb', '33');
 
     const inputs = parseFormData(fd);
@@ -102,7 +99,6 @@ describe('form', () => {
     expect(inputs.accounts[0]!.pre2024Snapshot).toBe(200000);
     expect(inputs.expenses.housingThbMo).toBe(10000);
     expect(inputs.expenses.foodThbMo).toBe(5000);
-    expect(inputs.monteCarloTrials).toBe(5000);
   });
 
   it('age validation', () => {
@@ -140,9 +136,6 @@ describe('form', () => {
     fd.append('healthcareThbYr', '20000');
     fd.append('legalTaxThbYr', '5000');
     fd.append('travelUsdYr', '3000');
-    fd.append('successThreshold', '0.95');
-    fd.append('monteCarloTrials', '5000');
-    fd.append('regulatoryStance', 'optimistic');
 
     const inputs = parseFormData(fd);
     expect(inputs.currentAge).toBe(40);

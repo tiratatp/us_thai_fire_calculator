@@ -44,7 +44,7 @@ export function renderMonteCarloExplanation(container: HTMLElement, optimistic: 
       Monte Carlo simulation of portfolio outcomes uses forward-looking capital market assumptions. The defaults are anchored to long-term historical market realities (approx. 1926-2023) rather than pessimistic 10-year institutional forecasts, because 30+ year FIRE horizons require long-term compounding data. Default annualized parameters are: US Equities 9.0% mean / 17.0% volatility, International Developed Equities 8.0% / 19.0%, US Aggregate Bonds 5.0% / 7.0%, Cash 3.5% / 1.0%. US CPI inflation defaults to a 3.0% mean with 1.4% standard deviation; Thai CPI inflation defaults to 2.0% / 2.5%. The USD/THB exchange rate follows a geometric random walk centered at 35 THB/USD with 8% annual log-volatility.
     </p>
     <p class="mb-6">
-      The default trial count is 1,000, adjustable upward to 10,000. A trial "succeeds" when the portfolio remains positive through the specified life expectancy AND every year's desired real spending was fully funded from portfolio and non-portfolio income. The reported success rate is the fraction of trials meeting both conditions.
+      The default trial count is 10,000. A trial "succeeds" when the portfolio remains positive through the specified life expectancy AND every year's desired real spending was fully funded from portfolio and non-portfolio income. The reported success rate is the fraction of trials meeting both conditions.
     </p>
     <div class="citations mb-4">
       <a href="https://www.portfoliovisualizer.com/historical-asset-class-returns" target="_blank" rel="noopener">Portfolio Visualizer — Historical Asset Class Returns</a> · 

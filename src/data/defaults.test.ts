@@ -126,8 +126,8 @@ describe('DEFAULT_USER_INPUTS', () => {
     expect(U.successThreshold).toBeLessThanOrEqual(1);
   });
 
-  it('default trials ≥ 100', () => {
-    expect(U.monteCarloTrials).toBeGreaterThanOrEqual(100);
+  it('default trials = 10000', () => {
+    expect(U.monteCarloTrials).toBe(10000);
   });
 
   it('regulatoryStance = both by default', () => {

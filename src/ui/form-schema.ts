@@ -1,5 +1,7 @@
 import type { Account, AccountType, Currency, UserInputs, RegulatoryStance } from '../types.js';
 
+import { DEFAULT_USER_INPUTS } from '../data/defaults.js';
+
 export interface FieldSpec {
   readonly id: string;
   readonly label: string;
@@ -101,9 +103,9 @@ export function parseFormData(fd: FormData): UserInputs {
       travelUsdYr: getNum('travelUsdYr'),
     },
     thaiResidencyByYear: residency,
-    successThreshold: getNum('successThreshold'),
-    monteCarloTrials: getNum('monteCarloTrials'),
-    regulatoryStance: getStr('regulatoryStance') as RegulatoryStance,
+    successThreshold: DEFAULT_USER_INPUTS.successThreshold,
+    monteCarloTrials: DEFAULT_USER_INPUTS.monteCarloTrials,
+    regulatoryStance: DEFAULT_USER_INPUTS.regulatoryStance,
     currentFxUsdThb: getNum('currentFxUsdThb'),
   };
 }

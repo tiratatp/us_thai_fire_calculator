@@ -66,6 +66,7 @@ export const INTERACTION_GROUP: MethodologyGroup = {
       paragraphs: [
         'The 1996 US-Thailand treaty was signed a year before Roth IRAs were created (Taxpayer Relief Act of 1997). The treaty\'s definition of "pension" in Article 20 does not distinguish between traditional and Roth accounts. Under US domestic law, a qualified Roth IRA distribution is tax-free; the treaty does not change this outcome for US purposes.',
         'Thailand has no statutory recognition of Roth IRAs. The prevailing view among cross-border practitioners is that a Roth withdrawal remitted to Thailand would be treated as pension income under Section 40(1) of the Thai Revenue Code and taxed at Thai progressive rates — with no US tax to credit under Article 25 because the US does not tax the distribution. This treatment is UNSETTLED and has no binding authority — see the "Regulatory Uncertainties" section for a summary of the optimistic and pessimistic readings.',
+        'The "Regulatory exposure delta" shown in the calculator results is the absolute difference in the Monte Carlo success rate between the optimistic and pessimistic regulatory scenarios. It quantifies the risk to the retirement plan posed strictly by unsettled tax law. A large delta means the plan\'s viability relies heavily on favorable interpretations by tax authorities.',
       ],
       citations: [
         { text: 'IRC §408A — Roth IRAs (added by Taxpayer Relief Act of 1997)', url: 'https://www.law.cornell.edu/uscode/text/26/408A' },

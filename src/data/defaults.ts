@@ -100,7 +100,7 @@ export const DEFAULT_USER_INPUTS: UserInputs = {
   },
   thaiResidencyByYear: Array.from({ length: 95 - 38 }, () => true),
   successThreshold: 0.90,
-  monteCarloTrials: 1000,
+  monteCarloTrials: 10000,
   regulatoryStance: 'both',
   currentFxUsdThb: 33,
 };
