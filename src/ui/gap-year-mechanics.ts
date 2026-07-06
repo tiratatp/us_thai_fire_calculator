@@ -10,7 +10,7 @@
  */
 
 export const AGE_CAP_HTML = `
-  <h2 id="gap-year-age-cap">Why the Hint Stops at Age 65</h2>
+  <h3 id="gap-year-age-cap">Why the Hint Stops at Age 65</h3>
   <p>
     The year-by-year table only surfaces the gap-year hint through age
     <strong>65</strong>. Two reasons:
@@ -36,7 +36,7 @@ export const AGE_CAP_HTML = `
 `;
 
 export const TRAD_HTML = `
-  <h2 id="gap-year-trad">Large Traditional IRA / 401(k) Withdrawal</h2>
+  <h3 id="gap-year-trad">Large Traditional IRA / 401(k) Withdrawal</h3>
   <p>
     <strong>How to execute.</strong> If the money is in a 401(k), roll
     it to a Traditional IRA first — 401(k) distributions carry a
@@ -74,7 +74,7 @@ export const TRAD_HTML = `
 `;
 
 export const ROTH_HTML = `
-  <h2 id="gap-year-roth">Roth Conversion</h2>
+  <h3 id="gap-year-roth">Roth Conversion</h3>
   <p>
     <strong>How to execute.</strong> Instruct your Traditional IRA
     custodian to perform an in-kind conversion of the desired dollar
@@ -106,7 +106,7 @@ export const ROTH_HTML = `
 `;
 
 export const LTCG_HTML = `
-  <h2 id="gap-year-ltcg">0%-Federal LTCG Harvest</h2>
+  <h3 id="gap-year-ltcg">0%-Federal LTCG Harvest</h3>
   <p>
     <strong>How to execute.</strong> Sell appreciated long-held taxable
     lots to realize gains inside the 0% LTCG bracket, then immediately
@@ -132,7 +132,7 @@ export const LTCG_HTML = `
 `;
 
 export const BOTH_HTML = `
-  <h2 id="gap-year-both">Can I Do Both in the Same Year?</h2>
+  <h3 id="gap-year-both">Can I Do Both in the Same Year?</h3>
   <p>
     <strong>No — they compete for the same bracket space.</strong>
     LTCG stacks on top of ordinary taxable income for bracket

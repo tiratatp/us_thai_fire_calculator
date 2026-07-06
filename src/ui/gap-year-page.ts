@@ -43,181 +43,207 @@ export function mountGapYearPage(container: HTMLElement): void {
       <a href="https://www.hlbthai.com/wp-content/uploads/2023/09/RD-Instruction-No.-Paw161-2566-Translation.pdf" target="_blank" rel="noopener">RD Instruction Paw 161/2566</a>.
     </p>
 
-    <h2 id="gap-year-events">Three Tax Events Unlocked</h2>
+    <nav class="toc" aria-label="On this page">
+      <ul>
+        <li><a href="#gap-year-what">What is a gap year?</a></li>
+        <li><a href="#gap-year-when">When does it make sense?</a></li>
+        <li><a href="#gap-year-how">What to do during a gap year?</a></li>
+        <li><a href="#gap-year-caveats">Caveats</a></li>
+        <li><a href="#gap-year-references">References</a></li>
+      </ul>
+    </nav>
 
-    <p>
-      A gap year is most valuable when it unlocks three tax events that this
-      calculator otherwise suppresses for a Thai resident:
-    </p>
+    <h2 id="gap-year-what">What is a gap year?</h2>
 
-    <ol>
-      <li>
-        <strong>Large Traditional IRA / 401(k) withdrawal</strong> remitted to
-        Thailand at <strong>0% Thai PIT</strong>, instead of the 20–35% top-bracket
-        Thai rate that would apply during a resident year.
-      </li>
-      <li>
-        <strong>Roth conversion</strong> sized to fill the US 12% federal
-        bracket. During a resident year, the calculator's Systemic&nbsp;#2
-        <em>value test</em> returns 0 — converting to Roth costs US tax with
-        zero Thai benefit under the pessimistic assumption that Thailand does
-        not honor the Roth wrapper on later distributions. During a gap year,
-        this becomes a pure US-side win.
-      </li>
-      <li>
-        <strong>0%-federal-LTCG harvest</strong> of Taxable Brokerage lots,
-        which shares the same 12%-bracket space as Roth conversion — Systemic&nbsp;#3
-        enforces mutual exclusion in any single year, but a gap year lets you
-        pick one without the Thai side clawing it back.
-      </li>
-    </ol>
+    <section>
+      <h3 id="gap-year-events">Three tax events unlocked</h3>
 
-    ${TRAD_HTML}
+      <p>
+        A gap year is most valuable when it unlocks three tax events that this
+        calculator otherwise suppresses for a Thai resident:
+      </p>
 
-    ${ROTH_HTML}
+      <ol>
+        <li>
+          <strong>Large Traditional IRA / 401(k) withdrawal</strong> remitted to
+          Thailand at <strong>0% Thai PIT</strong>, instead of the 20–35% top-bracket
+          Thai rate that would apply during a resident year.
+        </li>
+        <li>
+          <strong>Roth conversion</strong> sized to fill the US 12% federal
+          bracket. During a resident year, the calculator's Systemic&nbsp;#2
+          <em>value test</em> returns 0 — converting to Roth costs US tax with
+          zero Thai benefit under the pessimistic assumption that Thailand does
+          not honor the Roth wrapper on later distributions. During a gap year,
+          this becomes a pure US-side win.
+        </li>
+        <li>
+          <strong>0%-federal-LTCG harvest</strong> of Taxable Brokerage lots,
+          which shares the same 12%-bracket space as Roth conversion — Systemic&nbsp;#3
+          enforces mutual exclusion in any single year, but a gap year lets you
+          pick one without the Thai side clawing it back.
+        </li>
+      </ol>
+    </section>
 
-    ${LTCG_HTML}
+    <h2 id="gap-year-when">When does it make sense?</h2>
 
-    ${BOTH_HTML}
+    <section>
+      <h3 id="gap-year-threshold">Why $10,000, Not Higher</h3>
 
-    <h2 id="gap-year-destinations">Destinations &amp; Break-Even</h2>
+      <p>
+        The hint threshold ($10,000 USD Thai tax) is set intentionally
+        <em>below</em> the top-bracket break-even. In pre-RMD years the
+        calculator otherwise reports zero Roth conversion and zero LTCG harvest
+        (Systemic&nbsp;#2 and #3), so the direct Thai tax on the modeled
+        remittance understates the real upside — the true win in those years is
+        the Roth / LTCG activity the gap year <em>unlocks</em>, not just the
+        Thai tax already visible in the projection.
+      </p>
 
-    <p>
-      A one-year Chiang Mai retirement baseline for a comfortable single
-      retiree runs roughly <strong>$21,600/yr</strong>. The gap-year destination
-      must (a) permit residence for the ~330 days needed to fall below the
-      Thai 180-day threshold, and (b) impose no local tax on your US-source
-      remittances. Options range from clean fixed-address bases to
-      continuously-moving cruise or slow-travel patterns:
-    </p>
+      ${AGE_CAP_HTML}
+    </section>
 
-    <table class="year-table">
-      <thead>
-        <tr>
-          <th>Destination</th>
-          <th>Cost / yr</th>
-          <th>Local tax on foreign income</th>
-          <th>Verdict</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Philippines (SRRV)</td>
-          <td>$10,800 – $18,000</td>
-          <td>Exempt under NIRC §32(B)(6)</td>
-          <td><strong>Good</strong></td>
-        </tr>
-        <tr>
-          <td>Malaysia (MM2H Silver, 150k USD FD)</td>
-          <td>$12,000 – $18,000</td>
-          <td>Exempt under ITA §127(3)(b), 5-yr window</td>
-          <td><strong>Good</strong></td>
-        </tr>
-        <tr>
-          <td>Portugal (post-NHR closure)</td>
-          <td>$22,000 – $30,000</td>
-          <td>Taxed up to 48%</td>
-          <td>Bad</td>
-        </tr>
-        <tr>
-          <td>Mexico (Temporary Resident)</td>
-          <td>$16,000 – $20,000</td>
-          <td>Facts-and-circumstances worldwide tax</td>
-          <td>Complicated</td>
-        </tr>
-        <tr>
-          <td>USA (FL / TN, no state income tax)</td>
-          <td>$30,000 – $42,000</td>
-          <td>US federal always applies (no Thai saving)</td>
-          <td>Complicated</td>
-        </tr>
-        <tr>
-          <td>World cruise / continuous travel</td>
-          <td>$50,000 – $100,000</td>
-          <td>Usually none if no country hits its residency test</td>
-          <td>Expensive but clean</td>
-        </tr>
-        <tr>
-          <td>Multi-country slow travel (&lt;90 days each)</td>
-          <td>$18,000 – $30,000</td>
-          <td>None if you keep each stop truly short</td>
-          <td>Cheap but risky</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2 id="gap-year-how">What to do during a gap year?</h2>
 
-    <p>
-      <strong>World cruise / continuous travel</strong> keeps you outside
-      Thailand for the full ~330 days without ever establishing local tax
-      residency, at $50–100k/yr. Caveats: US federal tax still applies; some
-      cruise lines require a fixed billing address; year-long medical coverage
-      at sea is not standard travel insurance.
-    </p>
-    <p>
-      <strong>Multi-country slow travel</strong> is cheaper but each stop must
-      be truly short. Many countries have their own residency tests —
-      <a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/irs_rep/Pages/irs16.aspx" target="_blank" rel="noopener">Portugal's 183-day rule</a>,
-      <a href="https://www.agenciatributaria.es/AEAT.internet/en_gb/Inicio/_Segmentos_/Ciudadanos/Fiscalidad_de_no_residentes/Fiscalidad_de_no_residentes__ciudadanos_/Residencia_fiscal_en_Espana.shtml" target="_blank" rel="noopener">Spain's habitual-residence test</a>,
-      and similar. Keep each stop &lt;90 days and avoid building a pattern
-      (property, bank accounts, family) that looks like habitual residence.
-    </p>
+    <section>
+      <h3 id="gap-year-destinations">Where to spend the gap year — destinations &amp; break-even</h3>
 
-    <p>
-      The calculator assumes a <strong>conservative $15,000/yr uplift</strong>
-      (destination cost + travel + visa setup buffer) as the implicit cost
-      that the gap-year Thai tax savings must clear. If your projected Thai
-      tax for a year exceeds roughly $10,000 USD, the year-by-year table
-      surfaces a "Consider gap year abroad" hint.
-    </p>
+      <p>
+        A one-year Chiang Mai retirement baseline for a comfortable single
+        retiree runs roughly <strong>$21,600/yr</strong>. The gap-year destination
+        must (a) permit residence for the ~330 days needed to fall below the
+        Thai 180-day threshold, and (b) impose no local tax on your US-source
+        remittances. Options range from clean fixed-address bases to
+        continuously-moving cruise or slow-travel patterns:
+      </p>
 
-    <h2 id="gap-year-threshold">Why $10,000, Not Higher</h2>
+      <table class="year-table">
+        <thead>
+          <tr>
+            <th>Destination</th>
+            <th>Cost / yr</th>
+            <th>Local tax on foreign income</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Philippines (SRRV)</td>
+            <td>$10,800 – $18,000</td>
+            <td>Exempt under NIRC §32(B)(6)</td>
+            <td><strong>Good</strong></td>
+          </tr>
+          <tr>
+            <td>Malaysia (MM2H Silver, 150k USD FD)</td>
+            <td>$12,000 – $18,000</td>
+            <td>Exempt under ITA §127(3)(b), 5-yr window</td>
+            <td><strong>Good</strong></td>
+          </tr>
+          <tr>
+            <td>Portugal (post-NHR closure)</td>
+            <td>$22,000 – $30,000</td>
+            <td>Taxed up to 48%</td>
+            <td>Bad</td>
+          </tr>
+          <tr>
+            <td>Mexico (Temporary Resident)</td>
+            <td>$16,000 – $20,000</td>
+            <td>Facts-and-circumstances worldwide tax</td>
+            <td>Complicated</td>
+          </tr>
+          <tr>
+            <td>USA (FL / TN, no state income tax)</td>
+            <td>$30,000 – $42,000</td>
+            <td>US federal always applies (no Thai saving)</td>
+            <td>Complicated</td>
+          </tr>
+          <tr>
+            <td>World cruise / continuous travel</td>
+            <td>$50,000 – $100,000</td>
+            <td>Usually none if no country hits its residency test</td>
+            <td>Expensive but clean</td>
+          </tr>
+          <tr>
+            <td>Multi-country slow travel (&lt;90 days each)</td>
+            <td>$18,000 – $30,000</td>
+            <td>None if you keep each stop truly short</td>
+            <td>Cheap but risky</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <p>
-      The hint threshold ($10,000 USD Thai tax) is set intentionally
-      <em>below</em> the top-bracket break-even. In pre-RMD years the
-      calculator otherwise reports zero Roth conversion and zero LTCG harvest
-      (Systemic&nbsp;#2 and #3), so the direct Thai tax on the modeled
-      remittance understates the real upside — the true win in those years is
-      the Roth / LTCG activity the gap year <em>unlocks</em>, not just the
-      Thai tax already visible in the projection.
-    </p>
+      <p>
+        <strong>World cruise / continuous travel</strong> keeps you outside
+        Thailand for the full ~330 days without ever establishing local tax
+        residency, at $50–100k/yr. Caveats: US federal tax still applies; some
+        cruise lines require a fixed billing address; year-long medical coverage
+        at sea is not standard travel insurance.
+      </p>
+      <p>
+        <strong>Multi-country slow travel</strong> is cheaper but each stop must
+        be truly short. Many countries have their own residency tests —
+        <a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/irs_rep/Pages/irs16.aspx" target="_blank" rel="noopener">Portugal's 183-day rule</a>,
+        <a href="https://www.agenciatributaria.es/AEAT.internet/en_gb/Inicio/_Segmentos_/Ciudadanos/Fiscalidad_de_no_residentes/Fiscalidad_de_no_residentes__ciudadanos_/Residencia_fiscal_en_Espana.shtml" target="_blank" rel="noopener">Spain's habitual-residence test</a>,
+        and similar. Keep each stop &lt;90 days and avoid building a pattern
+        (property, bank accounts, family) that looks like habitual residence.
+      </p>
 
-    ${AGE_CAP_HTML}
+      <p>
+        The calculator assumes a <strong>conservative $15,000/yr uplift</strong>
+        (destination cost + travel + visa setup buffer) as the implicit cost
+        that the gap-year Thai tax savings must clear. If your projected Thai
+        tax for a year exceeds roughly $10,000 USD, the year-by-year table
+        surfaces a "Consider gap year abroad" hint.
+      </p>
 
-    <h2 id="gap-year-invariants">Invariants That Still Apply During a Gap Year</h2>
+      ${TRAD_HTML}
 
-    <ul>
-      <li>
-        <strong>US federal tax is unchanged.</strong> Ordinary income, LTCG,
-        and <abbr title="Net Investment Income Tax">NIIT</abbr> apply to
-        withdrawals in the year they happen, regardless of Thai residency.
-      </li>
-      <li>
-        <strong>US Foreign Tax Credit is zero for the gap year.</strong> There
-        is no Thai tax to credit.
-      </li>
-      <li>
-        <strong>No Paw 162/2566 grandfathering on retirement accounts.</strong>
-        Traditional IRA, Roth IRA, 401(k), and HSA distributions are never
-        eligible — residency status does not change this.
-      </li>
-      <li>
-        <strong>Treaty Article 25(3) re-sourcing is moot</strong> for the gap
-        year because no Thai tax is owed on the remittance.
-      </li>
-    </ul>
+      ${ROTH_HTML}
 
-    <h2 id="gap-year-not-modeled">What the Calculator Does <em>Not</em> Model</h2>
+      ${LTCG_HTML}
 
-    <p>
-      This calculator does not simulate gap years automatically. Every
-      projected year assumes Thai residency, which is the conservative
-      (pessimistic) default. The Gap year? column in the year-by-year table
-      is <strong>guidance</strong> — a flag that a particular year is a
-      strong candidate for you to physically arrange a &lt;180-day stay in
-      Thailand and execute the Roth / LTCG events that would otherwise be
-      wasted. Treat it as a planning prompt, not a scheduled outcome.
-    </p>
+      ${BOTH_HTML}
+    </section>
+
+    <h2 id="gap-year-caveats">Caveats</h2>
+
+    <section>
+      <h3 id="gap-year-invariants">Invariants that still apply during a gap year</h3>
+
+      <ul>
+        <li>
+          <strong>US federal tax is unchanged.</strong> Ordinary income, LTCG,
+          and <abbr title="Net Investment Income Tax">NIIT</abbr> apply to
+          withdrawals in the year they happen, regardless of Thai residency.
+        </li>
+        <li>
+          <strong>US Foreign Tax Credit is zero for the gap year.</strong> There
+          is no Thai tax to credit.
+        </li>
+        <li>
+          <strong>No Paw 162/2566 grandfathering on retirement accounts.</strong>
+          Traditional IRA, Roth IRA, 401(k), and HSA distributions are never
+          eligible — residency status does not change this.
+        </li>
+        <li>
+          <strong>Treaty Article 25(3) re-sourcing is moot</strong> for the gap
+          year because no Thai tax is owed on the remittance.
+        </li>
+      </ul>
+
+      <h3 id="gap-year-not-modeled">What the calculator does <em>not</em> model</h3>
+
+      <p>
+        This calculator does not simulate gap years automatically. Every
+        projected year assumes Thai residency, which is the conservative
+        (pessimistic) default. The Gap year? column in the year-by-year table
+        is <strong>guidance</strong> — a flag that a particular year is a
+        strong candidate for you to physically arrange a &lt;180-day stay in
+        Thailand and execute the Roth / LTCG events that would otherwise be
+        wasted. Treat it as a planning prompt, not a scheduled outcome.
+      </p>
+    </section>
 
     <h2 id="gap-year-references">References</h2>
 
