@@ -2,8 +2,8 @@
  * Default assumptions and starter UserInputs.
  *
  * Return/vol/correlation/FX values come from .research/05-monte-carlo.md
- * (Vanguard VCMM 10-yr forward as the default; more conservative than
- * historical). Regulatory scenarios come from .research/08-algorithm-v2.md.
+ * (Long-term historical averages as the default to support 30+ year horizons).
+ * Regulatory scenarios come from .research/08-algorithm-v2.md.
  */
 
 import type {
@@ -28,16 +28,16 @@ export const DEFAULT_CORRELATION_MATRIX: CorrelationMatrix = [
 /**
  * Default market assumptions.
  *
- * Return distributions: Vanguard VCMM 2026 10-yr forward-looking (mid of range).
+ * Return distributions: Historical long-term averages (approx. 1926-2023 blend).
  * Inflation: US 3.0% mean / 1.4% sd (Portfolio Visualizer CPI-U);
  * Thai 2.0% mean / 2.5% sd (FRED FPCPITOTLZGTHA 2010-2024).
  * FX USD/THB: log-normal random walk centered at 35, 8% annual log-vol.
  * Portfolio: 60/40 stocks/bonds by default.
  */
 export const DEFAULT_ASSUMPTION: Assumption = {
-  usStock: { mean: 0.06, sd: 0.17 },
-  usBond: { mean: 0.04, sd: 0.07 },
-  intlStock: { mean: 0.06, sd: 0.19 },
+  usStock: { mean: 0.09, sd: 0.17 },
+  usBond: { mean: 0.05, sd: 0.07 },
+  intlStock: { mean: 0.08, sd: 0.19 },
   cash: { mean: 0.035, sd: 0.01 },
   correlationMatrix: DEFAULT_CORRELATION_MATRIX,
   usInflation: { mean: 0.03, sd: 0.014 },
