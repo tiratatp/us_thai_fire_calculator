@@ -11,6 +11,7 @@ import {
   methodologyAnchorSet,
 } from './render.js';
 import { US_ORDINARY_BRACKETS_2026_SINGLE } from '../data/constants.js';
+import { METHODOLOGY_GROUPS, METHODOLOGY_SECTIONS } from './content.js';
 
 describe('escapeHtml', () => {
   it('escapes script tags', () => {
@@ -38,7 +39,6 @@ describe('methodologyAnchorSet', () => {
       'paw-162-grandfathering',
       'ftc-corrected',
       'roth-conversion-value-test',
-      'residency-180-days',
       'treaty-resourcing',
       'roth-uncertainty',
     ];
@@ -65,6 +65,7 @@ describe('renderMethodology', () => {
     expect(
       html.toLowerCase().includes('180') || html.includes('<180'),
     ).toBe(true);
+    expect(html.toLowerCase()).toContain('under 180 days');
   });
 
   it('includes roth-conversion-value-test content', () => {
@@ -88,6 +89,36 @@ describe('renderMethodology', () => {
     const matches = html.match(/href="https:\/\/[^\"]+"/g);
     expect(matches).not.toBeNull();
     expect(matches!.length).toBeGreaterThanOrEqual(15);
+  });
+
+  describe('renderMethodology groups', () => {
+    it('renders exactly 5 group sections', () => {
+      const html = renderMethodology();
+      const count = (html.match(/<section class="group"/g) ?? []).length;
+      expect(count).toBe(5);
+    });
+
+    it('renders one H3 per methodology section', () => {
+      const html = renderMethodology();
+      const count = (html.match(/<h3/g) ?? []).length;
+      expect(count).toBe(METHODOLOGY_SECTIONS.length);
+    });
+
+    it('includes nested TOC with at least 6 total lists', () => {
+      const html = renderMethodology();
+      const count = (html.match(/<ol/g) ?? []).length;
+      expect(count).toBeGreaterThanOrEqual(6);
+    });
+
+    it('has unique section ids', () => {
+      const ids = METHODOLOGY_SECTIONS.map((s) => s.id);
+      expect(new Set(ids).size).toBe(ids.length);
+    });
+
+    it('groups cover all sections', () => {
+      const groupedCount = METHODOLOGY_GROUPS.flatMap((g) => g.sections).length;
+      expect(groupedCount).toBe(METHODOLOGY_SECTIONS.length);
+    });
   });
 });
 

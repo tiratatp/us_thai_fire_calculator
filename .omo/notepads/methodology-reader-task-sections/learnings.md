@@ -55,4 +55,17 @@ The following intro strings were written for the 5 methodology groups in `src/me
 - Updated `src/methodology/render.ts` with `renderSubsection` (H3) and `renderGroup` (H2 + intro).
 - Updated `renderMethodology` to render groups and a nested Table of Contents.
 - Verified 5 groups and 30 H3 sections in the final HTML output.
-- Verified typecheck passes and tests pass (except for the expected `residency-180-days` failure).
+
+## Task 9 Completion Note
+- Updated `src/methodology/render.test.ts` to reflect the grouped methodology structure.
+- Removed `'residency-180-days'` from the `methodologyAnchorSet` required anchors list.
+- Strengthened the residency planning-lever test by asserting the presence of the phrase `"under 180 days"` (found in `src/methodology/content-thai-rules.ts`).
+- Added 5 new test cases in a `renderMethodology groups` describe block:
+    1. Verified exactly 5 `<section class="group">` occurrences.
+    2. Verified one `<h3>` per `METHODOLOGY_SECTIONS` entry (dynamic count).
+    3. Verified at least 6 `<ol>` tags (1 outer TOC + 5 nested group lists).
+    4. Verified all `METHODOLOGY_SECTIONS` IDs are unique.
+    5. Verified `METHODOLOGY_GROUPS` sections cover all `METHODOLOGY_SECTIONS`.
+- Verified `npm run typecheck`, `npm run test`, and `npm run build` all pass.
+- Verified `residency-180-days` is absent from the test file.
+- Total tests in `render.test.ts` increased from 13 to 18.
