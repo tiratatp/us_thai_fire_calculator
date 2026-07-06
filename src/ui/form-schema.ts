@@ -33,10 +33,14 @@ export const REGULATORY_STANCES: readonly { value: RegulatoryStance; label: stri
   { value: 'both', label: 'Both' },
 ];
 
+function stripCommas(s: string): string {
+  return s.replace(/,/g, '');
+}
+
 export function validateField(spec: FieldSpec, value: string): string | null {
   if (spec.type === 'number') {
     if (value.trim() === '') return 'Required';
-    const num = Number(value);
+    const num = Number(stripCommas(value));
     if (Number.isNaN(num)) return 'Must be a number';
     if (spec.min !== undefined && num < spec.min) return `Must be >= ${spec.min}`;
     if (spec.max !== undefined && num > spec.max) return `Must be <= ${spec.max}`;
@@ -45,7 +49,7 @@ export function validateField(spec: FieldSpec, value: string): string | null {
 }
 
 export function parseFormData(fd: FormData): UserInputs {
-  const getNum = (key: string) => Number(fd.get(key) || 0);
+  const getNum = (key: string) => Number(String(fd.get(key) || 0).replace(/,/g, ''));
   const getStr = (key: string) => String(fd.get(key) || '');
 
   const currentAge = getNum('currentAge');
@@ -62,10 +66,10 @@ export function parseFormData(fd: FormData): UserInputs {
     
     const account: any = { id, type, currency, balance };
     if (type === 'TaxableBrokerage' && basisStr !== null && basisStr !== '') {
-      account.basis = Number(basisStr);
+      account.basis = Number(String(basisStr).replace(/,/g, ''));
     }
     if ((type === 'Cash' || type === 'TaxableBrokerage') && pre2024Str !== null && pre2024Str !== '') {
-      account.pre2024Snapshot = Number(pre2024Str);
+      account.pre2024Snapshot = Number(String(pre2024Str).replace(/,/g, ''));
     }
     accounts.push(account as Account);
   }
@@ -79,7 +83,7 @@ export function parseFormData(fd: FormData): UserInputs {
   return {
     currentAge,
     lifeExpectancy,
-    birthYear: getNum('birthYear'),
+    birthYear: new Date().getFullYear() - currentAge,
     accounts,
     expenses: {
       housingThbMo: getNum('housingThbMo'),

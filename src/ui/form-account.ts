@@ -19,15 +19,15 @@ export function renderAccount(acc: Account): string {
       </label>
       <label class="block flex-1">
         <span class="text-xs">Balance</span>
-        <input type="number" name="account_balance_${acc.id}" value="${acc.balance}" min="0" class="block w-full text-sm">
+        <input type="text" name="account_balance_${acc.id}" value="${acc.balance}" inputmode="numeric" min="0" class="block w-full text-sm">
       </label>
       <label class="block flex-1">
         <span class="text-xs">Basis</span>
-        <input type="number" name="account_basis_${acc.id}" value="${acc.basis ?? ''}" min="0" class="basis-input block w-full text-sm" ${acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
+        <input type="text" name="account_basis_${acc.id}" value="${acc.basis ?? ''}" inputmode="numeric" min="0" class="basis-input block w-full text-sm" ${acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
       </label>
       <label class="block flex-1" title="Grandfathering (Paw 162/2566) does not apply to retirement accounts.">
         <span class="text-xs">Pre-2024 Snapshot ℹ️</span>
-        <input type="number" name="account_pre2024_${acc.id}" value="${acc.pre2024Snapshot ?? ''}" min="0" class="pre2024-input block w-full text-sm" ${acc.type !== 'Cash' && acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
+        <input type="text" name="account_pre2024_${acc.id}" value="${acc.pre2024Snapshot ?? ''}" inputmode="numeric" min="0" class="pre2024-input block w-full text-sm" ${acc.type !== 'Cash' && acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
       </label>
       <button type="button" class="remove-account px-2 py-1 bg-red-500 text-white rounded text-sm">X</button>
     </div>

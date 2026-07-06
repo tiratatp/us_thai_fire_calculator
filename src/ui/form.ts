@@ -27,7 +27,6 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
           <div class="grid grid-cols-4 gap-4">
             ${renderNumber('currentAge', 'Current Age', inputs.currentAge, 0)}
             ${renderNumber('lifeExpectancy', 'Life Expectancy', inputs.lifeExpectancy, inputs.currentAge + 1)}
-            ${renderNumber('birthYear', 'Birth Year', inputs.birthYear, 1900, new Date().getFullYear())}
             ${renderNumber('currentFxUsdThb', 'Current USD/THB', inputs.currentFxUsdThb ?? 33, 20, 50, 0.1)}
           </div>
         </section>
@@ -43,13 +42,13 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
         <section>
           <h2 class="text-xl font-bold">Expenses</h2>
           <div class="grid grid-cols-2 gap-4">
-            ${renderNumber('housingThbMo', 'Housing (THB/mo)', inputs.expenses.housingThbMo, 0)}
-            ${renderNumber('foodThbMo', 'Food (THB/mo)', inputs.expenses.foodThbMo, 0)}
-            ${renderNumber('transportThbMo', 'Transport (THB/mo)', inputs.expenses.transportThbMo, 0)}
-            ${renderNumber('otherThbMo', 'Other (THB/mo)', inputs.expenses.otherThbMo, 0)}
-            ${renderNumber('healthcareThbYr', 'Healthcare (THB/yr)', inputs.expenses.healthcareThbYr, 0)}
-            ${renderNumber('legalTaxThbYr', 'Legal/Tax (THB/yr)', inputs.expenses.legalTaxThbYr, 0)}
-            ${renderNumber('travelUsdYr', 'Travel (USD/yr)', inputs.expenses.travelUsdYr, 0)}
+            ${renderNumber('housingThbMo', 'Housing (THB/mo)', inputs.expenses.housingThbMo, 0, undefined, undefined, true)}
+            ${renderNumber('foodThbMo', 'Food (THB/mo)', inputs.expenses.foodThbMo, 0, undefined, undefined, true)}
+            ${renderNumber('transportThbMo', 'Transport (THB/mo)', inputs.expenses.transportThbMo, 0, undefined, undefined, true)}
+            ${renderNumber('otherThbMo', 'Other (THB/mo)', inputs.expenses.otherThbMo, 0, undefined, undefined, true)}
+            ${renderNumber('healthcareThbYr', 'Healthcare (THB/yr)', inputs.expenses.healthcareThbYr, 0, undefined, undefined, true)}
+            ${renderNumber('legalTaxThbYr', 'Legal/Tax (THB/yr)', inputs.expenses.legalTaxThbYr, 0, undefined, undefined, true)}
+            ${renderNumber('travelUsdYr', 'Travel (USD/yr)', inputs.expenses.travelUsdYr, 0, undefined, undefined, true)}
           </div>
         </section>
 
@@ -87,10 +86,10 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
     attachListeners();
   };
 
-  const renderNumber = (name: string, label: string, value: number, min?: number, max?: number, step?: number) => `
+  const renderNumber = (name: string, label: string, value: number, min?: number, max?: number, step?: number, isCurrency: boolean = false) => `
     <label class="block">
       <span class="text-sm font-medium">${label}</span>
-      <input type="number" name="${name}" value="${value}"
+      <input type="${isCurrency ? 'text' : 'number'}" name="${name}" value="${value}" inputmode="${isCurrency ? 'numeric' : ''}"
         ${min !== undefined ? `min="${min}"` : ''}
         ${max !== undefined ? `max="${max}"` : ''}
         ${step !== undefined ? `step="${step}"` : ''}
@@ -124,8 +123,9 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
 
     const validateForm = () => {
       let isValid = true;
-      form.querySelectorAll('input[type="number"]').forEach(input => {
-        const el = input as HTMLInputElement;
+      const allInputs = form.querySelectorAll<HTMLInputElement>('input[type="number"], input[inputmode="numeric"]');
+      allInputs.forEach(input => {
+        const el = input;
         const errorSpan = el.nextElementSibling as HTMLElement;
         if (el.value.trim() === '' && !el.hasAttribute('required')) {
           el.classList.remove('invalid', 'border-red-500');
@@ -161,9 +161,21 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
     form.addEventListener('input', (e) => {
       const target = e.target as HTMLElement;
 
+      // Format currency inputs (inputmode="numeric") with thousand separators
+      if (target instanceof HTMLInputElement && target.inputMode === 'numeric') {
+        const start = target.selectionStart ?? target.value.length;
+        const digits = target.value.replace(/\D/g, '');
+        const newVal = digits ? Number(digits).toLocaleString('en-US') : '';
+        if (target.value !== newVal) {
+          target.value = newVal;
+          const end = Math.min(start + (newVal.length - (target.value.replace(/\D/g, '').length - newVal.replace(/\D/g, '').length)), newVal.length);
+          target.setSelectionRange(end, end);
+        }
+      }
+
       if (target.classList.contains('account-type-select')) {
         const row = target.closest('.account-row') as HTMLElement;
-        const type = (target as HTMLSelectElement).value;
+        const type = (target as unknown as HTMLSelectElement).value;
         const basisInput = row.querySelector('.basis-input') as HTMLInputElement;
         const pre2024Input = row.querySelector('.pre2024-input') as HTMLInputElement;
         basisInput.disabled = type !== 'TaxableBrokerage';

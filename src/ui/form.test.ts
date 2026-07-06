@@ -70,6 +70,45 @@ describe('form', () => {
     expect(validateField({ id: 'balance', type: 'number', min: 0, section: 'accounts', label: 'Balance' }, '100')).toBeNull();
   });
 
+  it('validateField and parseFormData strip commas from numbers', () => {
+    expect(validateField({ id: 'balance', type: 'number', min: 0, max: 10000000, section: 'accounts', label: 'Balance' }, '1,000,000')).toBeNull();
+    expect(validateField({ id: 'balance', type: 'number', min: 0, max: 500000, section: 'accounts', label: 'Balance' }, '1,000,000')).not.toBeNull();
+
+    const fd = new FormData();
+    fd.append('currentAge', '40');
+    fd.append('lifeExpectancy', '90');
+    fd.append('account_id', 'a1');
+    fd.append('account_type_a1', 'TaxableBrokerage');
+    fd.append('account_currency_a1', 'USD');
+    fd.append('account_balance_a1', '1,000,000');
+    fd.append('account_basis_a1', '500,000');
+    fd.append('account_pre2024_a1', '200,000');
+    fd.append('housingThbMo', '10,000');
+    fd.append('foodThbMo', '5,000');
+    fd.append('transportThbMo', '2,000');
+    fd.append('otherThbMo', '1,000');
+    fd.append('healthcareThbYr', '20,000');
+    fd.append('legalTaxThbYr', '5,000');
+    fd.append('travelUsdYr', '3,000');
+    fd.append('successThreshold', '0.95');
+    fd.append('monteCarloTrials', '5,000');
+    fd.append('regulatoryStance', 'optimistic');
+    fd.append('currentFxUsdThb', '33');
+
+    for (let i = 0; i < 50; i++) {
+      fd.append(`residency_${i}`, 'on');
+    }
+
+    const inputs = parseFormData(fd);
+    expect(inputs.currentAge).toBe(40);
+    expect(inputs.accounts[0]!.balance).toBe(1000000);
+    expect(inputs.accounts[0]!.basis).toBe(500000);
+    expect(inputs.accounts[0]!.pre2024Snapshot).toBe(200000);
+    expect(inputs.expenses.housingThbMo).toBe(10000);
+    expect(inputs.expenses.foodThbMo).toBe(5000);
+    expect(inputs.monteCarloTrials).toBe(5000);
+  });
+
   it('age validation', () => {
     const container = document.getElementById('container')!;
     mountForm(container, () => {});
@@ -92,7 +131,6 @@ describe('form', () => {
     const fd = new FormData();
     fd.append('currentAge', '40');
     fd.append('lifeExpectancy', '90');
-    fd.append('birthYear', '1980');
     fd.append('account_id', 'a1');
     fd.append('account_type_a1', 'TaxableBrokerage');
     fd.append('account_currency_a1', 'USD');
@@ -116,6 +154,9 @@ describe('form', () => {
 
     const inputs = parseFormData(fd);
     expect(inputs.currentAge).toBe(40);
+    // birthYear is computed at module load time as `new Date().getFullYear() - currentAge`.
+    // The source module is evaluated before this test runs, so use the same fixed year.
+    expect(inputs.birthYear).toBe(new Date().getFullYear() - 40);
     expect(inputs.accounts).toHaveLength(1);
     expect(inputs.accounts[0]).toEqual({
       id: 'a1',

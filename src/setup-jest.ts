@@ -1,5 +1,8 @@
 // Polyfill for jsdom which lacks CSS.escape and Element.prototype.scrollIntoView.
 // Guarded by typeof Element so it doesn't break non-jsdom test environments.
+
+// Polyfill for jsdom which lacks CSS.escape and Element.prototype.scrollIntoView.
+// Guarded by typeof Element so it doesn't break non-jsdom test environments.
 if (typeof Element !== 'undefined') {
   if (typeof CSS === 'undefined') {
     (globalThis as Record<string, unknown>).CSS = {};
