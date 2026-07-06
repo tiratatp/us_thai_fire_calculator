@@ -13,7 +13,9 @@ for the source-of-truth tax research.
 ## Core invariants (never break these)
 
 1. **500-LOC file ceiling.** Every file in `src/` and `tests/` MUST be ≤ 500
-   lines. If you're about to breach, split by concern first. Check with:
+   lines. Ceiling was relaxed from 250 → 500 in commit `3c4f684` after the
+   drawdown was split into 3 files; do NOT re-tighten without user approval.
+   If you're about to breach, split by concern first. Check with:
    ```bash
    find src tests -name '*.ts' -o -name '*.css' | xargs wc -l | \
      awk '$1 > 500 && $2 != "total" {print "VIOLATION: " $0; f=1} END {exit f}'
@@ -69,18 +71,33 @@ in `tests/scenarios.test.ts`. Do not "simplify away" any of these.
 src/
 ├── data/           Cited<T> constants + default assumptions
 ├── engine/         Pure functions (US tax, Thai tax, FTC, remittance,
-│                   Roth conversion, drawdown, Monte Carlo, PRNG, Cholesky, FX)
-├── methodology/    Narrative + render (reads constants directly)
-├── ui/             Form, results, year-by-year table, charts
+│                   Roth conversion, RMD, drawdown [3 files], Monte Carlo,
+│                   PRNG, Cholesky, FX, inflation, funding-sources)
+├── methodology/    5 reader-task content groups + composer + renderer:
+│                   content-read-first / content-us-rules / content-thai-rules /
+│                   content-interaction / content-simulation → content.ts → render.ts
+│                   (all read constants directly)
+├── ui/             Form (form.ts + form-account.ts + form-schema.ts + format.ts),
+│                   results, year-by-year table, charts, navigate (hash-based),
+│                   methodology-page (mounts References tab),
+│                   drawdown-page, gap-year-page (+ gap-year-mechanics),
+│                   monte-carlo-page
 ├── workers/        Monte Carlo Web Worker
-├── main.ts         3-tab bootstrap (Inputs / Results / Methodology)
+├── main.ts         6-tab bootstrap (Inputs / Results / Monte Carlo /
+│                   Drawdown / Gap year / References)
 ├── style.css       Mobile-first responsive CSS
+├── types.ts        Shared TypeScript types
 └── storage.ts      Typed localStorage helpers
 
-tests/              End-to-end scenarios (S1-S7 acceptance gate)
+tests/              End-to-end scenarios (S1-S7 acceptance gate) + user scenarios
 .research/          01-08: source-of-truth tax research (DO NOT DELETE)
-.omo/plans/         Locked v1 work plan (DO NOT DELETE)
+.omo/plans/         Locked work plans — v1 + subsequent feature plans (DO NOT DELETE)
 ```
+
+The public tab labelled "References" is the same page other docs still call
+"the methodology page" — same file (`ui/methodology-page.ts`), same content
+group system in `src/methodology/`. Anchor deep links use the
+`#references/<anchor>` hash form and are handled by `ui/navigate.ts`.
 
 ## Verify commands (run before every commit)
 
@@ -149,17 +166,24 @@ single scenario without user opt-in via `regulatoryStance: 'optimistic' | 'pessi
 1. Prefer plain HTML strings from `renderXxx(container, inputs)` mount
    functions — no framework.
 2. Every numeric column header MUST link to a methodology anchor via
-   `columnAnchorMap()`. The test in `src/ui/year-table.test.ts` will
-   fail if you reference an anchor that doesn't exist in
-   `methodologyAnchorSet()`.
+   `columnAnchorMap()` using the `#references/<anchor>` deep-link form.
+   The test in `src/ui/year-table.test.ts` will fail if you reference an
+   anchor that doesn't exist in `methodologyAnchorSet()` (drawn from the
+   composed content groups in `src/methodology/content.ts`).
 3. Escape user-facing strings via a local `esc()` helper before
    inserting into `innerHTML`.
 4. CSS custom properties live in `src/style.css` — reuse them, don't
    hardcode colors.
+5. If you add a new top-level tab, update the `TabId` union in
+   `src/ui/navigate.ts`, the tab button in `index.html`, the panel
+   `<section id="…-tab">`, the hash regex in `main.ts` `handleHash()`,
+   and the mount call in `bootstrap()`. All five MUST agree.
 
 ## When touching the drawdown algorithm
 
-The drawdown is split across three files to respect 250 LOC:
+The drawdown is split across three files (originally to respect the old
+250-LOC ceiling; the split is still the right separation of concerns and
+should be preserved even under the 500-LOC ceiling):
 - `src/engine/drawdown.ts` — orchestrator (Steps 0-11)
 - `src/engine/drawdown-draws.ts` — mutable-account helpers + THB/USD draws + tax payment
 - `src/engine/drawdown-tax.ts` — US/Thai tax compute + per-item FTC allocation
