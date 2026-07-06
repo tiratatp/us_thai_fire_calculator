@@ -28,7 +28,6 @@ Consult a cross-border tax professional before making retirement decisions.
 - Assumes you're a Thai tax resident every year; the Gap year tab explains
   the <180-day strategy if you plan to spend some years outside Thailand
 - Monte Carlo simulation with correlated returns + stochastic FX + inflation
-- Corrected FTC per Oracle review (single primary taxer per income item)
 - Value-test Roth conversion (defaults to 0 for Thai residents)
 - References tab with citations for every constant
 
