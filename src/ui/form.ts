@@ -52,19 +52,7 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
           </div>
         </section>
 
-        <section>
-          <h2 class="text-xl font-bold">Assumptions</h2>
-          <div class="grid grid-cols-4 gap-4">
-            ${renderNumber('monteCarloTrials', 'MC Trials', inputs.monteCarloTrials, 100, 10000)}
-            ${renderNumber('successThreshold', 'Success Threshold', inputs.successThreshold, 0, 1, 0.01)}
-            <label class="block">
-              <span class="text-sm font-medium">Regulatory Stance</span>
-              <select name="regulatoryStance" class="mt-1 block w-full rounded border-gray-300">
-                ${REGULATORY_STANCES.map(s => `<option value="${s.value}" ${inputs.regulatoryStance === s.value ? 'selected' : ''}>${s.label}</option>`).join('')}
-              </select>
-            </label>
-          </div>
-        </section>
+
 
         <div id="live-summary" class="p-4 bg-gray-50 rounded border"></div>
 
@@ -139,6 +127,45 @@ export function mountForm(container: HTMLElement, onSubmit: (inputs: UserInputs)
         const errorSpan = leInput.nextElementSibling as HTMLElement;
         if (errorSpan) { errorSpan.textContent = 'Must be > Current Age'; errorSpan.classList.remove('hidden'); }
       }
+
+      const accountRows = form.querySelectorAll('.account-row');
+      accountRows.forEach(row => {
+        const id = (row as HTMLElement).dataset.id;
+        if (!id) return;
+        
+        const balanceInput = row.querySelector(`input[name="account_balance_${id}"]`) as HTMLInputElement;
+        const basisInput = row.querySelector(`input[name="account_basis_${id}"]`) as HTMLInputElement;
+        const pre2024Input = row.querySelector(`input[name="account_pre2024_${id}"]`) as HTMLInputElement;
+        
+        if (!balanceInput) return;
+        
+        const balance = Number(balanceInput.value.replace(/,/g, ''));
+        if (Number.isNaN(balance)) return; 
+        
+        if (basisInput && !basisInput.disabled && basisInput.value.trim() !== '') {
+          const basis = Number(basisInput.value.replace(/,/g, ''));
+          if (!Number.isNaN(basis) && basis > balance) {
+            isValid = false;
+            basisInput.classList.add('invalid', 'border-red-500');
+            basisInput.title = 'Basis cannot exceed Balance';
+          } else {
+            basisInput.classList.remove('invalid', 'border-red-500');
+            basisInput.title = '';
+          }
+        }
+        
+        if (pre2024Input && !pre2024Input.disabled && pre2024Input.value.trim() !== '') {
+          const pre2024 = Number(pre2024Input.value.replace(/,/g, ''));
+          if (!Number.isNaN(pre2024) && pre2024 > balance) {
+            isValid = false;
+            pre2024Input.classList.add('invalid', 'border-red-500');
+            pre2024Input.title = 'Pre-2024 Balance cannot exceed Balance';
+          } else {
+            pre2024Input.classList.remove('invalid', 'border-red-500');
+            pre2024Input.title = '';
+          }
+        }
+      });
 
       submitBtn.disabled = !isValid;
       return isValid;

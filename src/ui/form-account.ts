@@ -25,8 +25,8 @@ export function renderAccount(acc: Account): string {
         <span class="text-xs">Basis</span>
         <input type="text" name="account_basis_${acc.id}" value="${acc.basis ?? ''}" inputmode="numeric" min="0" class="basis-input block w-full text-sm" ${acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
       </label>
-      <label class="block flex-1" title="Grandfathering (Paw 162/2566) does not apply to retirement accounts.">
-        <span class="text-xs">Pre-2024 Snapshot ℹ️</span>
+      <label class="block flex-1" title="Balance accumulated before Jan 1, 2024. Can be remitted to Thailand tax-free. (Grandfathering does not apply to retirement accounts.)">
+        <span class="text-xs">Pre-2024 Balance ℹ️</span>
         <input type="text" name="account_pre2024_${acc.id}" value="${acc.pre2024Snapshot ?? ''}" inputmode="numeric" min="0" class="pre2024-input block w-full text-sm" ${acc.type !== 'Cash' && acc.type !== 'TaxableBrokerage' ? 'disabled' : ''}>
       </label>
       <button type="button" class="remove-account px-2 py-1 bg-red-500 text-white rounded text-sm">X</button>
